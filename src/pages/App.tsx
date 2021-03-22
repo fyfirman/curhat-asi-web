@@ -1,7 +1,7 @@
-import React from 'react';
-import {Box, Button} from '@material-ui/core';
-import logo from '@assets/logo.svg';
-import '@assets/App.css';
+import React from "react";
+import { Box, Button } from "@material-ui/core";
+import logo from "@assets/logo.svg";
+import "@assets/App.css";
 
 function App() {
   return (
@@ -16,9 +16,7 @@ function App() {
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        ></a>
         <Box component="span" m={1}>
           <Button variant="contained" color="primary">
             Hello World
