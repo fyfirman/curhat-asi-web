@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Button} from '@material-ui/core';
-import logo from '../assets/logo.svg';
-import '../assets/App.css';
+import logo from '@assets/logo.svg';
+import '@assets/App.css';
 
 function App() {
   return (
