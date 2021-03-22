@@ -1,4 +1,5 @@
 import React from 'react';
+import {Box, Button} from '@material-ui/core';
 import logo from '../assets/logo.svg';
 import '../assets/App.css';
 
@@ -18,6 +19,11 @@ function App() {
         >
           Learn React
         </a>
+        <Box component="span" m={1}>
+          <Button variant="contained" color="primary">
+            Hello World
+          </Button>
+        </Box>
       </header>
     </div>
   );
