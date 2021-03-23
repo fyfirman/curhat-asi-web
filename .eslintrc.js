@@ -3,12 +3,7 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: [
-    "plugin:react/recommended",
-    "prettier",
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
+  extends: ["plugin:react/recommended", "prettier", "eslint:recommended"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"
@@ -38,7 +33,7 @@ module.exports = {
         // "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-unused-vars": [
           "error",
-          { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }
+          { argsIgnorePattern: "^_", varsIgnorePattern: "^_|[R-r]eact" }
         ]
       }
     },
@@ -48,6 +43,5 @@ module.exports = {
       env: { node: true }
     }
   ],
-  rules: {
-  }
+  rules: {}
 };
