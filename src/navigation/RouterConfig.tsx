@@ -8,15 +8,14 @@ const RouterConfig: React.FC = () => {
   const [loggedIn, _] = React.useState(false);
 
   return (
-    <div>
-      Test
+    <>
       <Route exact path="/">
         {loggedIn ? <Redirect to="/user" /> : <Redirect to="/login" />}
       </Route>
       <Route path="/login" component={Login} />
       <Route path="/user" component={Users} />
       <Route path="/consultation" component={Consultations} />
-    </div>
+    </>
   );
 };
 
