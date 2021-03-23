@@ -3,8 +3,10 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { privateRoutes as routes } from "@navigation/routes";
 import Sidebar from "@components/Sidebar";
 import Navbar from "@components/Navbar";
+import { makeStyles, Theme } from "@material-ui/core";
 
 const routeName = "/admin";
+const sideBarWidth = 250;
 
 const switchRoutes = (
   <Switch>
@@ -15,12 +17,21 @@ const switchRoutes = (
   </Switch>
 );
 
+const useStyle = makeStyles((theme: Theme) => ({
+  content: {
+    marginLeft: sideBarWidth,
+    marginTop: 64,
+    ...theme.mixins.toolbar
+  }
+}));
+
 const Admin = () => {
+  const classes = useStyle();
   return (
     <>
       <Navbar />
-      <Sidebar routes={routes} prefixPath={routeName} />
-      <main>{switchRoutes}</main>
+      <Sidebar routes={routes} prefixPath={routeName} width={sideBarWidth} />
+      <main className={classes.content}>{switchRoutes}</main>
     </>
   );
 };

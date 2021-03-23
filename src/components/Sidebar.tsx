@@ -6,28 +6,24 @@ import { NavLink } from "react-router-dom";
 interface SidebarProps {
   routes: IRoute[];
   prefixPath: string;
+  width?: number;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    height: "100vh",
-    backgroundColor: theme.palette.primary.main,
-    flexShrink: 0,
-    whiteSpace: "nowrap"
-  },
+const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) => ({
+  root: {},
   toolbar: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
+    width: ({ width }) => width ?? 300,
     padding: "0 8px",
     ...theme.mixins.toolbar
   }
 }));
 
-const Sidebar: React.FC<SidebarProps> = ({ routes, prefixPath }: SidebarProps) => {
-  const classes = useStyles();
+const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
+  const { routes, prefixPath } = props;
+  const classes = useStyles(props);
+
   return (
-    <Drawer className={classes.root} variant="permanent" open>
+    <Drawer variant="permanent" open>
       <div className={classes.toolbar} />
       <List>
         {routes.map(({ name, path }, key) => (
