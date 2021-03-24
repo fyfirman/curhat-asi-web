@@ -1,7 +1,9 @@
-import * as React from "react";
-import { Drawer, List, ListItem, ListItemText, makeStyles, Theme } from "@material-ui/core";
-import { Route as IRoute } from "@navigation/routes";
-import { NavLink } from "react-router-dom";
+import * as React from 'react';
+import { NavLink } from 'react-router-dom';
+import {
+  Drawer, List, ListItem, ListItemText, makeStyles, Theme,
+} from '@material-ui/core';
+import { Route as IRoute } from '@navigation/routes';
 
 interface SidebarProps {
   routes: IRoute[];
@@ -13,16 +15,16 @@ const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) => ({
   root: {},
   toolbar: {
     width: ({ width }) => width ?? 300,
-    padding: "0 8px",
-    ...theme.mixins.toolbar
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
   },
   nav: {
-    textDecoration: "none",
-    color: "inherit"
+    textDecoration: 'none',
+    color: 'inherit',
   },
   activeNav: {
-    color: theme.palette.secondary.main
-  }
+    color: theme.palette.secondary.main,
+  },
 }));
 
 const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {

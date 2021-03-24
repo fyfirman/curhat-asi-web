@@ -1,6 +1,6 @@
-import * as React from "react";
-import Consultations from "@pages/admin/consultation/consultationList/ConsultationList";
-import Users from "@pages/admin/user/userList/UserList";
+import * as React from 'react';
+import Consultations from '@pages/admin/consultation/consultationList/ConsultationList';
+import Users from '@pages/admin/user/userList/UserList';
 
 export interface Route {
   path: string;
@@ -10,13 +10,13 @@ export interface Route {
 
 export const privateRoutes: Route[] = [
   {
-    path: "/user",
+    path: '/user',
     component: Users,
-    name: "Pengguna"
+    name: 'Pengguna',
   },
   {
-    path: "/consultation",
+    path: '/consultation',
     component: Consultations,
-    name: "Konsultasi"
-  }
+    name: 'Konsultasi',
+  },
 ];

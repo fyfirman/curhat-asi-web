@@ -1,20 +1,22 @@
-import React from "react";
-import { Theme, Container, TextField, Grid, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import {
+  Theme, Container, TextField, Grid, Button,
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    display: "flex",
+    display: 'flex',
     padding: theme.spacing(4),
-    justifyContent: "center",
-    height: "100vh",
-    alignItems: "center"
+    justifyContent: 'center',
+    height: '100vh',
+    alignItems: 'center',
   },
   container: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: theme.shape.borderRadius,
-    padding: theme.spacing(4)
-  }
+    padding: theme.spacing(4),
+  },
 }));
 
 const Login = () => {

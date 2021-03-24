@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const AddUser = () => {
-  return (
-    <div>
-      Tambahkan User
-    </div>
-  )
-}
+const AddUser = () => (
+  <div>
+    Tambahkan User
+  </div>
+);
 
-export default AddUser
+export default AddUser;

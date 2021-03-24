@@ -1,11 +1,13 @@
-import React from "react";
-import { AppBar, IconButton, makeStyles, Theme, Toolbar, Typography } from "@material-ui/core";
-import { Menu as MenuIcon } from "@material-ui/icons";
+import React from 'react';
+import {
+  AppBar, IconButton, makeStyles, Theme, Toolbar, Typography,
+} from '@material-ui/core';
+import { Menu as MenuIcon } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    zIndex: theme.zIndex.drawer + 1
-  }
+    zIndex: theme.zIndex.drawer + 1,
+  },
 }));
 
 const Navbar = () => {

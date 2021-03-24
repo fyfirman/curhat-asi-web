@@ -1,21 +1,21 @@
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { makeStyles, Theme } from "@material-ui/core";
-import { privateRoutes as routes } from "@navigation/routes";
-import Sidebar from "@components/Sidebar";
-import Navbar from "@components/Navbar";
-import UserDetail from "@pages/admin/user/userDetail/UserDetail";
-import ConsultationRoom from "@pages/admin/consultation/constultationRoom/ConsultationRoom";
-import AddUser from "@pages/admin/user/addUser/AddUser";
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { makeStyles, Theme } from '@material-ui/core';
+import { privateRoutes as routes } from '@navigation/routes';
+import Sidebar from '@components/Sidebar';
+import Navbar from '@components/Navbar';
+import UserDetail from '@pages/admin/user/userDetail/UserDetail';
+import ConsultationRoom from '@pages/admin/consultation/constultationRoom/ConsultationRoom';
+import AddUser from '@pages/admin/user/addUser/AddUser';
 
-const routeName = "/admin";
+const routeName = '/admin';
 const sideBarWidth = 250;
 
 const switchRoutes = (
   <Switch>
-    {routes.map((route, key) => {
-      return <Route exact path={routeName + route.path} component={route.component} key={key} />;
-    })}
+    {routes.map((route, key) => (
+      <Route exact path={routeName + route.path} component={route.component} key={key} />
+    ))}
     <Route path={`${routeName}/user/add`} component={AddUser} />
     <Route path={`${routeName}/user/:id`} component={UserDetail} />
     <Route path={`${routeName}/consultation/:id`} component={ConsultationRoom} />
@@ -29,8 +29,8 @@ const useStyle = makeStyles((theme: Theme) => ({
     marginTop: 64,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(6),
-    ...theme.mixins.toolbar
-  }
+    ...theme.mixins.toolbar,
+  },
 }));
 
 const Admin = () => {
