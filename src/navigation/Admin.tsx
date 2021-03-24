@@ -6,6 +6,7 @@ import Sidebar from "@components/Sidebar";
 import Navbar from "@components/Navbar";
 import UserDetail from "@pages/admin/user/userDetail/UserDetail";
 import ConsultationRoom from "@pages/admin/consultation/constultationRoom/ConsultationRoom";
+import AddUser from "@pages/admin/user/addUser/AddUser";
 
 const routeName = "/admin";
 const sideBarWidth = 250;
@@ -15,6 +16,7 @@ const switchRoutes = (
     {routes.map((route, key) => {
       return <Route exact path={routeName + route.path} component={route.component} key={key} />;
     })}
+    <Route path={`${routeName}/user/add`} component={AddUser} />
     <Route path={`${routeName}/user/:id`} component={UserDetail} />
     <Route path={`${routeName}/consultation/:id`} component={ConsultationRoom} />
     <Redirect from={routeName} to={`${routeName}/user`} />
