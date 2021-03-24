@@ -27,6 +27,8 @@ const useStyle = makeStyles((theme: Theme) => ({
   content: {
     marginLeft: sideBarWidth,
     marginTop: 64,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(6),
     ...theme.mixins.toolbar
   }
 }));
