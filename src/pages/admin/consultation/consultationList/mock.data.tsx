@@ -1,14 +1,17 @@
 import React from "react";
-import { Button } from "@material-ui/core";
 import { GridCellParams, GridColDef, GridRowData } from "@material-ui/data-grid";
-import { Link } from "react-router-dom";
+import Button from "@components/LinkButton";
 
 const ViewButton = (params: GridCellParams) => (
-  <Link to={`consultation/${params.getValue("id")}`}>
-    <Button variant="contained" color="secondary" size="small" disableElevation>
-      Lihat
-    </Button>
-  </Link>
+  <Button
+    to={`consultation/${params.getValue("id")}`}
+    variant="contained"
+    color="secondary"
+    size="small"
+    disableElevation
+  >
+    Lihat
+  </Button>
 );
 
 export const columns: GridColDef[] = [
