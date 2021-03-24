@@ -5,6 +5,7 @@ import { privateRoutes as routes } from "@navigation/routes";
 import Sidebar from "@components/Sidebar";
 import Navbar from "@components/Navbar";
 import UserDetail from "@pages/admin/userDetail/UserDetail";
+import ConsultationRoom from "@pages/admin/constultationRoom/ConsultationRoom";
 
 const routeName = "/admin";
 const sideBarWidth = 250;
@@ -15,6 +16,7 @@ const switchRoutes = (
       return <Route exact path={routeName + route.path} component={route.component} key={key} />;
     })}
     <Route path={`${routeName}/user/:id`} component={UserDetail} />
+    <Route path={`${routeName}/consultation/:id`} component={ConsultationRoom} />
     <Redirect from={routeName} to={`${routeName}/user`} />
   </Switch>
 );
