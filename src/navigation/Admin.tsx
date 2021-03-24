@@ -1,9 +1,10 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { makeStyles, Theme } from "@material-ui/core";
 import { privateRoutes as routes } from "@navigation/routes";
 import Sidebar from "@components/Sidebar";
 import Navbar from "@components/Navbar";
-import { makeStyles, Theme } from "@material-ui/core";
+import UserDetail from "@pages/private/userDetail/UserDetail";
 
 const routeName = "/admin";
 const sideBarWidth = 250;
@@ -13,6 +14,7 @@ const switchRoutes = (
     {routes.map((route, key) => {
       return <Route exact path={routeName + route.path} component={route.component} key={key} />;
     })}
+    <Route path={`${routeName}/user/:id`} component={UserDetail} />
     <Redirect from={routeName} to={`${routeName}/user`} />
   </Switch>
 );
