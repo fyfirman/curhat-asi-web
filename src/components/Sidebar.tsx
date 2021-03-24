@@ -15,6 +15,13 @@ const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) => ({
     width: ({ width }) => width ?? 300,
     padding: "0 8px",
     ...theme.mixins.toolbar
+  },
+  nav: {
+    textDecoration: "none",
+    color: "inherit"
+  },
+  activeNav: {
+    color: theme.palette.secondary.main
   }
 }));
 
@@ -27,7 +34,12 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
       <div className={classes.toolbar} />
       <List>
         {routes.map(({ name, path }, key) => (
-          <NavLink to={prefixPath + path} activeClassName="active" key={key}>
+          <NavLink
+            to={prefixPath + path}
+            className={classes.nav}
+            activeClassName={classes.activeNav}
+            key={key}
+          >
             <ListItem button key={name}>
               <ListItemText primary={name} />
             </ListItem>
