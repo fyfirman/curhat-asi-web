@@ -1,8 +1,7 @@
 import React from 'react';
-import {
-  Theme, Container, TextField, Grid, Button,
-} from '@material-ui/core';
+import { Theme, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import LoginForm from './components/LoginForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -17,6 +16,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: theme.shape.borderRadius,
     padding: theme.spacing(4),
   },
+  header: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(3),
+  },
 }));
 
 const Login = () => {
@@ -25,22 +30,10 @@ const Login = () => {
   return (
     <div className={classes.root}>
       <Container maxWidth="xs" className={classes.container}>
-        <Grid container spacing={3}>
-          <Grid item container justify="center">
-            <h2>Curhat ASI</h2>
-          </Grid>
-          <Grid item md={12} sm={12} xs={12}>
-            <TextField id="username" label="Username" type="email" fullWidth autoFocus required />
-          </Grid>
-          <Grid item md={12} sm={12} xs={12}>
-            <TextField id="pin" label="PIN" type="password" fullWidth required />
-          </Grid>
-          <Grid item md={12} sm={12} xs={12}>
-            <Button variant="contained" color="primary" disableElevation fullWidth>
-              Login
-            </Button>
-          </Grid>
-        </Grid>
+        <div className={classes.header}>
+          <h2>Curhat ASI</h2>
+        </div>
+        <LoginForm />
       </Container>
     </div>
   );
