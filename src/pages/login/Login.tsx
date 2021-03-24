@@ -33,7 +33,7 @@ const Login = () => {
             <TextField id="username" label="Username" type="email" fullWidth autoFocus required />
           </Grid>
           <Grid item md={12} sm={12} xs={12}>
-            <TextField id="username" label="PIN" type="password" fullWidth required />
+            <TextField id="pin" label="PIN" type="password" fullWidth required />
           </Grid>
           <Grid item md={12} sm={12} xs={12}>
             <Button variant="contained" color="primary" disableElevation fullWidth>
