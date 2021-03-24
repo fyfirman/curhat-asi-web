@@ -1,4 +1,14 @@
-export const columns = [
+import React from "react";
+import { Button } from "@material-ui/core";
+import { GridColDef, GridRowData } from "@material-ui/data-grid";
+
+const ViewButton = () => (
+  <Button variant="contained" color="secondary" size="small" disableElevation>
+    Lihat
+  </Button>
+);
+
+export const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "firstName", headerName: "First name", width: 130 },
   { field: "lastName", headerName: "Last name", width: 130 },
@@ -9,17 +19,16 @@ export const columns = [
     width: 90
   },
   {
-    field: "fullName",
-    headerName: "Full name",
-    description: "This column has a value getter and is not sortable.",
+    field: "action",
+    headerName: "Aksi",
     sortable: false,
-    width: 160,
-    valueGetter: (params: any) =>
-      `${params.getValue("firstName") || ""} ${params.getValue("lastName") || ""}`
+    filterable: false,
+    disableColumnMenu: true,
+    renderCell: ViewButton
   }
 ];
 
-export const rows = [
+export const rows: GridRowData[] = [
   { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
   { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
   { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
