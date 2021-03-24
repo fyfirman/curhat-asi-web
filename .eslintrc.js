@@ -26,6 +26,7 @@ module.exports = {
       rules: {
         "no-undef": "off",
         "no-unused-vars": "off",
+        "prefer-template": "error",
         "spaced-comment": ["error", "always", { markers: ["/"] }],
         "import/no-unresolved": "off",
         "@typescript-eslint/camelcase": "off",
