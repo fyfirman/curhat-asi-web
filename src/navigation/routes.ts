@@ -1,6 +1,6 @@
 import * as React from "react";
-import Consultations from "@pages/admin/consultations/Consultations";
-import Users from "@pages/admin/users/Users";
+import Consultations from "@pages/admin/consultation/consultationList/ConsultationList";
+import Users from "@pages/admin/user/userList/UserList";
 
 export interface Route {
   path: string;
