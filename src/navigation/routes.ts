@@ -10,12 +10,12 @@ export interface Route {
 
 export const privateRoutes: Route[] = [
   {
-    path: "/users",
+    path: "/user",
     component: Users,
     name: "Pengguna"
   },
   {
-    path: "/consultations",
+    path: "/consultation",
     component: Consultations,
     name: "Konsultasi"
   }

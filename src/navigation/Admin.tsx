@@ -13,7 +13,7 @@ const switchRoutes = (
     {routes.map((route, key) => {
       return <Route exact path={routeName + route.path} component={route.component} key={key} />;
     })}
-    <Redirect from={routeName} to={`${routeName}/users`} />
+    <Redirect from={routeName} to={`${routeName}/user`} />
   </Switch>
 );
 
