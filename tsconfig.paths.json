@@ -4,7 +4,6 @@
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
-      "@parts/*": ["src/parts/*"],
       "@navigation/*": ["src/navigation/*"],
       "@redux/*": ["src/redux/*"],
       "@services/*": ["src/services/*"],

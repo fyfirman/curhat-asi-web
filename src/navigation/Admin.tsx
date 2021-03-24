@@ -4,7 +4,7 @@ import { makeStyles, Theme } from "@material-ui/core";
 import { privateRoutes as routes } from "@navigation/routes";
 import Sidebar from "@components/Sidebar";
 import Navbar from "@components/Navbar";
-import UserDetail from "@pages/private/userDetail/UserDetail";
+import UserDetail from "@pages/admin/userDetail/UserDetail";
 
 const routeName = "/admin";
 const sideBarWidth = 250;
