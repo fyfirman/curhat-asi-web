@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import { BASE_URL } from '@utils/config';
-import { DEBUG_MODE } from '../utils/config';
+import { BASE_URL, DEBUG_MODE } from '@utils/config';
 
 const instance = axios.create({
   baseURL: BASE_URL,

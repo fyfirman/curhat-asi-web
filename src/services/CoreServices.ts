@@ -1,7 +1,7 @@
-import get from './get';
-import post from './post';
-import put from './put';
-import * as Config from './axiosConfig';
+import get from '@utils/axios/get';
+import post from '@utils/axios/post';
+import put from '@utils/axios/put';
+import * as Config from '@utils/axios/axiosConfig';
 
 // Get
 const getProfile = () => get('api/profile', Config.withToken());
