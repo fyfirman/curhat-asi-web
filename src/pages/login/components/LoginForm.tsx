@@ -4,6 +4,8 @@ import * as yup from 'yup';
 import {
   Button, makeStyles, TextField, Theme,
 } from '@material-ui/core';
+import { login } from '@redux/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 // TODO: Fix validation schema
 const validationSchema = yup.object({
@@ -24,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const LoginForm = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -33,8 +36,7 @@ const LoginForm = () => {
     validationSchema,
     onSubmit: (values) => {
       // TODO: Handle login submit
-      // eslint-disable-next-line no-alert
-      alert(JSON.stringify(values, null, 2));
+      login(values.username, values.password)(dispatch);
     },
   });
 
