@@ -22,7 +22,7 @@ const getSubDistricts = (districtId: string) => get(`api/sub_districts/${distric
 const getVillages = (subDistrictId: string) => get(`api/villages/${subDistrictId}`, Config.withToken());
 
 // Post
-const postGenerateToken = (data: any) => post('auth/token', Config.withOauth(data));
+const postGenerateToken = (data: any) => post('auth/token', Config.bodyWithOauth(data));
 const postAcceptConsultation = (id: string) => post(`api/consultations/${id}/join`, null, Config.withToken());
 const postRejectConsultation = (id: string) => post(`api/consultations/${id}/leave`, null, Config.withToken());
 const postStoreConsultationPost = (id:string, data:any) => post(`api/consultations/${id}/consultation_posts`, data, Config.withToken());

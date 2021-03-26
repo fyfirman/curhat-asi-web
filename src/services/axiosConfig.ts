@@ -3,7 +3,6 @@ import { CLIENT_ID, CLIENT_SECRET } from '@utils/config';
 import store from '@redux/store';
 
 export const withToken = (config?: AxiosRequestConfig) => {
-  // TODO: benerin session
   const { session } = store.getState();
 
   return {
@@ -14,8 +13,8 @@ export const withToken = (config?: AxiosRequestConfig) => {
   };
 };
 
-export const withOauth = (config?: AxiosRequestConfig) => ({
-  ...config,
+export const bodyWithOauth = (body?: any) => ({
+  ...body,
   client_id: CLIENT_ID,
   client_secret: CLIENT_SECRET,
 });

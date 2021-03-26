@@ -14,6 +14,7 @@ instance.interceptors.request.use(
       console.log(config.data);
       console.table([
         ['method', config.method],
+        ['base_url', config.baseURL],
         ['url', config.url],
         ['auth-headers', config.headers?.Authorization],
         ['data', JSON.stringify(config.data) ?? null],
