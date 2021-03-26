@@ -3,7 +3,7 @@ import { BASE_URL } from '@utils/config';
 import getFormData from '@utils/getFormData';
 import axios from './axios';
 
-const post = (path: string, data: any, config: AxiosRequestConfig) => {
+const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
   const promise = new Promise((resolve, reject) => {
     if (config) {
       axios.post(
