@@ -31,6 +31,7 @@ module.exports = {
         'spaced-comment': ['error', 'always', { markers: ['/'] }],
         'import/no-unresolved': 'off',
         '@typescript-eslint/camelcase': 'off',
+        '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/no-unused-vars': [
           'error',
           { argsIgnorePattern: '^_', varsIgnorePattern: '^_|[R-r]eact' },

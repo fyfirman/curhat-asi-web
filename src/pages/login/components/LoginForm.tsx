@@ -34,9 +34,8 @@ const LoginForm = () => {
       password: '',
     },
     validationSchema,
-    onSubmit: (values) => {
-      // TODO: Handle login submit
-      login(values.username, values.password)(dispatch);
+    onSubmit: ({ username, password }) => {
+      dispatch(login(username, password));
     },
   });
 

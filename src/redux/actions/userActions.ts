@@ -12,10 +12,10 @@ export const login = (username: string, password: string) => (dispatch: Dispatch
     name: username,
     token: password,
   };
+
   dispatch(loginSuccess(user));
 };
 
 export const logout = () => ({
   type: userTypes.LOGOUT,
-  user: { id: '213', name: 'sdaadsa', token: 'dsfadas' },
 });
