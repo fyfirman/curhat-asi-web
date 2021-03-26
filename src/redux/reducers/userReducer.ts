@@ -7,23 +7,16 @@ const initialState: IUser = {
 };
 
 const userReducer = (state: IUser = initialState, action: UserAction): IUser => {
-  switch (action.type) {
+  const { type, payload } = action;
+
+  switch (type) {
     case userTypes.LOGIN_SUCCESS:
       return {
         ...state,
-        ...action.user,
-      };
-    case userTypes.LOGOUT:
-      return {
-        id: '',
-        name: '',
-        token: '',
+        ...payload,
       };
     default:
-      return {
-        ...state,
-        ...action.user,
-      };
+      return state;
   }
 };
 

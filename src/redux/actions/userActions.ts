@@ -1,19 +1,22 @@
-import { userTypes } from '../../constants/actionTypes';
+/* eslint-disable no-console */
+import * as Auth from '@services/AuthServices';
+import { sessionTypes, userTypes } from '../../constants/actionTypes';
 
-const loginSuccess = (user: IUser) => ({
-  type: userTypes.LOGIN_SUCCESS,
-  user,
+export const loginSuccess = (session: ISession) => ({
+  type: sessionTypes.SET_SESSION,
+  payload: session,
 });
 
-export const login = (username: string, password: string) => (dispatch: DispatchType) => {
-  // TODO: fetch login
-  const user: IUser = {
-    id: '12312das',
-    name: username,
-    token: password,
-  };
+export const login = (username: string, password: string) => async (_dispatch: DispatchType) => {
+  // TODO: Test pake service yg bener
+  try {
+    const session = await Auth.login(username, password);
+    console.log(`session${session}`);
+  } catch (error) {
+    console.log('Gagal!!!!!!!!!!!!', error.message);
+  }
 
-  dispatch(loginSuccess(user));
+  // dispatch(loginSuccess(session));
 };
 
 export const logout = () => ({

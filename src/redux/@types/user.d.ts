@@ -10,7 +10,7 @@ type UserState = {
 
 type UserAction = {
   type: string;
-  user?: IUser;
+  payload?: IUser;
 };
 
 type DispatchType = (args: UserAction) => UserAction;

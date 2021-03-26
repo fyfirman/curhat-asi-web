@@ -9,3 +9,8 @@ export const userTypes = {
 export const consultationTypes = {
   SET_CONSULTATIONS: 'SET_CONSULTATIONS',
 };
+
+export const sessionTypes = {
+  SET_SESSION: 'SET_SESSION',
+  FLUSH_SESSION: 'FLUSH_SESSION',
+};
