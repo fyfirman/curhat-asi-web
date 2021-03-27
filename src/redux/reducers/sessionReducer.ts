@@ -1,6 +1,7 @@
 import { sessionTypes } from '../../constants/actionTypes';
 
 const initialState: ISession = {
+  isLoggedIn: false,
   accessToken: '',
   refreshToken: '',
   tokenType: 'Bearer',

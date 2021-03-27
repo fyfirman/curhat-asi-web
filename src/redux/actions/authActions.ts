@@ -15,7 +15,10 @@ export const requestLogin = (username: string, password: string) => async (
 
 export const loginSuccess = (session: ISession) => ({
   type: sessionTypes.SET_SESSION,
-  payload: session,
+  payload: {
+    ...session,
+    isLoggedIn: true,
+  },
 });
 
 export const loginFailed = (error: ILoginError) => ({

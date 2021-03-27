@@ -1,4 +1,5 @@
 interface ISession {
+  isLoggedIn: boolean;
   accessToken: string;
   refreshToken: string;
   tokenType: string;
