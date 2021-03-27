@@ -4,6 +4,8 @@ import {
   Drawer, List, ListItem, ListItemText, makeStyles, Theme,
 } from '@material-ui/core';
 import { Route as IRoute } from 'src/router/routes';
+import { logout } from '@redux/actions/authActions';
+import { useDispatch } from 'react-redux';
 
 interface SidebarProps {
   routes: IRoute[];
@@ -29,7 +31,9 @@ const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) => ({
 
 const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
   const { routes, prefixPath } = props;
+
   const classes = useStyles(props);
+  const dispatch = useDispatch();
 
   return (
     <Drawer variant="permanent" open>
@@ -48,6 +52,15 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
           </NavLink>
         ))}
       </List>
+      <NavLink
+        to="/login"
+        className={classes.nav}
+        activeClassName={classes.activeNav}
+      >
+        <ListItem button onClick={() => dispatch(logout())}>
+          <ListItemText primary="Keluar" />
+        </ListItem>
+      </NavLink>
     </Drawer>
   );
 };

@@ -12,7 +12,7 @@ const composeEnhancers = composeWithDevTools(applyMiddleware(thunk));
 const persistConfig = {
   key: 'root',
   storage,
-  whiteList: ['user', 'session'],
+  blacklist: ['loginError'],
 };
 
 const store = createStore(

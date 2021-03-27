@@ -13,7 +13,11 @@ export const requestLogin = (username: string, password: string) => async (
   }
 };
 
-export const loginSuccess = (session: ISession) => ({
+export const logout = () => ({
+  type: sessionTypes.FLUSH_SESSION,
+});
+
+const loginSuccess = (session: ISession) => ({
   type: sessionTypes.SET_SESSION,
   payload: {
     ...session,
@@ -21,7 +25,7 @@ export const loginSuccess = (session: ISession) => ({
   },
 });
 
-export const loginFailed = (error: ILoginError) => ({
+const loginFailed = (error: ILoginError) => ({
   type: loginErrorTypes.SET_LOGIN_ERROR,
   payload: error,
 });
