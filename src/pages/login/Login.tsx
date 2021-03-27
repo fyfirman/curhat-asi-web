@@ -1,8 +1,6 @@
 import React from 'react';
-import { RootState } from '@redux/reducers/index';
 import { Theme, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
 import LoginForm from './components/LoginForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -28,7 +26,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Login = () => {
   const classes = useStyles();
-  const { id, name, token } = useSelector((state: RootState) => state.user);
 
   return (
     <div className={classes.root}>
@@ -37,9 +34,6 @@ const Login = () => {
           <h2>Curhat ASI</h2>
         </div>
         <LoginForm />
-        <div>
-          {`Test ${id} ${name} ${token}`}
-        </div>
       </Container>
     </div>
   );

@@ -47,7 +47,7 @@ module.exports = {
             },
           },
         ],
-        'react/jsx-props-no-spreading': ['error', { exceptions: ['Component'] }],
+        'react/jsx-props-no-spreading': 'off',
         'react/jsx-fragments': 'off',
         'react/require-default-props': 'off',
         'react/no-array-index-key': 'off',

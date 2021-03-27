@@ -5,7 +5,9 @@ import {
   Button, makeStyles, TextField, Theme,
 } from '@material-ui/core';
 import { requestLogin } from '@redux/actions/authActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
+import LoginErrorAlert from './LoginErrorAlert';
 
 // TODO: Fix validation schema
 const validationSchema = yup.object({
@@ -22,11 +24,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   field: {
     marginBottom: theme.spacing(3),
   },
+  loginAlert: {
+    marginBottom: theme.spacing(3),
+  },
 }));
 
 const LoginForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const loginError = useSelector((state: RootState) => state.loginError);
 
   const formik = useFormik({
     initialValues: {
@@ -66,6 +72,7 @@ const LoginForm = () => {
         fullWidth
         required
       />
+      {loginError.message !== '' && <LoginErrorAlert className={classes.loginAlert} />}
       <Button
         color="primary"
         variant="contained"

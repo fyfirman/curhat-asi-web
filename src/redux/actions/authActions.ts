@@ -9,7 +9,6 @@ export const requestLogin = (username: string, password: string) => async (
 
     dispatch(loginSuccess(session as ISession));
   } catch (error) {
-    console.log(typeof error);
     dispatch(loginFailed(error.data as ILoginError));
   }
 };
