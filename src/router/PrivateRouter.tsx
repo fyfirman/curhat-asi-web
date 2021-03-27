@@ -7,6 +7,8 @@ import Navbar from '@components/Navbar';
 import UserDetail from '@pages/admin/user/userDetail/UserDetail';
 import ConsultationRoom from '@pages/admin/consultation/constultationRoom/ConsultationRoom';
 import AddUser from '@pages/admin/user/addUser/AddUser';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
 
 const routeName = '/admin';
 const sideBarWidth = 250;
@@ -23,22 +25,29 @@ const useStyle = makeStyles((theme: Theme) => ({
 
 const Admin = () => {
   const classes = useStyle();
+  const session = useSelector((state: RootState) => state.session);
+
   return (
-    <>
-      <Navbar />
-      <Sidebar routes={routes} prefixPath={routeName} width={sideBarWidth} />
-      <main className={classes.content}>
-        <Switch>
-          {routes.map((route, key) => (
-            <Route exact path={routeName + route.path} component={route.component} key={key} />
-          ))}
-          <Route path={`${routeName}/user/add`} component={AddUser} />
-          <Route path={`${routeName}/user/:id`} component={UserDetail} />
-          <Route path={`${routeName}/consultation/:id`} component={ConsultationRoom} />
-          <Redirect from={routeName} to={`${routeName}/user`} />
-        </Switch>
-      </main>
-    </>
+    <Route>
+      {session.isLoggedIn ? (
+        <>
+          <Navbar />
+          <Sidebar routes={routes} prefixPath={routeName} width={sideBarWidth} />
+          <main className={classes.content}>
+            <Switch>
+              {routes.map((route, key) => (
+                <Route exact path={routeName + route.path} component={route.component} key={key} />
+              ))}
+              <Route path={`${routeName}/user/add`} component={AddUser} />
+              <Route path={`${routeName}/user/:id`} component={UserDetail} />
+              <Route path={`${routeName}/consultation/:id`} component={ConsultationRoom} />
+              <Redirect from={routeName} to={`${routeName}/user`} />
+            </Switch>
+          </main>
+        </>
+      ) : <Redirect to="/login" />}
+
+    </Route>
   );
 };
 
