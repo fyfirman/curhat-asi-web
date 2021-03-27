@@ -15,13 +15,15 @@ instance.interceptors.request.use(
         ['base_url', config.baseURL],
         ['url', config.url],
         ['auth-headers', config.headers?.Authorization],
-        ['data', JSON.stringify(config.data) ?? null],
+        ['body-data', !config.data],
       ]);
 
       const formData: FormData = config.data;
+      const body = {};
       formData.forEach((value, key) => {
-        console.log(key, value);
+        Object.assign(body, { [key]: value });
       });
+      console.log(body);
     }
     return config;
   },

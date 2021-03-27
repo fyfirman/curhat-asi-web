@@ -8,9 +8,7 @@ type UserState = {
   users: IUser[];
 };
 
-type UserAction = {
+interface UserAction implements Action {
   type: string;
   payload?: IUser;
-};
-
-type DispatchType = (args: UserAction) => UserAction;
+}

@@ -16,7 +16,7 @@ const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
           resolve(camelize(result.data));
         },
         (err) => {
-          reject(err);
+          reject(camelize(err.response));
         },
       );
     } else {
@@ -28,7 +28,7 @@ const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
           resolve(camelize(result.data));
         },
         (err) => {
-          reject(err);
+          reject(camelize(err.response));
         },
       );
     }

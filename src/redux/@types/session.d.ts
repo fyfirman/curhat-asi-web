@@ -5,9 +5,7 @@ interface ISession {
   expiresIn?: number;
 }
 
-type SessionAction = {
+interface SessionAction implements Action {
   type: string;
   payload?: ISession;
-};
-
-type DispatchType = (args: SessionAction) => SessionAction;
+}

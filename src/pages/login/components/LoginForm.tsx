@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import {
   Button, makeStyles, TextField, Theme,
 } from '@material-ui/core';
-import { login } from '@redux/actions/userActions';
+import { requestLogin } from '@redux/actions/authActions';
 import { useDispatch } from 'react-redux';
 
 // TODO: Fix validation schema
@@ -35,7 +35,7 @@ const LoginForm = () => {
     },
     validationSchema,
     onSubmit: ({ username, password }) => {
-      dispatch(login(username, password));
+      dispatch(requestLogin(username, password));
     },
   });
 
