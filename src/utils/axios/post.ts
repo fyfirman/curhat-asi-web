@@ -18,18 +18,19 @@ const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
           reject(err);
         },
       );
+    } else {
+      axios.post(
+        `${BASE_URL}/${path}`,
+        data ? getFormData(data) : {},
+      ).then(
+        (result) => {
+          resolve(result.data);
+        },
+        (err) => {
+          reject(err);
+        },
+      );
     }
-    axios.post(
-      `${BASE_URL}/${path}`,
-      data ? getFormData(data) : {},
-    ).then(
-      (result) => {
-        resolve(result.data);
-      },
-      (err) => {
-        reject(err);
-      },
-    );
   });
 
   return promise;

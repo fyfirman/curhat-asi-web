@@ -10,10 +10,10 @@ export const loginSuccess = (session: ISession) => ({
 export const login = (username: string, password: string) => async (_dispatch: DispatchType) => {
   // TODO: Test pake service yg bener
   try {
-    const session = await Auth.login(username, password);
+    const session = await Auth.login('kdr', username, password);
     console.log(`session${session}`);
   } catch (error) {
-    console.log('Gagal!!!!!!!!!!!!', error.message);
+    // console.log('Gagal!!!!!!!!!!!!', error.message);
   }
 
   // dispatch(loginSuccess(session));

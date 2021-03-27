@@ -10,7 +10,6 @@ instance.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 instance.interceptors.request.use(
   (config) => {
     if (DEBUG_MODE) {
-      console.log(config.data);
       console.table([
         ['method', config.method],
         ['base_url', config.baseURL],
@@ -18,6 +17,11 @@ instance.interceptors.request.use(
         ['auth-headers', config.headers?.Authorization],
         ['data', JSON.stringify(config.data) ?? null],
       ]);
+
+      const formData: FormData = config.data;
+      formData.forEach((value, key) => {
+        console.log(key, value);
+      });
     }
     return config;
   },
