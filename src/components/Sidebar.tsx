@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {
   Drawer, List, ListItem, ListItemText, makeStyles, Theme,
 } from '@material-ui/core';
-import { Route as IRoute } from '@navigation/routes';
+import { Route as IRoute } from 'src/router/routes';
 
 interface SidebarProps {
   routes: IRoute[];

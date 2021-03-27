@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import RouterConfig from '@navigation/RouterConfig';
+import { CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '@theme/theme';
-import { CssBaseline } from '@material-ui/core';
+import AppRouter from '@router/Router';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <RouterConfig />
+        <AppRouter />
       </Router>
       <CssBaseline />
     </ThemeProvider>

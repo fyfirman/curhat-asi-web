@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import Login from '@pages/login/Login';
 import Admin from './Admin';
 
-const RouterConfig: React.FC = () => {
+const Router: React.FC = () => {
   const [loggedIn, _] = React.useState(false);
 
   return (
@@ -17,4 +17,4 @@ const RouterConfig: React.FC = () => {
   );
 };
 
-export default RouterConfig;
+export default Router;
