@@ -14,7 +14,13 @@ interface SidebarProps {
 }
 
 const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) => ({
-  root: {},
+  containerMenu: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '100%',
+    width: '100%',
+  },
   toolbar: {
     width: ({ width }) => width ?? 300,
     padding: '0 8px',
@@ -38,29 +44,31 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
   return (
     <Drawer variant="permanent" open>
       <div className={classes.toolbar} />
-      <List>
-        {routes.map(({ name, path }, key) => (
-          <NavLink
-            to={prefixPath + path}
-            className={classes.nav}
-            activeClassName={classes.activeNav}
-            key={key}
-          >
-            <ListItem button key={name}>
-              <ListItemText primary={name} />
-            </ListItem>
-          </NavLink>
-        ))}
-      </List>
-      <NavLink
-        to="/login"
-        className={classes.nav}
-        activeClassName={classes.activeNav}
-      >
-        <ListItem button onClick={() => dispatch(requestlogout())}>
-          <ListItemText primary="Keluar" />
-        </ListItem>
-      </NavLink>
+      <div className={classes.containerMenu}>
+        <List>
+          {routes.map(({ name, path }, key) => (
+            <NavLink
+              to={prefixPath + path}
+              className={classes.nav}
+              activeClassName={classes.activeNav}
+              key={key}
+            >
+              <ListItem button key={name}>
+                <ListItemText primary={name} />
+              </ListItem>
+            </NavLink>
+          ))}
+        </List>
+        <NavLink
+          to="/login"
+          className={classes.nav}
+          activeClassName={classes.activeNav}
+        >
+          <ListItem button onClick={() => dispatch(requestlogout())}>
+            <ListItemText primary="Keluar" />
+          </ListItem>
+        </NavLink>
+      </div>
     </Drawer>
   );
 };
