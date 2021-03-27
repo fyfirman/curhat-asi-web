@@ -7,13 +7,14 @@ export const loginSuccess = (session: ISession) => ({
   payload: session,
 });
 
-export const login = (username: string, password: string) => async (_dispatch: DispatchType) => {
-  // TODO: Test pake service yg bener
+export const login = (username: string, password: string) => async (dispatch: DispatchType) => {
   try {
     const session = await Auth.login('kdr', username, password);
-    console.log(`session${session}`);
+
+    dispatch(loginSuccess(session as ISession));
   } catch (error) {
-    // console.log('Gagal!!!!!!!!!!!!', error.message);
+    // TODO: Handle error
+    alert(error.message);
   }
 
   // dispatch(loginSuccess(session));

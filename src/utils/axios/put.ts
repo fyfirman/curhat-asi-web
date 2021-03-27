@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '@utils/config';
 import getFormData from '@utils/getFormData';
+import camelize from 'camelize';
 import axios from './axios';
 
 const put = (path: string, data: any, config: AxiosRequestConfig) => {
@@ -14,7 +15,7 @@ const put = (path: string, data: any, config: AxiosRequestConfig) => {
     })
       .then(
         (result) => {
-          resolve(result.data);
+          resolve(camelize(result.data));
         },
         (err) => {
           reject(err);

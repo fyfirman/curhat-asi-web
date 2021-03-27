@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '@utils/config';
 import getFormData from '@utils/getFormData';
+import camelize from 'camelize';
 import axios from './axios';
 
 const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
@@ -12,7 +13,7 @@ const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
         { ...config, headers: config?.headers },
       ).then(
         (result) => {
-          resolve(result.data);
+          resolve(camelize(result.data));
         },
         (err) => {
           reject(err);
@@ -24,7 +25,7 @@ const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
         data ? getFormData(data) : {},
       ).then(
         (result) => {
-          resolve(result.data);
+          resolve(camelize(result.data));
         },
         (err) => {
           reject(err);
