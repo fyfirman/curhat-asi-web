@@ -13,7 +13,7 @@ export const requestLogin = (username: string, password: string) => async (
   }
 };
 
-export const logout = () => ({
+export const requestlogout = () => ({
   type: sessionTypes.FLUSH_SESSION,
 });
 

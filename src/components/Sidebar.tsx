@@ -4,7 +4,7 @@ import {
   Drawer, List, ListItem, ListItemText, makeStyles, Theme,
 } from '@material-ui/core';
 import { Route as IRoute } from 'src/router/routes';
-import { logout } from '@redux/actions/authActions';
+import { requestlogout } from '@redux/actions/authActions';
 import { useDispatch } from 'react-redux';
 
 interface SidebarProps {
@@ -57,7 +57,7 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
         className={classes.nav}
         activeClassName={classes.activeNav}
       >
-        <ListItem button onClick={() => dispatch(logout())}>
+        <ListItem button onClick={() => dispatch(requestlogout())}>
           <ListItemText primary="Keluar" />
         </ListItem>
       </NavLink>
