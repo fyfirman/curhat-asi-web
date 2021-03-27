@@ -32,21 +32,34 @@ const Admin = () => {
       {session.isLoggedIn ? (
         <>
           <Navbar />
-          <Sidebar routes={routes} prefixPath={routeName} width={sideBarWidth} />
+          <Sidebar
+            routes={routes}
+            prefixPath={routeName}
+            width={sideBarWidth}
+          />
           <main className={classes.content}>
             <Switch>
               {routes.map((route, key) => (
-                <Route exact path={routeName + route.path} component={route.component} key={key} />
+                <Route
+                  exact
+                  path={routeName + route.path}
+                  component={route.component}
+                  key={key}
+                />
               ))}
               <Route path={`${routeName}/user/add`} component={AddUser} />
               <Route path={`${routeName}/user/:id`} component={UserDetail} />
-              <Route path={`${routeName}/consultation/:id`} component={ConsultationRoom} />
+              <Route
+                path={`${routeName}/consultation/:id`}
+                component={ConsultationRoom}
+              />
               <Redirect from={routeName} to={`${routeName}/user`} />
             </Switch>
           </main>
         </>
-      ) : <Redirect to="/login" />}
-
+      ) : (
+        <Redirect to="/login" />
+      )}
     </Route>
   );
 };

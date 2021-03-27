@@ -59,15 +59,9 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
             </NavLink>
           ))}
         </List>
-        <NavLink
-          to="/login"
-          className={classes.nav}
-          activeClassName={classes.activeNav}
-        >
-          <ListItem button onClick={() => dispatch(requestlogout())}>
-            <ListItemText primary="Keluar" />
-          </ListItem>
-        </NavLink>
+        <ListItem button onClick={() => dispatch(requestlogout())}>
+          <ListItemText primary="Keluar" />
+        </ListItem>
       </div>
     </Drawer>
   );
