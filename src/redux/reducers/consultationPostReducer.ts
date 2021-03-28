@@ -1,6 +1,9 @@
 import { consultationPostTypes } from '../../constants/actionTypes';
 
-const initialState: IConsultationPost[] = [];
+const initialState: IConsultationPostState = {
+  data: [],
+  isLoaded: false,
+};
 
 const consultationPostsReducer = (state = initialState, action: ConsultationPostsAction) => {
   const { type, payload } = action;

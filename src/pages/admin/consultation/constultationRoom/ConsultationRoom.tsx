@@ -9,20 +9,26 @@ const ConsultationRoom = () => {
 
   const dispatch = useDispatch();
 
-  const posts = useSelector((state : RootState) => state.consultationPosts);
+  const consultationPosts = useSelector(
+    (state: RootState) => state.consultationPosts,
+  );
 
   useEffect(() => {
     dispatch(requestConsultationPosts(parseInt(id, 10)));
   }, []);
 
-  const renderPosts = () => posts?.map((post) => (<div key={post.id}>{post.message}</div>));
+  const renderPosts = () => consultationPosts?.data.map((post) => (
+    <div key={post.id}>{post.message}</div>
+  ));
 
-  return (
+  return consultationPosts?.isLoaded ? (
     <div>
       Consultation id :
       {id}
       {renderPosts()}
     </div>
+  ) : (
+    <div>Loading</div>
   );
 };
 

@@ -14,7 +14,12 @@ interface IConsultationPost extends TimeStamp{
   voiceNoteId?: null;
 }
 
+interface IConsultationPostState {
+  data: IConsultationPost[],
+  isLoaded: boolean,
+}
+
 interface ConsultationPostsAction implements Action {
   type: string;
-  payload?: IConsultationPost[];
+  payload?: IConsultationPostState;
 }

@@ -12,7 +12,7 @@ export const consultationTypes = {
 };
 
 export const consultationPostTypes = {
-  FETCH_CONSULTATION_POSTS_SUCCESS: 'FETCH_CONSULTATIONS_SUCCESS',
+  FETCH_CONSULTATION_POSTS_SUCCESS: 'FETCH_CONSULTATION_POSTS_SUCCESS',
 };
 
 export const sessionTypes = {
