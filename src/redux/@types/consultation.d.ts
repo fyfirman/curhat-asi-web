@@ -22,20 +22,22 @@ interface IConsultationInfo {
 }
 
 interface IConsultationPayload{
-  currentPage: number;
-  data: IConsultation[];
-  from: number;
-  lastPage: number;
-  firtsPageUrl: string;
-  lastPageUrl: string;
-  nextPageUrl: string | null;
-  prevPageUrl: string | null;
-  perPage: number;
-  to: number;
-  total: number;
+  payload: {
+    currentPage: number;
+    data: IConsultation[];
+    from: number;
+    lastPage: number;
+    firtsPageUrl: string;
+    lastPageUrl: string;
+    nextPageUrl: string | null;
+    prevPageUrl: string | null;
+    perPage: number;
+    to: number;
+    total: number;
+  }
 }
 
 interface ConsultationsAction implements Action {
   type: string;
-  payload?: IConsultation;
+  payload?: IConsultationPayload;
 }

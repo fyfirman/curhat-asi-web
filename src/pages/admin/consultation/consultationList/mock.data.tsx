@@ -16,14 +16,8 @@ const ViewButton = (params: GridCellParams) => (
 
 export const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
+  { field: 'openBy', headerName: 'Diminta oleh', width: 200 },
+  { field: 'problem', headerName: 'Keluhan', width: 350 },
   {
     field: 'action',
     headerName: 'Aksi',
@@ -33,6 +27,12 @@ export const columns: GridColDef[] = [
     renderCell: ViewButton,
   },
 ];
+
+export interface IRowConsultation {
+  id: string;
+  openBy: string;
+  problem: string;
+}
 
 export const rows: GridRowData[] = [
   {

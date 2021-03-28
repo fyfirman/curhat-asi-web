@@ -27,6 +27,7 @@ const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
         (result) => {
           resolve(camelize(result.data));
         },
+        // TODO: define error response type
         (err) => {
           reject(camelize(err.response));
         },
