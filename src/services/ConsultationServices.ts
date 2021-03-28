@@ -7,9 +7,9 @@ export enum ConsultationType {
   Waiting = 'waiting',
 }
 
-export const getConsultations = (type: ConsultationType) => {
+export const getConsultations = (type?: ConsultationType) => {
   const config = {
-    params: { type },
+    ...(type && { params: { type } }),
   };
 
   return get('api/consultations', Config.withToken(config));
