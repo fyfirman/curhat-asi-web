@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
+import { useDispatch } from 'react-redux';
+import { requestConsultations } from '@redux/actions/consultationActions';
+import { ConsultationType } from '@services/ConsultationServices';
 import { columns, rows } from './mock.data';
 
 const useStyle = makeStyles((theme: Theme) => ({
@@ -12,6 +15,11 @@ const useStyle = makeStyles((theme: Theme) => ({
 
 const Consultations = () => {
   const classes = useStyle();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(requestConsultations(ConsultationType.OnGoing));
+  }, []);
 
   return (
     <>

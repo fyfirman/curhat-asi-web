@@ -1,0 +1,3 @@
+interface IConsultationPost {
+  id: string;
+}

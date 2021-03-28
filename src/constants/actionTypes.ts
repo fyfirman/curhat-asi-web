@@ -7,7 +7,8 @@ export const userTypes = {
 };
 
 export const consultationTypes = {
-  SET_CONSULTATIONS: 'SET_CONSULTATIONS',
+  FETCH_CONSULTATIONS: 'FETCH_CONSULTATIONS',
+  FETCH_CONSULTATIONS_SUCCESS: 'FETCH_CONSULTATIONS_SUCCESS',
 };
 
 export const sessionTypes = {
