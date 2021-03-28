@@ -1,7 +1,11 @@
-interface IUser {
-  id: string;
-  name: string;
-  token: string;
+interface IUser extends TimeStamp{
+  id: number;
+  userGroupId?: UserGroupId;
+  username: string;
+  deletedAt: string | null;
+  chatAccessToken: string | null;
+  fullName: string | null;
+  fullName: string | null;
 }
 
 type UserState = {
