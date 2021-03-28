@@ -11,6 +11,10 @@ export const consultationTypes = {
   FETCH_CONSULTATIONS_SUCCESS: 'FETCH_CONSULTATIONS_SUCCESS',
 };
 
+export const consultationPostTypes = {
+  FETCH_CONSULTATION_POSTS_SUCCESS: 'FETCH_CONSULTATIONS_SUCCESS',
+};
+
 export const sessionTypes = {
   SET_SESSION: 'SET_SESSION',
   FLUSH_SESSION: 'FLUSH_SESSION',

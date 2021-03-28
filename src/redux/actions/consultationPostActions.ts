@@ -1,14 +1,14 @@
 import * as ConsultationPostServices from '@services/ConsultationPostServices';
-import { consultationTypes } from '../../constants/actionTypes';
+import { consultationPostTypes } from '../../constants/actionTypes';
 
 export const requestConsultationPosts = (consultationId: number) => async (
-  _dispatch: DispatchType,
+  dispatch: DispatchType,
 ) => {
   try {
     const posts = await ConsultationPostServices.getConsultationPost(consultationId);
     console.log(posts);
 
-    // dispatch(requestConsultationPostsSuccess(consultations as IConsultationPayload));
+    dispatch(requestConsultationPostsSuccess(posts as IConsultationPost[]));
   } catch (error) {
     // TODO:  dispatch() error;
     alert(JSON.stringify(error));
@@ -16,8 +16,8 @@ export const requestConsultationPosts = (consultationId: number) => async (
 };
 
 export const requestConsultationPostsSuccess = (
-  consultations: IConsultationPayload,
+  consultations: IConsultationPost[],
 ) => ({
-  type: consultationTypes.FETCH_CONSULTATIONS_SUCCESS,
+  type: consultationPostTypes.FETCH_CONSULTATION_POSTS_SUCCESS,
   payload: consultations,
 });
