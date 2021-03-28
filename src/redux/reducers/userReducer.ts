@@ -1,9 +1,13 @@
 import { userTypes } from '../../constants/actionTypes';
 
 const initialState: IUser = {
-  id: '',
-  name: '',
-  token: '',
+  id: 0,
+  chatAccessToken: null,
+  createdAt: '',
+  updatedAt: '',
+  deletedAt: null,
+  fullName: '',
+  username: '',
 };
 
 const userReducer = (state: IUser = initialState, action: UserAction): IUser => {

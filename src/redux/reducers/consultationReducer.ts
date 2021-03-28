@@ -1,6 +1,18 @@
 import { consultationTypes } from '../../constants/actionTypes';
 
-const initialState: IConsultation[] = [];
+const initialState: IConsultationPayload = {
+  currentPage: 1,
+  data: [],
+  firtsPageUrl: '',
+  from: 1,
+  lastPage: 1,
+  lastPageUrl: '',
+  nextPageUrl: '',
+  prevPageUrl: '',
+  perPage: 10,
+  to: 1,
+  total: 1,
+};
 
 const consultationReducer = (state = initialState, action: ConsultationsAction) => {
   const { type, payload } = action;
