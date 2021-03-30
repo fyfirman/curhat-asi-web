@@ -15,6 +15,15 @@ export const getConsultations = (type?: ConsultationType) => {
   return get('api/consultations', Config.withToken(config));
 };
 
+interface ConsultationResponse {
+  payload: IConsultation;
+}
+
+export const getConsultation = (id: IConsultation['id']) => get<ConsultationResponse>(
+  `api/consultations/${id}`,
+  Config.withToken(),
+);
+
 export const getConsultationPost = (id: number) => get(
   `api/consultations/${id}/consultation_posts?sortBy=desc`,
   Config.withToken(),
