@@ -16,7 +16,7 @@ const initialState: IConsultationPayload = {
   },
 };
 
-const consultationReducer = (state = initialState, action: ConsultationsAction) => {
+const consultationListReducer = (state = initialState, action: ConsultationsAction) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -30,4 +30,4 @@ const consultationReducer = (state = initialState, action: ConsultationsAction) 
   }
 };
 
-export default consultationReducer;
+export default consultationListReducer;

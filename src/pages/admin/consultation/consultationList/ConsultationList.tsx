@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestConsultations } from '@redux/actions/consultationActions';
+import { requestConsultations } from '@redux/actions/consultationListActions';
 import { RootState } from '@redux/reducers';
 import { columns, IRowConsultation } from './mock.data';
 
@@ -16,7 +16,7 @@ const useStyle = makeStyles((theme: Theme) => ({
 const Consultations = () => {
   const classes = useStyle();
   const dispatch = useDispatch();
-  const consultations = useSelector((state: RootState) => state.consultations);
+  const consultations = useSelector((state: RootState) => state.consultationList);
 
   useEffect(() => {
     dispatch(requestConsultations());
