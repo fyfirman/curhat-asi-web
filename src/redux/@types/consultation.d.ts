@@ -3,10 +3,10 @@ interface IConsultation extends TimeStamp {
   description: string;
   solved: boolean;
   closedAt: string | null;
-  lastPost: IConsultationPost;
-  userId: IUser['id'];
+  lastPost?: IConsultationPost;
+  userId?: IUser['id'];
   closedBy: IUser | null;
-  user: IUser;
+  user?: IUser;
   posts: IConsultationPost[];
 }
 

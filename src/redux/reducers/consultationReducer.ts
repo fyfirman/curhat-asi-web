@@ -1,26 +1,21 @@
 import { consultationTypes } from '../../constants/actionTypes';
 
-const initialState: IConsultationPayload = {
-  payload: {
-    currentPage: 1,
-    data: [],
-    firtsPageUrl: '',
-    from: 1,
-    lastPage: 1,
-    lastPageUrl: '',
-    nextPageUrl: '',
-    prevPageUrl: '',
-    perPage: 10,
-    to: 1,
-    total: 1,
-  },
+const initialState: IConsultation = {
+  id: '',
+  description: '',
+  solved: false,
+  closedAt: null,
+  closedBy: null,
+  posts: [],
+  createdAt: '',
+  updatedAt: '',
 };
 
 const consultationListReducer = (state = initialState, action: ConsultationsAction) => {
   const { type, payload } = action;
 
   switch (type) {
-    case consultationTypes.FETCH_CONSULTATION_LIST_SUCCESS:
+    case consultationTypes.FETCH_CONSULTATION_SUCCESS:
       return {
         ...initialState,
         ...payload,

@@ -15,6 +15,6 @@ export const requestConsultations = (type?: ConsultationType) => async (dispatch
 };
 
 export const requestConsultationsSuccess = (consultations: IConsultationPayload) => ({
-  type: consultationTypes.FETCH_CONSULTATIONS_SUCCESS,
+  type: consultationTypes.FETCH_CONSULTATION_LIST_SUCCESS,
   payload: consultations,
 });

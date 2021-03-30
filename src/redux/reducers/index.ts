@@ -2,14 +2,16 @@ import { combineReducers } from '@reduxjs/toolkit';
 import loginErrorReducer from './loginErrorReducer';
 import sessionReducer from './sessionReducer';
 import userReducer from './userReducer';
-import consultationReducer from './consultationListReducer';
+import consultationReducer from './consultationReducer';
+import consultationListReducer from './consultationListReducer';
 import consultationPostsReducer from './consultationPostReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
   session: sessionReducer,
   loginError: loginErrorReducer,
-  consultationList: consultationReducer,
+  consultation: consultationReducer,
+  consultationList: consultationListReducer,
   consultationPosts: consultationPostsReducer,
 });
 

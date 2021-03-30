@@ -4,7 +4,7 @@ import Button from '@components/LinkButton';
 
 const ViewButton = (params: GridCellParams) => (
   <Button
-    to={`consultation/${params.getValue('id')}`}
+    to={`${params.getValue('id')}`}
     variant="contained"
     color="secondary"
     size="small"

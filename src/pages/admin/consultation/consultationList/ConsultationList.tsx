@@ -25,7 +25,7 @@ const Consultations = () => {
   const rows: IRowConsultation[] = useMemo(
     () => consultations.payload.data.map((consultation) => ({
       id: consultation.id,
-      openBy: consultation.user.fullName || 'Belum mengisi profil',
+      openBy: consultation.user?.fullName || 'Belum mengisi profil',
       problem: consultation.description,
     })),
     [consultations],
