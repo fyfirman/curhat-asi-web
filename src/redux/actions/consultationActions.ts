@@ -9,6 +9,7 @@ export const requestConsultations = (type?: ConsultationType) => async (dispatch
     dispatch(requestConsultationsSuccess(consultations as IConsultationPayload));
   } catch (error) {
     // TODO:  dispatch() error;
+    // eslint-disable-next-line no-alert
     alert(JSON.stringify(error));
   }
 };

@@ -7,11 +7,11 @@ export const requestConsultationPosts = (consultationId: number) => async (
 ) => {
   try {
     const posts = await ConsultationPostServices.getConsultationPost(consultationId);
-    console.log(posts);
 
     dispatch(requestConsultationPostsSuccess(posts as IConsultationPost[]));
   } catch (error) {
     // TODO:  dispatch() error;
+    // eslint-disable-next-line no-alert
     alert(JSON.stringify(error));
   }
 };
