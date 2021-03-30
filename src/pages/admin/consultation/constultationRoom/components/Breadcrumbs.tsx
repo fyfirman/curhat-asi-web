@@ -4,7 +4,11 @@ import { RootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const CustomBreadcrumbs = () => {
+interface CustomBreadcrumbsProps {
+  className?: string;
+}
+
+const CustomBreadcrumbs :React.FC<CustomBreadcrumbsProps> = () => {
   const consultation = useSelector((state: RootState) => state.consultation);
 
   return (

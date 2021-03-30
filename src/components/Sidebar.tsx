@@ -24,7 +24,6 @@ const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) => ({
   toolbar: {
     width: ({ width }) => width ?? 300,
     padding: '0 8px',
-    ...theme.mixins.toolbar,
   },
   nav: {
     textDecoration: 'none',
