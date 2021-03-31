@@ -4,6 +4,8 @@ import ChatBubble from './ChatBubble';
 
 const useStyles = makeStyles((theme: Theme) => ({
   chatRoom: {
+    overflowY: 'scroll',
+    paddingTop: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     '&>*': {
@@ -17,6 +19,23 @@ const ChatRoom = () => {
 
   return (
     <div className={classes.chatRoom}>
+      <ChatBubble message="Haloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" />
       <ChatBubble message="Halo" name="Dessy" time="12:19" />
       <ChatBubble message="Halo" name="Dessy" time="12:19" />
       <ChatBubble message="Halo" name="Dessy" time="12:19" />

@@ -7,44 +7,60 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'row',
   },
   info: {
+    minWidth: '7.5%',
+    maxWidth: '60%',
     marginLeft: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.chatBubble?.default,
     display: 'flex',
     flexDirection: 'column',
     padding: theme.spacing(1),
     borderRadius: '0 8px 8px 8px',
+    wordWrap: 'break-word',
   },
-  name: {},
-  message: {},
-  time: {},
-
+  name: {
+    fontWeight: 500,
+    fontSize: 14,
+  },
+  message: {
+    fontSize: 14,
+  },
+  time: {
+    textAlign: 'right',
+    fontSize: 11,
+  },
 }));
 
-interface ChatBubbleProps{
-  avatarUri?: string;
-  message: string;
-  name: string;
-  time: string;
+interface ChatBubbleProps {
+  opposite?: boolean
+  avatarUri?: string
+  message: string
+  name: string
+  time: string
 }
 
-const ChatBubble: React.FC<ChatBubbleProps> = (props:ChatBubbleProps) => {
-  const {
-    message, name, time, avatarUri, ...rest
-  } = props;
-
+const ChatBubble = ({
+  message,
+  name,
+  time,
+  avatarUri,
+  opposite = false,
+  ...rest
+}: ChatBubbleProps) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root} {...rest}>
-      <Avatar>
-        {avatarUri}
-      </Avatar>
-      <div className={classes.info}>
-        <span className={classes.name}>{name}</span>
-        <span className={classes.message}>{message}</span>
-        <span className={classes.time}>{time}</span>
+    <>
+      {!opposite && (
+      <div className={classes.root} {...rest}>
+        <Avatar>{avatarUri}</Avatar>
+        <div className={classes.info}>
+          <span className={classes.name}>{name}</span>
+          <span className={classes.message}>{message}</span>
+          <span className={classes.time}>{time}</span>
+        </div>
       </div>
-    </div>
+      )}
+    </>
   );
 };
 

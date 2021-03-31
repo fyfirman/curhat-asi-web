@@ -16,5 +16,9 @@ export default createMuiTheme({
     background: {
       default: grey[200],
     },
+    chatBubble: {
+      default: '#F3F3F3',
+      opposite: '#FFEDED',
+    },
   },
 });
