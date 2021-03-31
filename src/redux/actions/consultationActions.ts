@@ -9,7 +9,7 @@ export const requestConsultation = (id: IConsultation['id']) => async (dispatch:
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert
-    alert(JSON.stringify(error));
+    // alert(JSON.stringify(error));
   }
 };
 
