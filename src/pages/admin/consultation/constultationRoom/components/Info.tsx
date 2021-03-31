@@ -13,6 +13,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderStyle: 'solid',
     borderColor: theme.palette.background.default,
   },
+  label: {
+    fontSize: 14,
+    color: theme.palette.text.secondary,
+  },
+  info: {
+    fontSize: 16,
+    color: theme.palette.text.primary,
+  },
 }));
 
 interface InfoProps{
@@ -25,8 +33,8 @@ const Info: React.FC<InfoProps> = ({ label, info }: InfoProps) => {
 
   return (
     <div className={classes.root}>
-      <span>{label}</span>
-      <span>{info}</span>
+      <span className={classes.label}>{label}</span>
+      <span className={classes.info}>{info}</span>
     </div>
   );
 };
