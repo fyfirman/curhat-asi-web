@@ -21,4 +21,19 @@ export default createMuiTheme({
       opposite: '#FFEDED',
     },
   },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '::-webkit-scrollbar': {
+          width: 6,
+        },
+        '::-webkit-scrollbar-thumb': {
+          backgroundColor: 'rgba(0,0,0,0.2)',
+        },
+        '::-webkit-scrollbar-track': {
+          backgroundColor: 'hsla(0,0%,100%,.1)',
+        },
+      },
+    },
+  },
 });
