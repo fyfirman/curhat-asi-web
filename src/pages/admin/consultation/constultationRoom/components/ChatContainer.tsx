@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
+    overflowY: 'scroll',
   },
   headerText: {
     fontStyle: 'normal',

@@ -63,6 +63,45 @@ const ChatInfo = () => {
         <Info label="Waktu ditutup" info="-" />
         <Info label="Waktu ditutup" info="-" />
         <Info label="Waktu ditutup" info="-" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
+        <Info label="Jenis Kelamin" info="Perempuan" />
       </div>
     </>
   );
