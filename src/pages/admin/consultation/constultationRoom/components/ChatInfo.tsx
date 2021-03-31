@@ -14,15 +14,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
-  subHeader: {
+  header: {
     marginLeft: theme.spacing(2),
-    fontWeight: 500,
-    fontSize: 16,
+    fontSize: 14,
+    color: theme.palette.primary.main,
   },
   participant: {
     extend: 'itemGap',
     '& > span': {
-      extend: 'subHeader',
+      extend: 'header',
     },
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   information: {
     extend: 'itemGap',
     '& > span': {
-      extend: 'subHeader',
+      extend: 'header',
     },
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
