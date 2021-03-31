@@ -28,10 +28,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column',
     flex: 1,
   },
+  headerText: {
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 16,
+  },
   header: {
     extend: 'borderStyle',
+    paddingLeft: theme.spacing(2),
     padding: theme.spacing(1),
-    height: '56px',
+    height: '64px',
     display: 'flex',
     alignItems: 'center',
   },
@@ -47,9 +53,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     marginLeft: theme.spacing(1),
+    '& > span': {
+      '&:nth-child(1)': {
+        extend: 'headerText',
+      },
+      '&:nth-child(2)': {
+        color: theme.palette.text.secondary,
+      },
+    },
   },
   headerInfo: {
-    extend: 'header',
+    extend: ['header', 'headerText'],
     borderTopWidth: 0,
     borderBottomWidth: 1,
     borderLeftWidth: 0,
