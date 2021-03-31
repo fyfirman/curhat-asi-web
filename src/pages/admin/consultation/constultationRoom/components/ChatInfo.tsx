@@ -4,14 +4,23 @@ import Info from './Info';
 import Participant from './Participant';
 
 const useStyles = makeStyles((theme: Theme) => ({
+  itemGap: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+  },
   generalInfo: {
+    extend: 'itemGap',
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
   subHeader: {
     marginLeft: theme.spacing(2),
+    fontWeight: 500,
+    fontSize: 16,
   },
   participant: {
+    extend: 'itemGap',
     '& > span': {
       extend: 'subHeader',
     },
@@ -24,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderWidth: '8px 0',
   },
   information: {
+    extend: 'itemGap',
     '& > span': {
       extend: 'subHeader',
     },
