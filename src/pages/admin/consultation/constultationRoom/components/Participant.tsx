@@ -4,13 +4,16 @@ import * as React from 'react';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     flexDirection: 'row',
   },
+  spacing: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+  },
   info: {
+    extend: 'spacing',
     marginLeft: theme.spacing(1),
     display: 'flex',
     flex: 1,
@@ -18,6 +21,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderStyle: 'solid',
     borderColor: theme.palette.background.default,
     borderWidth: '0 0 1px 0',
+  },
+  avatar: {
+    extend: 'spacing',
+    width: 48,
+    height: 48,
+  },
+  name: {
+    fontSize: 16,
+    color: theme.palette.text.primary,
+  },
+  phoneNumber: {
+    fontSize: 14,
+    color: theme.palette.text.secondary,
   },
 }));
 
@@ -34,10 +50,10 @@ const Participant: React.FC<ParticipantProps> = (props: ParticipantProps) => {
 
   return (
     <div className={classes.root}>
-      <Avatar />
+      <Avatar className={classes.avatar} />
       <div className={classes.info}>
-        <span>{name}</span>
-        <span>{phoneNumber}</span>
+        <span className={classes.name}>{name}</span>
+        <span className={classes.phoneNumber}>{phoneNumber}</span>
       </div>
     </div>
   );
