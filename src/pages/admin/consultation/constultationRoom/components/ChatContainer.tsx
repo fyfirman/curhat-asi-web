@@ -19,15 +19,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   main: {
     extend: 'borderStyle',
     display: 'flex',
-    flex: 2,
+    flex: 3,
     flexDirection: 'column',
     borderWidth: '0 1px 0 0',
   },
   secondary: {
     display: 'flex',
     flexDirection: 'column',
-    flex: 1,
-    overflowY: 'scroll',
+    flex: 3,
   },
   headerText: {
     fontStyle: 'normal',
@@ -43,8 +42,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
   },
   headerAvatar: {
-    height: 52,
-    width: 52,
+    height: 48,
+    width: 48,
+  },
+  avaContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%',
   },
   headerChat: {
     borderTopWidth: 0,
@@ -52,7 +56,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderLeftWidth: 0,
     borderRightWidth: 0,
     extend: 'header',
-    flexDirection: 'row',
   },
   headerContent: {
     display: 'flex',
@@ -91,7 +94,9 @@ const ChatContainer:React.FC = () => {
     <div className={classes.root}>
       <div className={classes.main}>
         <div className={classes.headerChat}>
-          <Avatar alt="Dessy" className={classes.headerAvatar}>D</Avatar>
+          <div className={classes.avaContainer}>
+            <Avatar alt="Dessy" className={classes.headerAvatar}>D</Avatar>
+          </div>
           <div className={classes.headerContent}>
             <span>Dessy</span>
             <span>Masalah : Tidak mau diberi asi</span>

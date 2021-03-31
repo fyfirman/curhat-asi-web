@@ -4,6 +4,10 @@ import Info from './Info';
 import Participant from './Participant';
 
 const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    overflowY: 'scroll',
+    flex: 1,
+  },
   itemGap: {
     display: 'flex',
     flexDirection: 'column',
@@ -46,7 +50,7 @@ const ChatInfo = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <div className={classes.root}>
       <div className={classes.generalInfo}>
         <Info label="Waktu dibuat" info="16:31, 14 Maret 2021" />
         <Info label="Waktu ditutup" info="-" />
@@ -103,7 +107,7 @@ const ChatInfo = () => {
         <Info label="Jenis Kelamin" info="Perempuan" />
         <Info label="Jenis Kelamin" info="Perempuan" />
       </div>
-    </>
+    </div>
   );
 };
 
