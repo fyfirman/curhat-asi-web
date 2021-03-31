@@ -37,9 +37,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     extend: 'borderStyle',
     paddingLeft: theme.spacing(2),
     padding: theme.spacing(1),
-    height: '64px',
+    height: '72px',
     display: 'flex',
     alignItems: 'center',
+  },
+  headerAvatar: {
+    height: 52,
+    width: 52,
   },
   headerChat: {
     borderTopWidth: 0,
@@ -86,7 +90,7 @@ const ChatContainer:React.FC = () => {
     <div className={classes.root}>
       <div className={classes.main}>
         <div className={classes.headerChat}>
-          <Avatar>Dessy</Avatar>
+          <Avatar alt="Dessy" className={classes.headerAvatar}>D</Avatar>
           <div className={classes.headerContent}>
             <span>Dessy</span>
             <span>Masalah : Tidak mau diberi asi</span>
