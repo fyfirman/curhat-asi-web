@@ -28,7 +28,10 @@ const CustomBreadcrumbs :React.FC<CustomBreadcrumbsProps> = () => {
       <Link to="/admin/consultation" className={classes.prev}>
         Konsultasi
       </Link>
-      <Typography color="textPrimary">{consultation?.user?.fullName || 'Belum mengisi profile'}</Typography>
+      <Typography color="textPrimary">
+        {consultation?.user?.fullName || 'Belum mengisi profile'}
+        {` (${consultation.description})`}
+      </Typography>
     </Breadcrumbs>
   );
 };

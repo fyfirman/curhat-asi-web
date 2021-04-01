@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   secondary: {
     display: 'flex',
     flexDirection: 'column',
-    flex: 3,
+    flex: 2,
   },
   headerText: {
     fontStyle: 'normal',
@@ -95,11 +95,18 @@ const ChatContainer:React.FC = () => {
       <div className={classes.main}>
         <div className={classes.headerChat}>
           <div className={classes.avaContainer}>
-            <Avatar alt="Dessy" className={classes.headerAvatar}>D</Avatar>
+            <Avatar
+              alt={consultation.user?.fullName || ''}
+              className={classes.headerAvatar}
+            >
+              {consultation.user?.fullName}
+            </Avatar>
           </div>
           <div className={classes.headerContent}>
-            <span>Dessy</span>
-            <span>Masalah : Tidak mau diberi asi</span>
+            <span>{consultation.user?.fullName || 'Belum mengisi profile'}</span>
+            <span>
+              {`Masalah : ${consultation.description}`}
+            </span>
           </div>
         </div>
         <ChatRoom />
