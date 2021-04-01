@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { requestConsultation } from '@redux/actions/consultationActions';
 import { makeStyles, Theme } from '@material-ui/core';
-import Breadcrumbs from './components/Breadcrumbs';
+import Breadcrumbs from '@components/CustomBreadcrumbs';
+import { RootState } from '@redux/reducers';
 import ChatContainer from './components/ChatContainer';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -26,11 +27,17 @@ const ConsultationRoom = () => {
     dispatch(requestConsultation(id));
   }, []);
 
+  const consultation = useSelector((state: RootState) => state.consultation);
+
   // TODO: add loading when dispatching
 
   return (
     <div className={classes.root}>
-      <Breadcrumbs />
+      <Breadcrumbs
+        levelOneLabel="Konsultasi"
+        levelOneTo="/admin/consultation"
+        levelTwoLabel={`${consultation?.user?.fullName || 'Belum mengisi profile'} ${consultation.description}`}
+      />
       <ChatContainer />
     </div>
   );

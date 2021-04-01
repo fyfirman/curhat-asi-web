@@ -2,8 +2,6 @@ import React from 'react';
 import {
   Breadcrumbs, makeStyles, Theme, Typography,
 } from '@material-ui/core';
-import { RootState } from '@redux/reducers';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme:Theme) => ({
@@ -16,21 +14,24 @@ const useStyles = makeStyles((theme:Theme) => ({
 
 interface CustomBreadcrumbsProps {
   className?: string;
+  levelOneTo: string;
+  levelOneLabel: string;
+  levelTwoLabel: string;
 }
 
-const CustomBreadcrumbs :React.FC<CustomBreadcrumbsProps> = () => {
+const CustomBreadcrumbs = (props: CustomBreadcrumbsProps) => {
+  const {
+    className, levelOneTo, levelOneLabel, levelTwoLabel,
+  } = props;
   const classes = useStyles();
 
-  const consultation = useSelector((state: RootState) => state.consultation);
-
   return (
-    <Breadcrumbs aria-label="breadcrumb">
-      <Link to="/admin/consultation" className={classes.prev}>
-        Konsultasi
+    <Breadcrumbs aria-label="breadcrumb" className={className}>
+      <Link to={levelOneTo} className={classes.prev}>
+        {levelOneLabel}
       </Link>
       <Typography color="textPrimary">
-        {consultation?.user?.fullName || 'Belum mengisi profile'}
-        {` (${consultation.description})`}
+        {levelTwoLabel}
       </Typography>
     </Breadcrumbs>
   );

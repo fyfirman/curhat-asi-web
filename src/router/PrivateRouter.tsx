@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core';
 import { privateRoutes as routes } from '@router/routes';
 import Sidebar from '@components/Sidebar';
-import UserDetail from '@pages/admin/user/userDetail/UserDetail';
+import UserProfile from '@pages/admin/user/userProfile/UserProfile';
 import ConsultationRoom from '@pages/admin/consultation/constultationRoom/ConsultationRoom';
 import AddUser from '@pages/admin/user/addUser/AddUser';
 import { useSelector } from 'react-redux';
@@ -46,7 +46,7 @@ const Admin = () => {
                 />
               ))}
               <Route path={`${routeName}/user/add`} component={AddUser} />
-              <Route path={`${routeName}/user/:id`} component={UserDetail} />
+              <Route path={`${routeName}/user/:id`} component={UserProfile} />
               <Route
                 path={`${routeName}/consultation/:id`}
                 component={ConsultationRoom}
