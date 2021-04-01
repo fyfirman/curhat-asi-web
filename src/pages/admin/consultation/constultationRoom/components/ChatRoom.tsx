@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
 import ChatBubble from './ChatBubble';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -17,32 +19,24 @@ const useStyles = makeStyles((theme: Theme) => ({
 const ChatRoom = () => {
   const classes = useStyles();
 
+  const consultation = useSelector((state: RootState) => state.consultation);
+
+  const user = useSelector((state: RootState) => state.user);
+  // eslint-disable-next-line no-underscore-dangle
+  const renderPosts = () => consultation?.posts.map((post) => (
+    <ChatBubble
+      key={post.id}
+      imageUri={post.picture}
+      message={post.message}
+      name={post.user.fullName || 'Belum mengisi profile'}
+      time={post.createdAt}
+      opposite={post.userId === user.id}
+    />
+  ));
+
   return (
     <div className={classes.chatRoom}>
-      <ChatBubble message="Haloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" name="Dessy" time="12:19" opposite />
-      <ChatBubble message="Haloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" opposite />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" imageUri="https://via.placeholder.com/350x150" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" imageUri="https://via.placeholder.com/1050x250" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" imageUri="https://via.placeholder.com/105x600" opposite />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      {renderPosts()}
     </div>
   );
 };

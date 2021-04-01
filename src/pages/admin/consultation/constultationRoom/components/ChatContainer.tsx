@@ -85,11 +85,6 @@ const ChatContainer:React.FC = () => {
 
   const consultation = useSelector((state: RootState) => state.consultation);
 
-  // eslint-disable-next-line no-underscore-dangle
-  const _renderPosts = () => consultation?.posts.map((post) => (
-    <div key={post.id}>{post.message}</div>
-  ));
-
   return (
     <div className={classes.root}>
       <div className={classes.main}>
