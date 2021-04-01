@@ -11,7 +11,6 @@ interface UserDataGridProps{
 }
 
 const UserDataGrid = ({ type }: UserDataGridProps) => {
-  // eslint-disable-next-line no-underscore-dangle
   const dispatch = useDispatch();
 
   const users: IUser[] = useSelector(
