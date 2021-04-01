@@ -1,13 +1,6 @@
 import get from '@utils/axios/get';
 import * as Config from '@utils/axios/axiosConfig';
-
-export enum UserGroup {
-  Cadre = 'kdr',
-  Midwife = 'bdn',
-  Conselor = 'cons',
-  DoctorGeneral = 'du',
-  DoctorSpecialist = 'dsp',
-}
+import UserGroup from '@constants/UserGroupEnum';
 
 export const getUsers = (type?: UserGroup) => {
   const config = {
