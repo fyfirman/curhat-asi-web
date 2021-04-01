@@ -93,9 +93,7 @@ const ChatContainer:React.FC = () => {
             <Avatar
               alt={consultation.user?.fullName || ''}
               className={classes.headerAvatar}
-            >
-              {consultation.user?.fullName}
-            </Avatar>
+            />
           </div>
           <div className={classes.headerContent}>
             <span>{consultation.user?.fullName || 'Belum mengisi profile'}</span>

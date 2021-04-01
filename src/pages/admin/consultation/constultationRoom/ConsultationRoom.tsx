@@ -26,6 +26,8 @@ const ConsultationRoom = () => {
     dispatch(requestConsultation(id));
   }, []);
 
+  // TODO: add loading when dispatching
+
   return (
     <div className={classes.root}>
       <Breadcrumbs />

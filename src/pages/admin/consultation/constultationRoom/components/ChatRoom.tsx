@@ -22,7 +22,7 @@ const ChatRoom = () => {
   const consultation = useSelector((state: RootState) => state.consultation);
 
   const user = useSelector((state: RootState) => state.user);
-  // eslint-disable-next-line no-underscore-dangle
+
   const renderPosts = () => consultation?.posts.map((post) => (
     <ChatBubble
       key={post.id}
