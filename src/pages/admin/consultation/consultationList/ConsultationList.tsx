@@ -5,7 +5,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestConsultations } from '@redux/actions/consultationListActions';
 import { RootState } from '@redux/reducers';
-import { columns, IRowConsultation } from './mock.data';
+import { columns, IRowConsultation } from './dataGridOptions';
 
 const useStyle = makeStyles((theme: Theme) => ({
   header: {
