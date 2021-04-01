@@ -6,7 +6,7 @@ export const requestUserList = (type: UserGroup) => async (dispatch: DispatchTyp
   try {
     const userList = await UserServices.getUsers(type);
 
-    dispatch(requestUserListSuccess(userList as IUser[], type));
+    dispatch(requestUserListSuccess(userList.payload as IUser[], type));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert

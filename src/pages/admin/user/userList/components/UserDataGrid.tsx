@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import { useDispatch } from 'react-redux';
 import UserGroup from '@constants/UserGroupEnum';
+import { requestUserList } from '@redux/actions/userListActions';
 import { columns, rows } from '../mock.data';
 
 interface UserDataGridProps{
@@ -10,11 +11,10 @@ interface UserDataGridProps{
 
 const UserDataGrid = ({ type }: UserDataGridProps) => {
   // eslint-disable-next-line no-underscore-dangle
-  const _dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(type);
-    // dispatch(requestUsers(type));
+    dispatch(requestUserList(type));
   }, []);
 
   return (

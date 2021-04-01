@@ -8,10 +8,10 @@ export const getUsers = (type: UserGroup) => {
     ...(type && { params: { type } }),
   };
 
-  return get(`api/${UserGroupRoutes[type]}`, Config.withToken(config));
+  return get<{ message: string, payload: IUser[] }>(`api/${UserGroupRoutes[type]}`, Config.withToken(config));
 };
 
-export const getUser = (type: UserGroup, id: IUser['id']) => get(
+export const getUser = (type: UserGroup, id: IUser['id']) => get<{ message: string, payload: IUser }>(
   `api/${UserGroupRoutes[type]}/${id}`,
   Config.withToken(),
 );
