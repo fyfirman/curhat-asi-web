@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: (props: any) => ({
     display: 'flex',
     flexDirection: 'row',
+    width: '100%',
     justifyContent: props.opposite ? 'flex-end' : 'flex-start',
   }),
   info: (props: any) => ({
@@ -17,14 +18,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     padding: theme.spacing(1),
-    borderRadius: !props.opposite
-      ? '0 8px 8px 8px'
-      : '8px 0 8px 8px',
+    borderRadius: !props.opposite ? '0 8px 8px 8px' : '8px 0 8px 8px',
     wordWrap: 'break-word',
   }),
   name: {
     fontWeight: 500,
     fontSize: 14,
+  },
+  image: {
+    maxHeight: '30vh',
+    maxWidth: '100%',
+    objectFit: 'contain',
   },
   message: {
     fontSize: 14,
@@ -36,17 +40,19 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface ChatBubbleProps {
-  opposite?: boolean
-  avatarUri?: string
-  message: string
-  name: string
-  time: string
+  opposite?: boolean;
+  avatarUri?: string;
+  imageUri?: string;
+  message: string;
+  name: string;
+  time: string;
 }
 
 const ChatBubble = ({
   message,
   name,
   time,
+  imageUri,
   avatarUri,
   opposite = false,
   ...rest
@@ -58,7 +64,8 @@ const ChatBubble = ({
       {!opposite && <Avatar>{avatarUri}</Avatar>}
       <div className={classes.info}>
         {!opposite && <span className={classes.name}>{name}</span>}
-        <span className={classes.message}>{message}</span>
+        {imageUri && <img className={classes.image} src={imageUri} alt="" srcSet="" />}
+        {!imageUri && <span className={classes.message}>{message}</span>}
         <span className={classes.time}>{time}</span>
       </div>
     </div>

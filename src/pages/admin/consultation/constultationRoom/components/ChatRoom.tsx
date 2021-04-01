@@ -22,7 +22,9 @@ const ChatRoom = () => {
       <ChatBubble message="Haloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" name="Dessy" time="12:19" opposite />
       <ChatBubble message="Haloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" name="Dessy" time="12:19" />
       <ChatBubble message="Halo" name="Dessy" time="12:19" opposite />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" imageUri="https://via.placeholder.com/350x150" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" imageUri="https://via.placeholder.com/1050x250" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" imageUri="https://via.placeholder.com/105x600" opposite />
       <ChatBubble message="Halo" name="Dessy" time="12:19" />
       <ChatBubble message="Halo" name="Dessy" time="12:19" />
       <ChatBubble message="Halo" name="Dessy" time="12:19" />
