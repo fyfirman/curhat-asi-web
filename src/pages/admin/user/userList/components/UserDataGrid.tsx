@@ -14,10 +14,22 @@ const UserDataGrid = ({ type }: UserDataGridProps) => {
   // eslint-disable-next-line no-underscore-dangle
   const dispatch = useDispatch();
 
-  const userList: IUser[] = useSelector((state: RootState) => state.userList.mommies.payload);
+  const users: IUser[] = useSelector(
+    ({ userList }: RootState) => {
+      const userListState: Record<UserGroup, UserListState['payload']> = {
+        [UserGroup.Mommies]: userList.mommies.payload,
+        [UserGroup.Cadre]: userList.cadres.payload,
+        [UserGroup.Midwife]: userList.midwifes.payload,
+        [UserGroup.Conselor]: userList.conselors.payload,
+        [UserGroup.DoctorGeneral]: userList.doctorGenerals.payload,
+        [UserGroup.DoctorSpecialist]: userList.doctorSpecialists.payload,
+      };
+      return userListState[type];
+    },
+  );
 
   const rows: IUserListRow[] = useMemo(
-    () => userList.map((user: IUser): IUserListRow => ({
+    () => users.map((user: IUser): IUserListRow => ({
       id: user.id,
       age: user.profile?.age || 0,
       domicile: user.profile?.domicile || 'Belum mengisi profile',
@@ -25,7 +37,7 @@ const UserDataGrid = ({ type }: UserDataGridProps) => {
       phoneNumber: user.username,
       registrationDate: user.createdAt,
     })),
-    [userList],
+    [users],
   );
 
   useEffect(() => {
