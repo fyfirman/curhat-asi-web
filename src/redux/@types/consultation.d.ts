@@ -8,6 +8,7 @@ interface IConsultation extends TimeStamp {
   closedBy: IUser | null;
   user?: IUser;
   posts: IConsultationPost[];
+  info?: IConsultationInfo;
 }
 
 interface IConsultationInfo {

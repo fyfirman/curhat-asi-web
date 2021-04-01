@@ -9,6 +9,7 @@ const initialState: IConsultation = {
   posts: [],
   createdAt: '',
   updatedAt: '',
+  info: undefined,
 };
 
 const consultationListReducer = (state = initialState, action: ConsultationsAction) => {

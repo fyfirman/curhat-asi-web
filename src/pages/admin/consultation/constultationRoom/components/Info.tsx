@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface InfoProps{
   label: string;
-  info: string;
+  info?: string;
 }
 
-const Info: React.FC<InfoProps> = ({ label, info }: InfoProps) => {
+const Info: React.FC<InfoProps> = ({ label, info = '-' }: InfoProps) => {
   const classes = useStyles();
 
   return (

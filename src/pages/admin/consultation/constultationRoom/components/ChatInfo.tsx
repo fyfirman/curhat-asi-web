@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
 import Info from './Info';
 import Participant from './Participant';
 
@@ -49,63 +51,42 @@ const useStyles = makeStyles((theme: Theme) => ({
 const ChatInfo = () => {
   const classes = useStyles();
 
+  const consultation = useSelector((state: RootState) => state.consultation);
+
+  const infoList: Record<string, string | undefined> = {
+    'Usia Bayi': `${consultation.info?.age} bulan`,
+    'Berat Badan Bayi': `${consultation.info?.weight} kg`,
+    'Panjang/Tinggi Badan Bayi': `${consultation.info?.height} cm`,
+    'Rata-rata BAK Bayi': `${consultation.info?.bak} kali/hari`,
+    'Rata-rata BAB Bayi': `${consultation.info?.bab} kali/minggu`,
+    // TODO: Buat constant buat feed
+    'Asupan Bayi': consultation.info?.feed,
+    'Alat Pemberian ASI': consultation.info?.feedUsing,
+    'Makanan Lain yang diberikan': consultation.info?.otherFoodGiven,
+  };
+
+  const renderInfo = () => Object.keys(infoList).map(
+    (key, index) => <Info label={key} info={infoList[key]} key={index} />,
+  );
+
   return (
     <div className={classes.root}>
       <div className={classes.generalInfo}>
-        <Info label="Waktu dibuat" info="16:31, 14 Maret 2021" />
-        <Info label="Waktu ditutup" info="-" />
+        <Info label="Waktu dibuat" info={consultation.createdAt} />
+        <Info label="Waktu ditutup" info={consultation.closedAt || '-'} />
       </div>
       <div className={classes.participant}>
         <span>Partisipan</span>
-        <Participant name="Dessy" phoneNumber="+62631276372" />
-        <Participant name="Ratna" phoneNumber="+62631276372" />
+        {/* TODO: add other participant */}
+        {/* TODO: add avatar props */}
+        <Participant
+          name={consultation.user?.fullName || 'Belum mengisi profile'}
+          phoneNumber={consultation.user?.username || '-'}
+        />
       </div>
       <div className={classes.information}>
         <span>Informasi Umum</span>
-        <Info label="Waktu dibuat" info="16:31, 14 Maret 2021" />
-        <Info label="Waktu ditutup" info="-" />
-        <Info label="Waktu ditutup" info="-" />
-        <Info label="Waktu ditutup" info="-" />
-        <Info label="Waktu ditutup" info="-" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
-        <Info label="Jenis Kelamin" info="Perempuan" />
+        {renderInfo()}
       </div>
     </div>
   );
