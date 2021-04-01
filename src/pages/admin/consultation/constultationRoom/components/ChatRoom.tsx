@@ -19,8 +19,9 @@ const ChatRoom = () => {
 
   return (
     <div className={classes.chatRoom}>
+      <ChatBubble message="Haloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" name="Dessy" time="12:19" opposite />
       <ChatBubble message="Haloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" name="Dessy" time="12:19" />
-      <ChatBubble message="Halo" name="Dessy" time="12:19" />
+      <ChatBubble message="Halo" name="Dessy" time="12:19" opposite />
       <ChatBubble message="Halo" name="Dessy" time="12:19" />
       <ChatBubble message="Halo" name="Dessy" time="12:19" />
       <ChatBubble message="Halo" name="Dessy" time="12:19" />
