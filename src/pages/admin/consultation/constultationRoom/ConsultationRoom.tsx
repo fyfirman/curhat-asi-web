@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { requestConsultation } from '@redux/actions/consultationActions';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core';
 import Breadcrumbs from './components/Breadcrumbs';
 import ChatContainer from './components/ChatContainer';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(2),
   },
 }));
 
