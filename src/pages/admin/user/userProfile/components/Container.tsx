@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme:Theme) => ({
   root: {
     backgroundColor: 'white',
     padding: theme.spacing(6),
+    borderRadius: theme.shape.borderRadius,
   },
 }));
 
