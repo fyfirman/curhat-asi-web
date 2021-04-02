@@ -3,6 +3,7 @@ interface IBaby implements TimeStamp {
   profileId: number;
   pregnancyWeeks: number;
   weight: number;
+  height: number;
   diameter: number;
   gender: string;
   imd: boolean;

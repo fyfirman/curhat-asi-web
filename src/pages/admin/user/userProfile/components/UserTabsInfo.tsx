@@ -3,7 +3,9 @@ import { Tab, Tabs } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import TabPanel from './TabPanel';
-import { momsProfile, pregnancyInfo } from './data';
+import {
+  babyInfo, husbandInfo, momsProfile, pregnancyInfo,
+} from './data';
 
 const UserTabsInfo = () => {
   const [value, setValue] = useState(0);
@@ -14,8 +16,8 @@ const UserTabsInfo = () => {
   const tabsData: { label: string; infoList: Record<string, string | undefined> }[] = [
     { label: 'Profil', infoList: momsProfile(user) },
     { label: 'Kehamilan', infoList: pregnancyInfo(user.profile?.pregnancy) },
-    { label: 'Bayi', infoList: momsProfile(user) },
-    { label: 'Anggota Keluarga Lain', infoList: momsProfile(user) },
+    { label: 'Bayi', infoList: babyInfo(user.profile?.baby) },
+    { label: 'Anggota Keluarga Lain', infoList: husbandInfo(user.profile?.husband) },
   ];
 
   const handleChange = (_event: any, newValue: number) => {
