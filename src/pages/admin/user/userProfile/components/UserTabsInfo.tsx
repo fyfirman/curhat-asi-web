@@ -21,13 +21,13 @@ const UserTabsInfo = () => {
   const classes = useStyles();
 
   // Change with opened user
-  const user = useSelector((state: RootState) => state.userList.mommies.payload[0]);
+  const profile = useSelector((state: RootState) => state.userProfile.payload);
 
   const tabsData: { label: string; infoList: Record<string, string | undefined> }[] = [
-    { label: 'Profil', infoList: momsProfile(user) },
-    { label: 'Kehamilan', infoList: pregnancyInfo(user.profile?.pregnancy) },
-    { label: 'Bayi', infoList: babyInfo(user.profile?.baby) },
-    { label: 'Anggota Keluarga Lain', infoList: husbandInfo(user.profile?.husband) },
+    { label: 'Profil', infoList: momsProfile(profile) },
+    { label: 'Kehamilan', infoList: pregnancyInfo(profile?.pregnancy) },
+    { label: 'Bayi', infoList: babyInfo(profile?.baby) },
+    { label: 'Anggota Keluarga Lain', infoList: husbandInfo(profile?.husband) },
   ];
 
   const handleChange = (_event: any, newValue: number) => {
