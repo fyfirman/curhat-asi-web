@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Tab, Tabs } from '@material-ui/core';
+import {
+  makeStyles, Tab, Tabs, Theme,
+} from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import TabPanel from './TabPanel';
@@ -7,8 +9,16 @@ import {
   babyInfo, husbandInfo, momsProfile, pregnancyInfo,
 } from './data';
 
+const useStyles = makeStyles((_theme: Theme) => ({
+  tab: {
+    minWidth: 120,
+    padding: '8px 24px',
+  },
+}));
+
 const UserTabsInfo = () => {
   const [value, setValue] = useState(0);
+  const classes = useStyles();
 
   // Change with opened user
   const user = useSelector((state: RootState) => state.userList.mommies.payload[0]);
@@ -30,7 +40,7 @@ const UserTabsInfo = () => {
   });
 
   const renderTabs = () => tabsData.map((tab, index) => (
-    <Tab label={tab.label} {...a11yProps(index)} />
+    <Tab className={classes.tab} label={tab.label} {...a11yProps(index)} />
   ));
 
   const renderTabPanels = () => tabsData.map((tab, index) => (
