@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Avatar, makeStyles, Theme } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
 
 const useStyles = makeStyles((theme: Theme) => ({
   header: {
@@ -26,11 +28,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Header = () => {
   const classes = useStyles();
+  const user = useSelector((state: RootState) => state.userList.mommies.payload[0]);
+
   return (
     <div className={classes.header}>
       <Avatar className={classes.avatar} />
-      <span className={classes.name}>Insi Farisa Desy Arya</span>
-      <span className={classes.title}>Administrator</span>
+      <span className={classes.name}>{user.fullName || 'Belum mengisi profile'}</span>
+      <span className={classes.title}>{user.userGroup.name}</span>
     </div>
   );
 };

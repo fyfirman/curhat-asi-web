@@ -3,7 +3,7 @@ export enum UserGroupId{
   mommy = 'mommy',
 }
 
-interface userGroup{
+interface IUserGroup{
   id: string;
   name: string;
   level: number;
