@@ -4,8 +4,8 @@ interface UserListAction implements Action {
   error?: {}
 }
 
-interface UserListState {
-  payload: IUser[];
+interface UserListState<U = IUser> {
+  payload: U[];
   isLoading: boolean;
   error: Record;
 }

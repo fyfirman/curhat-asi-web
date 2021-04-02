@@ -28,7 +28,7 @@ const UserDataGrid = ({ type }: UserDataGridProps) => {
   );
 
   const rows: IUserListRow[] = useMemo(
-    () => users.map((user: IUser): IUserListRow => ({
+    () => users.map((user: IMoms): IUserListRow => ({
       id: user.id,
       age: user.profile?.age || 0,
       domicile: user.profile?.domicile || 'Belum mengisi profile',
