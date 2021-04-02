@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { Tab, Tabs } from '@material-ui/core';
-import UserGroup from '@constants/UserGroupEnum';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
 import TabPanel from './TabPanel';
-
-// TODO: change with components
-const tabsData: { label: string; type: UserGroup }[] = [
-  { label: 'Profil', type: UserGroup.Mommies },
-  { label: 'Kehamilan', type: UserGroup.Cadre },
-  { label: 'Bayi', type: UserGroup.Midwife },
-  { label: 'Anggota Keluarga Lain', type: UserGroup.Conselor },
-];
+import { momsProfile } from './profileData';
 
 const UserTabsInfo = () => {
   const [value, setValue] = useState(0);
+
+  // Change with opened user
+  const user = useSelector((state: RootState) => state.userList.mommies.payload[0]);
+
+  const tabsData: { label: string; infoList: Record<string, string | undefined> }[] = [
+    { label: 'Profil', infoList: momsProfile(user) },
+    { label: 'Kehamilan', infoList: momsProfile(user) },
+    { label: 'Bayi', infoList: momsProfile(user) },
+    { label: 'Anggota Keluarga Lain', infoList: momsProfile(user) },
+  ];
 
   const handleChange = (_event: any, newValue: number) => {
     setValue(newValue);
@@ -28,9 +32,7 @@ const UserTabsInfo = () => {
   ));
 
   const renderTabPanels = () => tabsData.map((tab, index) => (
-    <TabPanel value={value} index={index}>
-      <span>{index}</span>
-    </TabPanel>
+    <TabPanel value={value} index={index} infoList={tab.infoList} />
   ));
 
   return (

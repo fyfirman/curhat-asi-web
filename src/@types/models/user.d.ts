@@ -83,7 +83,7 @@ interface IMomsProfile implements TimeStamp{
   maritalStatus?: string;
   housemate?: string;
   houseOwnership?: string;
-  housmatesNumber?: number;
+  housematesNumber?: number;
   fullAddress?: string;
   occupationName?: string;
   religionText?: string;
@@ -102,14 +102,14 @@ interface IMomsProfile implements TimeStamp{
   picture: null;
 }
 
-interface IUser extends TimeStamp{
+interface IUser<P = IMomsProfile> extends TimeStamp{
   id: number;
   userGroupId?: UserGroupId;
   username: string;
   deletedAt: string | null;
   chatAccessToken: string | null;
   fullName: string | null;
-  profile?: IMomsProfile;
+  profile?: P;
 }
 
 interface UserAction implements Action {

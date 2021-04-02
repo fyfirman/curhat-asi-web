@@ -1,16 +1,20 @@
 import * as React from 'react';
-import { Box, Typography } from '@material-ui/core';
+import Info from './Info';
 
 interface TabPanelProps{
   index: number,
   value: number,
-  children: React.ReactNode
+  infoList: Record<string, string | undefined>,
 }
 
 const TabPanel = (props: TabPanelProps) => {
   const {
-    index, value, children, ...rest
+    index, value, infoList, ...rest
   } = props;
+
+  const renderInfoList = () => Object.keys(infoList).map((key, i) => (
+    <Info key={i} label={key} info={infoList[key]} />
+  ));
 
   return (
     <div
@@ -21,9 +25,7 @@ const TabPanel = (props: TabPanelProps) => {
       {...rest}
     >
       {value === index && (
-      <Box p={3}>
-        <Typography>{children}</Typography>
-      </Box>
+        renderInfoList()
       )}
     </div>
   );
