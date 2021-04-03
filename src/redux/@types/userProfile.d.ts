@@ -1,11 +1,11 @@
 interface UserProfileAction implements Action {
   type: string;
-  payload: IMomsProfile;
+  payload: IMoms;
   error?: {}
 }
 
 interface UserProfileState {
-  payload?: IMomsProfile ;
+  payload?: IMoms;
   isLoading: boolean;
   error: Record;
 }

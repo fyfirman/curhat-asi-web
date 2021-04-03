@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <div className={classes.header}>
       <Avatar className={classes.avatar} />
-      <span className={classes.name}>{user?.name || 'Belum mengisi profile'}</span>
+      <span className={classes.name}>{user?.fullName || 'Belum mengisi profile'}</span>
       {/* TODO: Jabatan */}
       <span className={classes.title}>-</span>
     </div>

@@ -1,12 +1,12 @@
 import userProfileActionTypes from '@constants/userProfileActionTypes';
-import UserGroup from '@constants/UserGroupEnum';
 import * as UserServices from '@services/UserServices';
 
 export const requestUserProfile = (id: IUser['id']) => async (dispatch: DispatchType) => {
   try {
-    const user = await UserServices.getUser(UserGroup.Mommies, id);
+    const user = await UserServices.getUser(id);
+    console.log(user.payload);
 
-    dispatch(requestUserProfileSuccess(user.payload as IUser));
+    dispatch(requestUserProfileSuccess(user.payload as IMoms));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert

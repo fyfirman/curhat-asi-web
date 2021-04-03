@@ -5,7 +5,7 @@ export const requestLogin = (username: string, password: string) => async (
   dispatch: DispatchType,
 ) => {
   try {
-    const session = await Auth.login('kdr', username, password);
+    const session = await Auth.login('admin', username, password);
 
     dispatch(loginSuccess(session as ISession));
   } catch (error) {

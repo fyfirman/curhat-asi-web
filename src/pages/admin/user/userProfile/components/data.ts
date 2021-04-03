@@ -1,19 +1,19 @@
 type InfoList = Record<string, string | undefined>;
 
-export const momsProfile = (profile?: IMomsProfile): InfoList => ({
-  // 'Nomor Telepon': user.username,
-  'Tempat Lahir': profile?.pob,
-  'Tanggal Lahir': `${profile?.dob} (${profile?.age} tahun)`,
-  Alamat: profile?.address,
-  Domisili: profile?.domicile,
-  Agama: profile?.religionText,
-  'Golongan Darah': profile?.bloodType,
-  'Status Pernikahan': profile?.maritalStatusText,
-  Pendidikan: profile?.educationText,
-  'Pekerjaan/Profesi': profile?.occupationName,
-  'Tinggal Dengan': profile?.housemateText,
-  'Jumlah yang tinggal dirumah': `${profile?.housematesNumber} orang`,
-  'Kepemilikan Rumah': profile?.houseOwnershipText,
+export const momsProfile = (user?: IMoms): InfoList => ({
+  'Nomor Telepon': user?.username,
+  'Tempat Lahir': user?.profile?.pob,
+  'Tanggal Lahir': `${user?.profile?.dob} (${user?.profile?.age} tahun)`,
+  Alamat: user?.profile?.address,
+  Domisili: user?.profile?.domicile,
+  Agama: user?.profile?.religionText,
+  'Golongan Darah': user?.profile?.bloodType,
+  'Status Pernikahan': user?.profile?.maritalStatusText,
+  Pendidikan: user?.profile?.educationText,
+  'Pekerjaan/Profesi': user?.profile?.occupationName,
+  'Tinggal Dengan': user?.profile?.housemateText,
+  'Jumlah yang tinggal dirumah': `${user?.profile?.housematesNumber} orang`,
+  'Kepemilikan Rumah': user?.profile?.houseOwnershipText,
 });
 
 export const pregnancyInfo = (pregnancy?: IPregnancy): InfoList => ({

@@ -35,7 +35,7 @@ const ShowUser = () => {
         className={classes.breadCrumbs}
         levelOneLabel="Pengguna"
         levelOneTo="/admin/user"
-        levelTwoLabel={user?.name || 'Belum mengisi profile'}
+        levelTwoLabel={user?.fullName || 'Belum mengisi profile'}
       />
       <Container>
         <Header />

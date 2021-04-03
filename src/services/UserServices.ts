@@ -11,7 +11,12 @@ export const getUsers = (type: UserGroup) => {
   return get<{ message: string, payload: IUser[] }>(`api/${UserGroupRoutes[type]}`, Config.withToken(config));
 };
 
-export const getUser = (type: UserGroup, id: IUser['id']) => get<{ message: string, payload: IUser }>(
-  `api/${UserGroupRoutes[type]}/${id}`,
+interface IGetUserResponse {
+  message: string;
+  payload: IMoms;
+}
+
+export const getUser = (id: IUser['id']) => get<IGetUserResponse>(
+  `api/users/${id}`,
   Config.withToken(),
 );
