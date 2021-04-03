@@ -34,8 +34,7 @@ const Header = () => {
     <div className={classes.header}>
       <Avatar className={classes.avatar} />
       <span className={classes.name}>{user?.fullName || 'Belum mengisi profile'}</span>
-      {/* TODO: Jabatan */}
-      <span className={classes.title}>-</span>
+      <span className={classes.title}>{user?.userGroup.name}</span>
     </div>
   );
 };
