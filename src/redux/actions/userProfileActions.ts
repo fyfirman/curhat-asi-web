@@ -4,7 +4,6 @@ import * as UserServices from '@services/UserServices';
 export const requestUserProfile = (id: IUser['id']) => async (dispatch: DispatchType) => {
   try {
     const user = await UserServices.getUser(id);
-    console.log(user.payload);
 
     dispatch(requestUserProfileSuccess(user.payload as IMoms));
   } catch (error) {
