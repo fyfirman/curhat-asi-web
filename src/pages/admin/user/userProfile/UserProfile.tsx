@@ -5,9 +5,11 @@ import { makeStyles, Theme } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { requestUserProfile } from '@redux/actions/userProfileActions';
+import UserGroup from '@constants/UserGroupEnum';
 import Container from './components/Container';
 import Header from './components/Header';
-import UserTabsInfo from './components/UserTabsInfo';
+import MomsTabsInfo from './components/MomsTabsInfo';
+import ConsultantInfo from './components/ConsultantInfo';
 
 const useStyles = makeStyles((theme: Theme) => ({
   breadCrumbs: {
@@ -39,7 +41,7 @@ const ShowUser = () => {
       />
       <Container>
         <Header />
-        <UserTabsInfo />
+        {user?.userGroup.id === UserGroup.Mommies ? <MomsTabsInfo /> : <ConsultantInfo />}
       </Container>
     </div>
   );

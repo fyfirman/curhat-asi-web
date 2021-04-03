@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Info from './Info';
 
+export type InfoList = Record<string, string | undefined>;
+
 interface TabPanelProps{
   index: number,
   value: number,
-  infoList: Record<string, string | undefined>,
+  infoList: InfoList,
 }
 
 const TabPanel = (props: TabPanelProps) => {

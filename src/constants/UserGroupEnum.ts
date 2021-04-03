@@ -1,5 +1,5 @@
 enum UserGroup {
-  Mommies = 'moms',
+  Mommies = 'mommy',
   Cadre = 'kdr',
   Midwife = 'bdn',
   Conselor = 'cons',

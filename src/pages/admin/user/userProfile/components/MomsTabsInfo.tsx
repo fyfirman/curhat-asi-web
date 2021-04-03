@@ -4,7 +4,7 @@ import {
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
-import TabPanel from './TabPanel';
+import TabPanel, { InfoList } from './TabPanel';
 import {
   babyInfo, husbandInfo, momsProfile, pregnancyInfo,
 } from './data';
@@ -16,14 +16,13 @@ const useStyles = makeStyles((_theme: Theme) => ({
   },
 }));
 
-const UserTabsInfo = () => {
+const MomsTabsInfo = () => {
   const [value, setValue] = useState(0);
   const classes = useStyles();
 
-  // Change with opened user
   const user = useSelector((state: RootState) => state.userProfile.payload);
 
-  const tabsData: { label: string; infoList: Record<string, string | undefined> }[] = [
+  const tabsData: { label: string; infoList: InfoList }[] = [
     { label: 'Profil', infoList: momsProfile(user) },
     { label: 'Kehamilan', infoList: pregnancyInfo(user?.profile?.pregnancy) },
     { label: 'Bayi', infoList: babyInfo(user?.profile?.baby) },
@@ -64,4 +63,4 @@ const UserTabsInfo = () => {
   );
 };
 
-export default UserTabsInfo;
+export default MomsTabsInfo;
