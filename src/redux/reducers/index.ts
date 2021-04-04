@@ -7,6 +7,7 @@ import consultationListReducer from './consultationListReducer';
 import consultationPostsReducer from './consultationPostReducer';
 import userListReducer from './userListReducer';
 import userProfileReducer from './userProfileReducer';
+import locationReducer from './locationReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   consultationPosts: consultationPostsReducer,
   userList: userListReducer,
   userProfile: userProfileReducer,
+  location: locationReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
