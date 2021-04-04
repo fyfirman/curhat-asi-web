@@ -1,4 +1,4 @@
-import { subDistrictsTypes } from '@redux/constants/locationActionTypes';
+import { subDistrictsTypes } from '@redux/constants/locationsActionTypes';
 
 const initialState: SubDistrictsState = {
   payload: undefined,

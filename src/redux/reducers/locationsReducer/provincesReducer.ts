@@ -1,4 +1,4 @@
-import { provincesTypes } from '@redux/constants/locationActionTypes';
+import { provincesTypes } from '@redux/constants/locationsActionTypes';
 
 const initialState: ProvincesState = {
   payload: undefined,

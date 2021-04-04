@@ -1,4 +1,4 @@
-import { villagesTypes } from '@redux/constants/locationActionTypes';
+import { villagesTypes } from '@redux/constants/locationsActionTypes';
 
 const initialState: VillagesState = {
   payload: undefined,
