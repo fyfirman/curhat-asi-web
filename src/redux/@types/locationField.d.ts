@@ -5,17 +5,17 @@ interface LocationAction<T> implements Action {
 }
 
 interface LocationState<T> {
-  payload?: IMoms;
-  isLoading: T;
-  error: Record;
+  payload?: T;
+  isLoading: boolean;
+  error?: Record;
 }
 
-type villageAction = LocationAction<IVillage>;
-type subDistrictAction = LocationAction<ISubDistrict>;
-type districtAction = LocationAction<IDistrict>;
-type provinceAction = LocationAction<IProvince>;
+type VillageAction = LocationAction<IVillage>;
+type SubDistrictAction = LocationAction<ISubDistrict>;
+type DistrictAction = LocationAction<IDistrict>;
+type ProvinceAction = LocationAction<IProvince>;
 
-type villageState = LocationState<IVillage>;
-type subDistrictState = LocationState<ISubDistrict>;
-type districtState = LocationState<IDistrict>;
-type provinceState = LocationState<IProvince>;
+type VillageState = LocationState<IVillage>;
+type SubDistrictState = LocationState<ISubDistrict>;
+type DistrictState = LocationState<IDistrict>;
+type ProvinceState = LocationState<IProvince>;
