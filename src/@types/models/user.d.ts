@@ -1,10 +1,3 @@
-interface IVillage{
-  id: string;
-  subDistrictId: string;
-  name: string;
-  // There is more sub-models but not gonna used, so i skipped this section
-}
-
 interface IOccupation{
   id: number;
   name: string;
