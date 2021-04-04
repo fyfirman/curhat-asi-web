@@ -8,6 +8,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Field from './CustomField';
 import CustomAutocomplete from './CustomAutocomplete';
+import LocationFields from './LocationFields';
 
 const useStyles = makeStyles((theme: Theme) => ({
   loginAlert: {
@@ -116,26 +117,7 @@ const AddUserForm = () => {
             disableToolbar
             variant="inline"
           />
-          <CustomAutocomplete
-            name="provinceId"
-            label="Provinsi"
-            getOptionLabel={(option: IProvince) => option.name}
-          />
-          <CustomAutocomplete
-            name="districtId"
-            label="Kota/Kabupaten"
-            getOptionLabel={(option: IProvince) => option.name}
-          />
-          <CustomAutocomplete
-            name="subDistrictId"
-            label="Kecamatan"
-            getOptionLabel={(option: IProvince) => option.name}
-          />
-          <CustomAutocomplete
-            name="villageId"
-            label="Kelurahan/Desa"
-            getOptionLabel={(option: IProvince) => option.name}
-          />
+          <LocationFields />
           <Button
             color="primary"
             variant="contained"
