@@ -1,17 +1,13 @@
 import React from 'react';
-import {
-  Button, makeStyles, Theme,
-  TextField as TextFieldSelect,
-} from '@material-ui/core';
+import { Button, makeStyles, Theme } from '@material-ui/core';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
-
-import { Autocomplete, AutocompleteRenderInputParams } from 'formik-material-ui-lab';
 import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Field from './CustomField';
+import CustomAutocomplete from './CustomAutocomplete';
 
 const useStyles = makeStyles((theme: Theme) => ({
   loginAlert: {
@@ -63,17 +59,6 @@ const _validationSchema = yup.object({
     .string()
     .required('Name is required'),
 });
-
-const exampleOptions: IProvince[] = [
-  { name: 'The Shawshank Redemption', id: '1994' },
-  { name: 'The Shawshank Redemption', id: '1994' },
-  { name: 'The Shawshank Redemption', id: '1994' },
-  { name: 'The Shawshank Redemption', id: '1994' },
-  { name: 'The Shawshank Redemption', id: '1994' },
-  { name: 'The Shawshank Redemption', id: '1994' },
-  { name: 'The Shawshank Redemption', id: '1994' },
-  { name: 'The Shawshank Redemption', id: '1994' },
-];
 
 const AddUserForm = () => {
   // eslint-disable-next-line no-underscore-dangle
@@ -131,60 +116,25 @@ const AddUserForm = () => {
             disableToolbar
             variant="inline"
           />
-          <Field
-            component={Autocomplete}
+          <CustomAutocomplete
             name="provinceId"
-            options={exampleOptions}
+            label="Provinsi"
             getOptionLabel={(option: IProvince) => option.name}
-            inputProps={{
-              id: 'province-id',
-            }}
-            renderInput={(params: AutocompleteRenderInputParams) => (
-              <TextFieldSelect
-                {...params}
-                label="Provinsi"
-                variant="outlined"
-              />
-            )}
           />
-          <Field
-            component={Autocomplete}
+          <CustomAutocomplete
             name="districtId"
-            options={exampleOptions}
+            label="Kota/Kabupaten"
             getOptionLabel={(option: IProvince) => option.name}
-            renderInput={(params: AutocompleteRenderInputParams) => (
-              <TextFieldSelect
-                {...params}
-                label="Kota/Kabupaten"
-                variant="outlined"
-              />
-            )}
           />
-          <Field
-            component={Autocomplete}
+          <CustomAutocomplete
             name="subDistrictId"
-            options={exampleOptions}
+            label="Kecamatan"
             getOptionLabel={(option: IProvince) => option.name}
-            renderInput={(params: AutocompleteRenderInputParams) => (
-              <TextFieldSelect
-                {...params}
-                label="Kecamatan"
-                variant="outlined"
-              />
-            )}
           />
-          <Field
-            component={Autocomplete}
-            options={exampleOptions}
-            getOptionLabel={(option: IProvince) => option.name}
+          <CustomAutocomplete
             name="villageId"
-            renderInput={(params: AutocompleteRenderInputParams) => (
-              <TextFieldSelect
-                {...params}
-                label="Kelurahan/Desa"
-                variant="outlined"
-              />
-            )}
+            label="Kelurahan/Desa"
+            getOptionLabel={(option: IProvince) => option.name}
           />
           <Button
             color="primary"
