@@ -1,9 +1,13 @@
 import React from 'react';
 import {
-  Button, InputLabel, makeStyles, MenuItem, Theme,
-} from '@material-ui/core'; import * as yup from 'yup';
+  Button, makeStyles, Theme,
+  TextField as TextFieldSelect,
+} from '@material-ui/core';
+import * as yup from 'yup';
 import { Form, Formik } from 'formik';
-import { TextField, Select } from 'formik-material-ui';
+import { TextField } from 'formik-material-ui';
+
+import { Autocomplete, AutocompleteRenderInputParams } from 'formik-material-ui-lab';
 import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
@@ -21,10 +25,10 @@ interface AddUserFormValue {
   name: string;
   pob: string;
   dob: Date;
-  provinceId: number;
-  districtId: string;
-  subDistrictId: string;
-  villageId: string;
+  provinceId: string | null;
+  districtId: string | null;
+  subDistrictId: string | null;
+  villageId: string | null;
 
 }
 
@@ -60,6 +64,17 @@ const _validationSchema = yup.object({
     .required('Name is required'),
 });
 
+const exampleOptions: IProvince[] = [
+  { name: 'The Shawshank Redemption', id: '1994' },
+  { name: 'The Shawshank Redemption', id: '1994' },
+  { name: 'The Shawshank Redemption', id: '1994' },
+  { name: 'The Shawshank Redemption', id: '1994' },
+  { name: 'The Shawshank Redemption', id: '1994' },
+  { name: 'The Shawshank Redemption', id: '1994' },
+  { name: 'The Shawshank Redemption', id: '1994' },
+  { name: 'The Shawshank Redemption', id: '1994' },
+];
+
 const AddUserForm = () => {
   // eslint-disable-next-line no-underscore-dangle
   const _classes = useStyles();
@@ -70,8 +85,8 @@ const AddUserForm = () => {
     name: '',
     pob: '',
     dob: new Date(),
-    provinceId: 0,
     districtId: '',
+    provinceId: '',
     subDistrictId: '',
     villageId: '',
   };
@@ -113,55 +128,64 @@ const AddUserForm = () => {
             component={KeyboardDatePicker}
             label="Tanggal Lahir"
             name="dob"
+            disableToolbar
+            variant="inline"
           />
-          <InputLabel htmlFor="province-id">Provinsi</InputLabel>
           <Field
-            component={Select}
+            component={Autocomplete}
             name="provinceId"
+            options={exampleOptions}
+            getOptionLabel={(option: IProvince) => option.name}
             inputProps={{
               id: 'province-id',
             }}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Field>
-          <InputLabel htmlFor="district-id">Kota/Kabupaten</InputLabel>
+            renderInput={(params: AutocompleteRenderInputParams) => (
+              <TextFieldSelect
+                {...params}
+                label="Provinsi"
+                variant="outlined"
+              />
+            )}
+          />
           <Field
-            component={Select}
+            component={Autocomplete}
             name="districtId"
-            inputProps={{
-              id: 'district-id',
-            }}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Field>
-          <InputLabel htmlFor="sub-district-id">Kecamatan</InputLabel>
+            options={exampleOptions}
+            getOptionLabel={(option: IProvince) => option.name}
+            renderInput={(params: AutocompleteRenderInputParams) => (
+              <TextFieldSelect
+                {...params}
+                label="Kota/Kabupaten"
+                variant="outlined"
+              />
+            )}
+          />
           <Field
-            component={Select}
+            component={Autocomplete}
             name="subDistrictId"
-            inputProps={{
-              id: 'sub-district-id',
-            }}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Field>
-          <InputLabel htmlFor="village-id">Kelurahan/Desa</InputLabel>
+            options={exampleOptions}
+            getOptionLabel={(option: IProvince) => option.name}
+            renderInput={(params: AutocompleteRenderInputParams) => (
+              <TextFieldSelect
+                {...params}
+                label="Kecamatan"
+                variant="outlined"
+              />
+            )}
+          />
           <Field
-            component={Select}
+            component={Autocomplete}
+            options={exampleOptions}
+            getOptionLabel={(option: IProvince) => option.name}
             name="villageId"
-            inputProps={{
-              id: 'village-id',
-            }}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Field>
+            renderInput={(params: AutocompleteRenderInputParams) => (
+              <TextFieldSelect
+                {...params}
+                label="Kelurahan/Desa"
+                variant="outlined"
+              />
+            )}
+          />
           <Button
             color="primary"
             variant="contained"
