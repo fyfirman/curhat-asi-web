@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { requestUserProfile } from '@redux/actions/userProfileActions';
 import UserGroup from '@constants/UserGroupEnum';
-import Container from './components/Container';
+import Container from '@components/Container';
 import Header from './components/Header';
 import MomsTabsInfo from './components/MomsTabsInfo';
 import ConsultantInfo from './components/ConsultantInfo';
