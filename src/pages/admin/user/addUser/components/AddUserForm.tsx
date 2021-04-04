@@ -23,6 +23,27 @@ const validationSchema = yup.object({
     .string()
     .max(6, 'Password should be of minimum 8 characters length')
     .required('Password is required'),
+  name: yup
+    .string()
+    .required('Name is required'),
+  pob: yup
+    .string()
+    .required('Name is required'),
+  dob: yup
+    .string()
+    .required('Name is required'),
+  provinceId: yup
+    .string()
+    .required('Name is required'),
+  districtId: yup
+    .string()
+    .required('Name is required'),
+  subDistrictId: yup
+    .string()
+    .required('Name is required'),
+  villageId: yup
+    .string()
+    .required('Name is required'),
 });
 
 const AddUserForm = () => {
