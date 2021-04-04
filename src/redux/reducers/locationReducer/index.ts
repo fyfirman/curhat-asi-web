@@ -1,14 +1,14 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import districtReducer from './districtReducer';
-import provinceReducer from './provinceReducer';
-import subDistrictReducer from './subDistrictReducer';
-import villageReducer from './villageReducer';
+import districtsReducer from './districtsReducer';
+import provincesReducer from './provincesReducer';
+import subDistrictsReducer from './subDistrictsReducer';
+import villagesReducer from './villagesReducer';
 
 const locationReducer = combineReducers({
-  village: villageReducer,
-  subDistrict: subDistrictReducer,
-  district: districtReducer,
-  province: provinceReducer,
+  villages: villagesReducer,
+  subDistricts: subDistrictsReducer,
+  districts: districtsReducer,
+  provinces: provincesReducer,
 });
 
 export default locationReducer;
