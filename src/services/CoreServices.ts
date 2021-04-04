@@ -16,10 +16,6 @@ const getDoctorGeneral = () => get('api/doctor-general', Config.withToken());
 const getDoctorSpecialist = () => get('api/doctor-specialist', Config.withToken());
 const getMomsProfile = (userId: number) => get(`api/mommies/${userId}`, Config.withToken());
 const getArticleList = () => get('api/articles', Config.withToken());
-const getProvinces = () => get('api/provinces/', Config.withToken());
-const getDistricts = (provinceId: string) => get(`api/districts/${provinceId}`, Config.withToken());
-const getSubDistricts = (districtId: string) => get(`api/sub_districts/${districtId}`, Config.withToken());
-const getVillages = (subDistrictId: string) => get(`api/villages/${subDistrictId}`, Config.withToken());
 
 // Post
 const postGenerateToken = (data: any) => post('auth/token', Config.bodyWithOauth(data));
