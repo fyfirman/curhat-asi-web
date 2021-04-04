@@ -10,6 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from '@redux/store';
 import { create } from 'jss';
 import jssExtends from 'jss-plugin-extend';
+import 'date-fns';
 
 const jss = create({
   plugins: [jssExtends(), ...jssPreset().plugins],

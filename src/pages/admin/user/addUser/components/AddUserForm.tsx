@@ -1,10 +1,12 @@
 import React from 'react';
 import {
-  Button, makeStyles, TextField, Theme,
+  Button, InputLabel, makeStyles, MenuItem, Theme,
 } from '@material-ui/core'; import * as yup from 'yup';
-import { useFormik } from 'formik';
-import Alert from '@material-ui/lab/Alert';
-import Select from './SelectWithHelper';
+import { Field, Form, Formik } from 'formik';
+import { TextField, Select } from 'formik-material-ui';
+import { KeyboardDatePicker } from 'formik-material-ui-pickers';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const useStyles = makeStyles((theme: Theme) => ({
   field: {
@@ -15,7 +17,21 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const validationSchema = yup.object({
+interface AddUserFormValue {
+  username: string;
+  password: string;
+  name: string;
+  pob: string;
+  dob: Date;
+  provinceId: number;
+  districtId: string;
+  subDistrictId: string;
+  villageId: string;
+
+}
+
+// eslint-disable-next-line no-underscore-dangle
+const _validationSchema = yup.object({
   username: yup
     .string()
     .required('Email is required'),
@@ -30,7 +46,7 @@ const validationSchema = yup.object({
     .string()
     .required('Name is required'),
   dob: yup
-    .string()
+    .date()
     .required('Name is required'),
   provinceId: yup
     .string()
@@ -49,153 +65,143 @@ const validationSchema = yup.object({
 const AddUserForm = () => {
   const classes = useStyles();
 
-  const formik = useFormik({
-    initialValues: {
-      username: '',
-      password: '',
-      name: '',
-      pob: '',
-      dob: '',
-      provinceId: '',
-      districtId: '',
-      subDistrictId: '',
-      villageId: '',
-    },
-    validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+  const initialValues : AddUserFormValue = {
+    username: '',
+    password: '',
+    name: '',
+    pob: '',
+    dob: new Date(),
+    provinceId: 0,
+    districtId: '',
+    subDistrictId: '',
+    villageId: '',
+  };
+
+  const onSubmit = (values: AddUserFormValue) => {
+    console.log(values);
+  };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <TextField
-        id="username"
-        name="username"
-        label="Nomor Handphone"
-        className={classes.field}
-        value={formik.values.username}
-        onChange={formik.handleChange}
-        error={formik.touched.username && Boolean(formik.errors.username)}
-        helperText={formik.touched.username && formik.errors.username}
-        fullWidth
-        autoFocus
-        required
-      />
-      <TextField
-        id="password"
-        label="PIN Sementara"
-        type="password"
-        className={classes.field}
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        error={formik.touched.password && Boolean(formik.errors.password)}
-        helperText={formik.touched.password && formik.errors.password}
-        fullWidth
-        required
-      />
-      <TextField
-        id="name"
-        name="name"
-        label="Nama"
-        className={classes.field}
-        value={formik.values.name}
-        onChange={formik.handleChange}
-        error={formik.touched.name && Boolean(formik.errors.name)}
-        helperText={formik.touched.name && formik.errors.name}
-        fullWidth
-        autoFocus
-        required
-      />
-      <TextField
-        id="pob"
-        name="pob"
-        label="Tempat Lahir"
-        className={classes.field}
-        value={formik.values.pob}
-        onChange={formik.handleChange}
-        error={formik.touched.pob && Boolean(formik.errors.pob)}
-        helperText={formik.touched.pob && formik.errors.pob}
-        fullWidth
-        autoFocus
-        required
-      />
-      <TextField
-        id="dob"
-        name="dob"
-        label="Tanggal Lahir"
-        className={classes.field}
-        value={formik.values.dob}
-        onChange={formik.handleChange}
-        error={formik.touched.dob && Boolean(formik.errors.dob)}
-        helperText={formik.touched.dob && formik.errors.dob}
-        fullWidth
-        autoFocus
-        required
-      />
-      <Select
-        id="provinceId"
-        name="provinceId"
-        label="Provinsi"
-        className={classes.field}
-        value={formik.values.provinceId}
-        onChange={formik.handleChange}
-        error={formik.touched.provinceId && Boolean(formik.errors.provinceId)}
-        helperText={formik.touched.provinceId && formik.errors.provinceId}
-        fullWidth
-        autoFocus
-        required
-      />
-      <Select
-        id="districtId"
-        name="districtId"
-        label="Kota/Kabupaten"
-        className={classes.field}
-        value={formik.values.districtId}
-        onChange={formik.handleChange}
-        error={formik.touched.districtId && Boolean(formik.errors.districtId)}
-        helperText={formik.touched.districtId && formik.errors.districtId}
-        fullWidth
-        autoFocus
-        required
-      />
-      <Select
-        id="subDistrictId"
-        name="subDistrictId"
-        label="Kecamatan"
-        className={classes.field}
-        value={formik.values.subDistrictId}
-        onChange={formik.handleChange}
-        error={formik.touched.subDistrictId && Boolean(formik.errors.subDistrictId)}
-        helperText={formik.touched.subDistrictId && formik.errors.subDistrictId}
-        fullWidth
-        autoFocus
-        required
-      />
-      <Select
-        id="villageId"
-        name="villageId"
-        label="Kelurahan/Desa"
-        className={classes.field}
-        value={formik.values.villageId}
-        onChange={formik.handleChange}
-        error={formik.touched.villageId && Boolean(formik.errors.villageId)}
-        helperText={formik.touched.villageId && formik.errors.villageId}
-        fullWidth
-        autoFocus
-        required
-      />
-      <Alert className={classes.loginAlert} />
-      <Button
-        color="primary"
-        variant="contained"
-        type="submit"
-        fullWidth
-        disableElevation
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Formik
+        initialValues={initialValues}
+        // validationSchema={validationSchema}
+        onSubmit={onSubmit}
       >
-        Login
-      </Button>
-    </form>
+        <Form>
+          <Field
+            component={TextField}
+            name="username"
+            className={classes.field}
+            label="Nomor Handphone"
+            fullWidth
+            autoFocus
+            required
+          />
+          <Field
+            component={TextField}
+            className={classes.field}
+            name="password"
+            label="PIN Sementara"
+            fullWidth
+            required
+          />
+          <Field
+            component={TextField}
+            className={classes.field}
+            name="name"
+            label="Nama"
+            fullWidth
+            required
+          />
+          <Field
+            component={TextField}
+            className={classes.field}
+            name="pob"
+            label="Tempat Lahir"
+            fullWidth
+            required
+          />
+          <Field
+            component={KeyboardDatePicker}
+            className={classes.field}
+            label="Tanggal Lahir"
+            name="dob"
+            fullWidth
+            required
+          />
+          <InputLabel htmlFor="province-id">Provinsi</InputLabel>
+          <Field
+            className={classes.field}
+            component={Select}
+            name="provinceId"
+            inputProps={{
+              id: 'province-id',
+            }}
+            fullWidth
+            required
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Field>
+          <InputLabel htmlFor="district-id">Kota/Kabupaten</InputLabel>
+          <Field
+            className={classes.field}
+            component={Select}
+            name="districtId"
+            inputProps={{
+              id: 'district-id',
+            }}
+            fullWidth
+            required
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Field>
+          <InputLabel htmlFor="sub-district-id">Kecamatan</InputLabel>
+          <Field
+            className={classes.field}
+            component={Select}
+            name="subDistrictId"
+            inputProps={{
+              id: 'sub-district-id',
+            }}
+            fullWidth
+            required
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Field>
+          <InputLabel htmlFor="village-id">Kelurahan/Desa</InputLabel>
+          <Field
+            className={classes.field}
+            component={Select}
+            name="villageId"
+            inputProps={{
+              id: 'village-id',
+            }}
+            fullWidth
+            required
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Field>
+          <Button
+            color="primary"
+            variant="contained"
+            type="submit"
+            fullWidth
+            disableElevation
+          >
+            Daftar
+          </Button>
+        </Form>
+      </Formik>
+    </MuiPickersUtilsProvider>
   );
 };
 
