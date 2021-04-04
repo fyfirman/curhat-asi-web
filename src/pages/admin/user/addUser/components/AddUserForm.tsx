@@ -2,16 +2,14 @@ import React from 'react';
 import {
   Button, InputLabel, makeStyles, MenuItem, Theme,
 } from '@material-ui/core'; import * as yup from 'yup';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import Field from './CustomField';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  field: {
-    marginBottom: theme.spacing(3),
-  },
   loginAlert: {
     marginBottom: theme.spacing(3),
   },
@@ -63,7 +61,8 @@ const _validationSchema = yup.object({
 });
 
 const AddUserForm = () => {
-  const classes = useStyles();
+  // eslint-disable-next-line no-underscore-dangle
+  const _classes = useStyles();
 
   const initialValues : AddUserFormValue = {
     username: '',
@@ -92,54 +91,36 @@ const AddUserForm = () => {
           <Field
             component={TextField}
             name="username"
-            className={classes.field}
             label="Nomor Handphone"
-            fullWidth
             autoFocus
-            required
           />
           <Field
             component={TextField}
-            className={classes.field}
             name="password"
             label="PIN Sementara"
-            fullWidth
-            required
           />
           <Field
             component={TextField}
-            className={classes.field}
             name="name"
             label="Nama"
-            fullWidth
-            required
           />
           <Field
             component={TextField}
-            className={classes.field}
             name="pob"
             label="Tempat Lahir"
-            fullWidth
-            required
           />
           <Field
             component={KeyboardDatePicker}
-            className={classes.field}
             label="Tanggal Lahir"
             name="dob"
-            fullWidth
-            required
           />
           <InputLabel htmlFor="province-id">Provinsi</InputLabel>
           <Field
-            className={classes.field}
             component={Select}
             name="provinceId"
             inputProps={{
               id: 'province-id',
             }}
-            fullWidth
-            required
           >
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
@@ -147,14 +128,11 @@ const AddUserForm = () => {
           </Field>
           <InputLabel htmlFor="district-id">Kota/Kabupaten</InputLabel>
           <Field
-            className={classes.field}
             component={Select}
             name="districtId"
             inputProps={{
               id: 'district-id',
             }}
-            fullWidth
-            required
           >
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
@@ -162,14 +140,11 @@ const AddUserForm = () => {
           </Field>
           <InputLabel htmlFor="sub-district-id">Kecamatan</InputLabel>
           <Field
-            className={classes.field}
             component={Select}
             name="subDistrictId"
             inputProps={{
               id: 'sub-district-id',
             }}
-            fullWidth
-            required
           >
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
@@ -177,14 +152,11 @@ const AddUserForm = () => {
           </Field>
           <InputLabel htmlFor="village-id">Kelurahan/Desa</InputLabel>
           <Field
-            className={classes.field}
             component={Select}
             name="villageId"
             inputProps={{
               id: 'village-id',
             }}
-            fullWidth
-            required
           >
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
