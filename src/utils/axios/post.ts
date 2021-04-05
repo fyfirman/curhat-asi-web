@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '@utils/config';
 import getFormData from '@utils/getFormData';
 import camelize from 'camelize';
-import decamelize from 'decamelize';
+import { snakefy } from 'snakelize';
 import axios from './axios';
 
 const post = <T>(path: string, data?: any, config?: AxiosRequestConfig) => {
@@ -10,27 +10,26 @@ const post = <T>(path: string, data?: any, config?: AxiosRequestConfig) => {
     if (config) {
       axios.post<T>(
         `${BASE_URL}/${path}`,
-        data ? getFormData(decamelize(data)) : {},
+        data ? getFormData(snakefy(data)) : {},
         { ...config, headers: config?.headers },
       ).then(
         (result) => {
           resolve(camelize(result.data));
         },
         (err) => {
-          reject(camelize(err.response));
+          reject(camelize(err));
         },
       );
     } else {
       axios.post<T>(
         `${BASE_URL}/${path}`,
-        data ? getFormData(decamelize(data)) : {},
+        data ? getFormData(snakefy(data)) : {},
       ).then(
         (result) => {
           resolve(camelize(result.data));
         },
-        // TODO: define error response type
         (err) => {
-          reject(camelize(err.response));
+          reject(camelize(err));
         },
       );
     }
