@@ -1,9 +1,9 @@
 import React from 'react';
 import { Autocomplete, AutocompleteRenderInputParams } from 'formik-material-ui-lab';
-import { Field, FieldAttributes } from 'formik';
+import { Field, FieldAttributes, useFormikContext } from 'formik';
 import { styled, TextField } from '@material-ui/core';
 
-interface CustomnAutocompleteProps extends FieldAttributes<any>{
+interface CustomAutocompleteProps extends FieldAttributes<any>{
   label: string;
 }
 
@@ -13,12 +13,22 @@ const AutocompleteTextField = styled(TextField)(
   }),
 );
 
-const CustomAutocomplete = (props: CustomnAutocompleteProps) => {
-  const { label, ...rest } = props;
+const CustomAutocomplete = (props: CustomAutocompleteProps) => {
+  const { label, onChange, ...rest } = props;
+
+  const { setFieldValue } = useFormikContext();
+
+  const handleChange = (e: any, value: any) => {
+    setFieldValue(props.name, value?.id || '');
+    if (onChange) {
+      onChange(e, value);
+    }
+  };
 
   return (
     <Field
       component={Autocomplete}
+      onChange={handleChange}
       renderInput={(params: AutocompleteRenderInputParams) => {
         const { inputProps } = params;
         Object.assign(inputProps, { autoComplete: 'new-password' });
