@@ -18,8 +18,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface AddUserFormValue {
-  username: string;
-  password: string;
+  userGroup?: IUserGroup;
+  phoneNumber: string;
+  pin: string;
   name: string;
   pob: string;
   dob: Date;
@@ -31,10 +32,11 @@ interface AddUserFormValue {
 }
 
 const validationSchema = yup.object({
-  username: yup
+  userGroup: yup.object().required(),
+  phoneNumber: yup
     .string()
     .required('Nomor Handphone harus diisi'),
-  password: yup
+  pin: yup
     .string()
     .matches(/^[0-9]+$/, 'PIN harus angka')
     .min(6, 'PIN harus 6 digit')
@@ -60,8 +62,8 @@ const AddUserForm = () => {
   const _classes = useStyles();
 
   const initialValues : AddUserFormValue = {
-    username: '',
-    password: '',
+    phoneNumber: '',
+    pin: '',
     name: '',
     pob: '',
     dob: new Date(1970, 0, 1),
@@ -81,13 +83,13 @@ const AddUserForm = () => {
         <Form>
           <Field
             component={TextField}
-            name="username"
+            name="phoneNumber"
             label="Nomor Handphone"
             autoFocus
           />
           <Field
             component={TextField}
-            name="password"
+            name="pin"
             type="number"
             label="PIN Sementara"
           />

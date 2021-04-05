@@ -2,14 +2,15 @@ import { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '@utils/config';
 import getFormData from '@utils/getFormData';
 import camelize from 'camelize';
+import decamelize from 'decamelize';
 import axios from './axios';
 
-const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
-  const promise = new Promise((resolve, reject) => {
+const post = <T>(path: string, data?: any, config?: AxiosRequestConfig) => {
+  const promise = new Promise<T>((resolve, reject) => {
     if (config) {
-      axios.post(
+      axios.post<T>(
         `${BASE_URL}/${path}`,
-        data ? getFormData(data) : {},
+        data ? getFormData(decamelize(data)) : {},
         { ...config, headers: config?.headers },
       ).then(
         (result) => {
@@ -20,9 +21,9 @@ const post = (path: string, data?: any, config?: AxiosRequestConfig) => {
         },
       );
     } else {
-      axios.post(
+      axios.post<T>(
         `${BASE_URL}/${path}`,
-        data ? getFormData(data) : {},
+        data ? getFormData(decamelize(data)) : {},
       ).then(
         (result) => {
           resolve(camelize(result.data));

@@ -2,7 +2,11 @@ import { userTypes } from '../../constants/actionTypes';
 
 const initialState: IUser = {
   id: 0,
-  userGroup: {},
+  userGroup: {
+    id: 'admin',
+    level: 0,
+    name: 'Administrator',
+  },
   chatAccessToken: null,
   createdAt: '',
   updatedAt: '',

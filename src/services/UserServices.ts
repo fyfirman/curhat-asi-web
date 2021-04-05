@@ -1,4 +1,5 @@
 import get from '@utils/axios/get';
+import post from '@utils/axios/post';
 import * as Config from '@utils/axios/axiosConfig';
 import UserGroup from '@constants/UserGroupEnum';
 import UserGroupRoutes from '@constants/UserGroupRoutes';
@@ -18,5 +19,21 @@ interface IGetUserResponse {
 
 export const getUser = (id: IUser['id']) => get<IGetUserResponse>(
   `api/users/${id}`,
+  Config.withToken(),
+);
+
+interface IUserRequest {
+  userGroupId: IUserGroup['id'];
+  phoneNumber: IUser['username'];
+  pin: string;
+  name: IUser['fullName'];
+  pob: IConsultantProfile['pob'];
+  dob: IConsultantProfile['dob'];
+  villageId: IVillage['id'];
+}
+
+export const postUser = (request: IUserRequest) => post<PayloadResponse<IConsultant>>(
+  'api/users',
+  request,
   Config.withToken(),
 );
