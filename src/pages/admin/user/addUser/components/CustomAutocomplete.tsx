@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Autocomplete, AutocompleteRenderInputParams } from 'formik-material-ui-lab';
 import { Field, FieldAttributes, useFormikContext } from 'formik';

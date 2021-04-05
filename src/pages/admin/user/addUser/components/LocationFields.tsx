@@ -15,15 +15,21 @@ const LocationFields = () => {
   }, []);
 
   const handleProvinceChange = (_: any, province: IProvince) => {
-    dispatch(requestDistricts(province.id));
+    if (province) {
+      dispatch(requestDistricts(province.id));
+    }
   };
 
   const handleDistrictChange = (_: any, district: IDistrict) => {
-    dispatch(requestSubDistricts(district.id));
+    if (district) {
+      dispatch(requestSubDistricts(district.id));
+    }
   };
 
   const handleSubDistrictChange = (_: any, subDistrict: ISubDistrict) => {
-    dispatch(requestVillages(subDistrict.id));
+    if (subDistrict) {
+      dispatch(requestVillages(subDistrict.id));
+    }
   };
 
   const {

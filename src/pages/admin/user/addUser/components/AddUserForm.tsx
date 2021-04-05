@@ -30,23 +30,29 @@ interface AddUserFormValue {
 
 }
 
-const _validationSchema = yup.object({
+const validationSchema = yup.object({
   username: yup
     .string()
-    .required('Email is required'),
+    .required('Nomor Handphone harus diisi'),
   password: yup
     .string()
-    .max(6, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
+    .matches(/^[0-9]+$/, 'PIN harus angka')
+    .min(6, 'PIN harus 6 digit')
+    .max(6, 'PIN harus 6 digit')
+    .required('PIN harus diisi'),
   name: yup
     .string()
-    .required('Name is required'),
+    .required('Nama harus diisi'),
   pob: yup
     .string()
-    .required('Name is required'),
+    .required('Tempat lahir harus diisi'),
   dob: yup
     .date()
-    .required('Name is required'),
+    .required('Tanggal lahir harus diisi'),
+  province: yup.object().required(),
+  district: yup.object().required(),
+  subDistrict: yup.object().required(),
+  village: yup.object().required(),
 });
 
 const AddUserForm = () => {
@@ -69,7 +75,7 @@ const AddUserForm = () => {
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Formik
         initialValues={initialValues}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         <Form>
@@ -82,6 +88,7 @@ const AddUserForm = () => {
           <Field
             component={TextField}
             name="password"
+            type="number"
             label="PIN Sementara"
           />
           <Field
