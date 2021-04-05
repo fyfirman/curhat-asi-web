@@ -12,7 +12,7 @@ const composeEnhancers = composeWithDevTools(applyMiddleware(thunk));
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['loginError', 'consultations', 'consultationPosts'],
+  blacklist: ['loginError', 'consultations', 'consultationPosts', 'locations'],
 };
 
 const store = createStore(
