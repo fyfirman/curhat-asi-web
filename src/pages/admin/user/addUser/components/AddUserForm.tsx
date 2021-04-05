@@ -1,13 +1,16 @@
-/* eslint-disable no-console */
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
-import { Button, makeStyles, Theme } from '@material-ui/core';
+import {
+  Button, makeStyles, MenuItem, Theme,
+} from '@material-ui/core';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
-import { TextField } from 'formik-material-ui';
+import { Select, TextField } from 'formik-material-ui';
 import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { requestAddUser } from '@redux/actions/addUserActions';
+import { IUserRequest } from '@services/UserServices';
+import UserGroup from '@constants/UserGroupEnum';
 import Field from './CustomField';
 import LocationFields from './LocationFields';
 
@@ -18,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface AddUserFormValue {
-  userGroup?: IUserGroup;
+  userGroupId?: IUserGroup['id'];
   phoneNumber: string;
   pin: string;
   name: string;
@@ -28,11 +31,10 @@ interface AddUserFormValue {
   district?: IDistrict;
   subDistrict?: ISubDistrict;
   village?: IVillage;
-
 }
 
 const validationSchema = yup.object({
-  userGroup: yup.object().required(),
+  userGroupId: yup.string().required(),
   phoneNumber: yup
     .string()
     .required('Nomor Handphone harus diisi'),
@@ -51,11 +53,39 @@ const validationSchema = yup.object({
   dob: yup
     .date()
     .required('Tanggal lahir harus diisi'),
-  province: yup.object().required(),
-  district: yup.object().required(),
-  subDistrict: yup.object().required(),
-  village: yup.object().required(),
+  province: yup.object().required('Provinsi harus diisi'),
+  district: yup.object().required('Kota/kabupaten harus diisi'),
+  subDistrict: yup.object().required('Kecamatan harus diisi'),
+  village: yup.object().required('Kelurahan/desa harus diisi'),
 });
+
+const userGroupMenu : IUserGroup[] = [
+  {
+    id: UserGroup.Cadre,
+    name: 'Kader',
+    level: 0,
+  },
+  {
+    id: UserGroup.Conselor,
+    name: 'Konselor',
+    level: 0,
+  },
+  {
+    id: UserGroup.DoctorGeneral,
+    name: 'Dokter Umum',
+    level: 0,
+  },
+  {
+    id: UserGroup.DoctorSpecialist,
+    name: 'Dokter Spesialis',
+    level: 0,
+  },
+  {
+    id: UserGroup.Midwife,
+    name: 'Bidan',
+    level: 0,
+  },
+];
 
 const AddUserForm = () => {
   // eslint-disable-next-line no-underscore-dangle
@@ -69,9 +99,22 @@ const AddUserForm = () => {
     dob: new Date(1970, 0, 1),
   };
 
-  const onSubmit = (values: AddUserFormValue) => {
-    console.log(values);
+  const onSubmit = async (values: AddUserFormValue) => {
+    const data : IUserRequest = {
+      userGroupId: values.userGroupId || '',
+      name: values.name,
+      phoneNumber: values.phoneNumber,
+      pin: values.pin,
+      pob: values.pob,
+      dob: `${values.dob.getFullYear()}-${values.dob.getMonth() + 1}-${values.dob.getDay()}`,
+      villageId: values.village?.id || '',
+    };
+
+    await requestAddUser(data);
   };
+
+  const renderUserGroupMenu = () => userGroupMenu.map((menu) => (
+    <MenuItem key={menu.id} value={menu.id}>{menu.name}</MenuItem>));
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -81,6 +124,14 @@ const AddUserForm = () => {
         onSubmit={onSubmit}
       >
         <Form>
+          <Field
+            component={Select}
+            name="userGroupId"
+            label="Jabatan"
+            autoFocus
+          >
+            {renderUserGroupMenu()}
+          </Field>
           <Field
             component={TextField}
             name="phoneNumber"

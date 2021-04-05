@@ -22,7 +22,7 @@ export const getUser = (id: IUser['id']) => get<IGetUserResponse>(
   Config.withToken(),
 );
 
-interface IUserRequest {
+export interface IUserRequest {
   userGroupId: IUserGroup['id'];
   phoneNumber: IUser['username'];
   pin: string;
