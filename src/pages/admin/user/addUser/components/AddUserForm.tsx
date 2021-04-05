@@ -58,7 +58,7 @@ const AddUserForm = () => {
     password: '',
     name: '',
     pob: '',
-    dob: new Date(),
+    dob: new Date(1970, 0, 1),
   };
 
   const onSubmit = (values: AddUserFormValue) => {
@@ -98,8 +98,8 @@ const AddUserForm = () => {
             component={KeyboardDatePicker}
             label="Tanggal Lahir"
             name="dob"
-            disableToolbar
             variant="inline"
+            format="dd MMM yyyy"
           />
           <LocationFields />
           <Button
