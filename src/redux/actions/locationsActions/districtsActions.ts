@@ -5,7 +5,7 @@ export const requestDistricts = (provinceId: IProvince['id']) => async (dispatch
   try {
     const response = await LocationServices.getDistricts(provinceId);
 
-    dispatch(requestDistrictsSuccess(response.payload as IDistrict[]));
+    dispatch(requestDistrictsSuccess(response as IDistrict[]));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert

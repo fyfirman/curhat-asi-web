@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { Button, makeStyles, Theme } from '@material-ui/core';
 import * as yup from 'yup';
@@ -7,7 +9,6 @@ import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Field from './CustomField';
-import CustomAutocomplete from './CustomAutocomplete';
 import LocationFields from './LocationFields';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -29,7 +30,6 @@ interface AddUserFormValue {
 
 }
 
-// eslint-disable-next-line no-underscore-dangle
 const _validationSchema = yup.object({
   username: yup
     .string()

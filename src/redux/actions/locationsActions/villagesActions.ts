@@ -5,7 +5,7 @@ export const requestVillages = (subDistrictId: ISubDistrict['id']) => async (dis
   try {
     const response = await LocationServices.getVillages(subDistrictId);
 
-    dispatch(requestVillagesSuccess(response.payload as IVillage[]));
+    dispatch(requestVillagesSuccess(response as IVillage[]));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert
