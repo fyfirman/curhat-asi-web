@@ -34,7 +34,7 @@ const LocationFields = () => {
     <>
       {provinces.payload && (
         <CustomAutocomplete
-          name="provinceId"
+          name="province"
           label="Provinsi"
           options={provinces.payload}
           getOptionLabel={(option: IProvince) => option.name}
@@ -43,7 +43,7 @@ const LocationFields = () => {
       )}
       {districts.payload && (
         <CustomAutocomplete
-          name="districtId"
+          name="district"
           options={districts.payload}
           label="Kota/Kabupaten"
           getOptionLabel={(option: IDistrict) => option.name}
@@ -53,7 +53,7 @@ const LocationFields = () => {
 
       {subDistricts.payload && (
         <CustomAutocomplete
-          name="subDistrictId"
+          name="subDistrict"
           label="Kecamatan"
           options={subDistricts.payload}
           getOptionLabel={(option: ISubDistrict) => option.name}
@@ -62,7 +62,7 @@ const LocationFields = () => {
       )}
       {villages.payload && (
         <CustomAutocomplete
-          name="villageId"
+          name="village"
           label="Kelurahan/Desa"
           options={villages.payload}
           getOptionLabel={(option: IVillage) => option.name}

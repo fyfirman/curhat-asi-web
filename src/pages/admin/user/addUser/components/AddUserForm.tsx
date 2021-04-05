@@ -23,10 +23,10 @@ interface AddUserFormValue {
   name: string;
   pob: string;
   dob: Date;
-  provinceId: string | null;
-  districtId: string | null;
-  subDistrictId: string | null;
-  villageId: string | null;
+  province?: IProvince;
+  district?: IDistrict;
+  subDistrict?: ISubDistrict;
+  village?: IVillage;
 
 }
 
@@ -47,18 +47,6 @@ const _validationSchema = yup.object({
   dob: yup
     .date()
     .required('Name is required'),
-  provinceId: yup
-    .string()
-    .required('Name is required'),
-  districtId: yup
-    .string()
-    .required('Name is required'),
-  subDistrictId: yup
-    .string()
-    .required('Name is required'),
-  villageId: yup
-    .string()
-    .required('Name is required'),
 });
 
 const AddUserForm = () => {
@@ -71,10 +59,6 @@ const AddUserForm = () => {
     name: '',
     pob: '',
     dob: new Date(),
-    districtId: '',
-    provinceId: '',
-    subDistrictId: '',
-    villageId: '',
   };
 
   const onSubmit = (values: AddUserFormValue) => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Autocomplete, AutocompleteRenderInputParams } from 'formik-material-ui-lab';
 import { Field, FieldAttributes, useFormikContext } from 'formik';
@@ -19,7 +20,7 @@ const CustomAutocomplete = (props: CustomAutocompleteProps) => {
   const { setFieldValue } = useFormikContext();
 
   const handleChange = (e: any, value: any) => {
-    setFieldValue(props.name, value?.id || '');
+    setFieldValue(props.name, value || '');
     if (onChange) {
       onChange(e, value);
     }
