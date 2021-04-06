@@ -8,6 +8,7 @@ import consultationPostsReducer from './consultationPostReducer';
 import userListReducer from './userListReducer';
 import userProfileReducer from './userProfileReducer';
 import locationsReducer from './locationsReducer';
+import addUserReducer from './addUserReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   userList: userListReducer,
   userProfile: userProfileReducer,
   locations: locationsReducer,
+  addUser: addUserReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

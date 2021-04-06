@@ -8,4 +8,14 @@ interface Action {
   payload?: any;
 }
 
+interface IStandardState {
+  isLoading: boolean;
+  error: Record;
+}
+
+interface IStandardAction {
+  type: string;
+  error?: Record;
+}
+
 type DispatchType = (args: Action) => Action;

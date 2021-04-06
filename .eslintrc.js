@@ -25,6 +25,7 @@ module.exports = {
     {
       files: ['**/*.ts', '**/*.tsx'],
       rules: {
+        'import/prefer-default-export': 'off',
         'arrow-body-style': 'off',
         'no-undef': 'off',
         'no-unused-vars': 'off',

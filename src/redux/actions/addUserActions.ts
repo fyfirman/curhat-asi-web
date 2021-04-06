@@ -1,16 +1,26 @@
 import * as UserServices from '@services/UserServices';
 import { IUserRequest } from '@services/UserServices';
+import addUserActionTypes from '@redux/constants/addUserActionTypes';
 
-export const requestAddUser = async (data: IUserRequest) => {
+export const requestAddUser = (data: IUserRequest) => async (dispatch: DispatchType) => {
   try {
-    const response = await UserServices.postUser(data);
+    dispatch({ type: addUserActionTypes.FETCH_ADD_USER });
+    await UserServices.postUser(data);
 
-    console.log(response.payload);
+    dispatch(requestAddUserSuccess());
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert
     alert(JSON.stringify(error.response));
+    dispatch(requestAddUserFailure(error.response));
   }
 };
 
-export const request = {};
+const requestAddUserSuccess = () => ({
+  type: addUserActionTypes.FETCH_ADD_USER_SUCCESS,
+});
+
+const requestAddUserFailure = (error: Record<any, any>) => ({
+  type: addUserActionTypes.FETCH_ADD_USER_FAILURE,
+  error,
+});
