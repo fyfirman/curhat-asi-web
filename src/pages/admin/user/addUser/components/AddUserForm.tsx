@@ -11,6 +11,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { requestAddUser } from '@redux/actions/addUserActions';
 import { IUserRequest } from '@services/UserServices';
 import UserGroup from '@constants/UserGroupEnum';
+import { format } from 'date-fns';
 import Field from './CustomField';
 import LocationFields from './LocationFields';
 
@@ -106,7 +107,7 @@ const AddUserForm = () => {
       phoneNumber: values.phoneNumber,
       pin: values.pin,
       pob: values.pob,
-      dob: `${values.dob.getFullYear()}-${values.dob.getMonth() + 1}-${values.dob.getDay()}`,
+      dob: format(values.dob, 'yyyy-MM-dd'),
       villageId: values.village?.id || '',
     };
 
