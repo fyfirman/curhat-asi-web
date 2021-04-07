@@ -22,6 +22,11 @@ export const getUser = (id: IUser['id']) => get<IGetUserResponse>(
   Config.withToken(),
 );
 
+export const getSelfUser = () => get<PayloadResponse<IUser>>(
+  'api/profile',
+  Config.withToken(),
+);
+
 export interface IUserRequest {
   userGroupId: IUserGroup['id'];
   phoneNumber: IUser['username'];

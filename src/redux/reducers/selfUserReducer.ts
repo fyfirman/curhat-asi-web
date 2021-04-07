@@ -1,4 +1,4 @@
-import { userTypes } from '../../constants/actionTypes';
+import selfUserActionTypes from '@redux/constants/selfUserActionTypes';
 
 const initialState: ISelfUserState = {
   isLoading: false,
@@ -19,14 +19,23 @@ const initialState: ISelfUserState = {
   },
 };
 
-const userReducer = (state = initialState, action: ISelfUserAction): ISelfUserState => {
-  const { type, payload } = action;
+const userReducer = (state = initialState, action: ISelfUserAction) => {
+  const { type, payload, error } = action;
 
   switch (type) {
-    case userTypes.LOGIN_SUCCESS:
+    case selfUserActionTypes.FETCH_SELF_USER:
       return {
-        ...state,
-        ...payload,
+        isLoading: true,
+      };
+    case selfUserActionTypes.FETCH_SELF_USER_SUCCESS:
+      return {
+        isLoading: false,
+        payload,
+      };
+    case selfUserActionTypes.FETCH_SELF_USER_FAILURE:
+      return {
+        isLoading: false,
+        error,
       };
     default:
       return state;
