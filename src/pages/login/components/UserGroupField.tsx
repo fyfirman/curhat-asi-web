@@ -1,4 +1,3 @@
-
 import UserGroup from '@constants/UserGroupEnum';
 import { Select } from 'formik-material-ui';
 import { MenuItem } from '@material-ui/core';
