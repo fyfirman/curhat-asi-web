@@ -24,3 +24,7 @@ const requestAddUserFailure = (error: Record<any, any>) => ({
   type: addUserActionTypes.FETCH_ADD_USER_FAILURE,
   error,
 });
+
+export const resetAddUser = () => ({
+  type: addUserActionTypes.RESET_ADD_USER,
+});

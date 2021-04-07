@@ -1,14 +1,15 @@
 import addUserActionTypes from '@redux/constants/addUserActionTypes';
 
-const initialState: IStandardState = {
+const initialState: IAddUserState = {
   isLoading: false,
+  isSubmitted: false,
   error: {},
 };
 
 const addUserReducer = (
-  state: IStandardState = initialState,
+  state: IAddUserState = initialState,
   action: IStandardAction,
-): IStandardState => {
+): IAddUserState => {
   const { type, error } = action;
 
   switch (type) {
@@ -21,6 +22,7 @@ const addUserReducer = (
       return {
         ...state,
         isLoading: false,
+        isSubmitted: true,
       };
     case addUserActionTypes.FETCH_ADD_USER_FAILURE:
       return {
@@ -28,6 +30,8 @@ const addUserReducer = (
         isLoading: false,
         error,
       };
+    case addUserActionTypes.RESET_ADD_USER:
+      return initialState;
     default:
       return state;
   }
