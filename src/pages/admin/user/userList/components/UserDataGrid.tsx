@@ -22,6 +22,7 @@ const UserDataGrid = ({ type }: UserDataGridProps) => {
         [UserGroup.Conselor]: userList.conselors.payload,
         [UserGroup.DoctorGeneral]: userList.doctorGenerals.payload,
         [UserGroup.DoctorSpecialist]: userList.doctorSpecialists.payload,
+        [UserGroup.Administrator]: userList.administrators.payload,
       };
       return userListState[type];
     },

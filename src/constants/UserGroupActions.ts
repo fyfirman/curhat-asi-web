@@ -6,6 +6,7 @@ import {
   midwifesTypes,
   doctorGeneralTypes,
   doctorSpecialistTypes,
+  administratorTypes,
 } from './userListActionTypes';
 
 export const SUCCESS = {
@@ -16,6 +17,8 @@ export const SUCCESS = {
   [UserGroup.DoctorGeneral]: doctorGeneralTypes.FETCH_DOCTOR_GENERAL_SUCCESS,
   [UserGroup.DoctorSpecialist]:
     doctorSpecialistTypes.FETCH_DOCTOR_SPECIALIST_SUCCESS,
+  [UserGroup.Administrator]:
+    administratorTypes.FETCH_ADMINISTRATOR_SUCCESS,
 };
 
 export const FAILURE = {
@@ -26,4 +29,6 @@ export const FAILURE = {
   [UserGroup.DoctorGeneral]: doctorGeneralTypes.FETCH_DOCTOR_GENERAL_FAILURE,
   [UserGroup.DoctorSpecialist]:
     doctorSpecialistTypes.FETCH_DOCTOR_SPECIALIST_FAILURE,
+  [UserGroup.Administrator]:
+    administratorTypes.FETCH_ADMINISTRATOR_FAILURE,
 };

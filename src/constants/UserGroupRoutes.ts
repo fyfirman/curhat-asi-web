@@ -7,4 +7,5 @@ export default {
   [UserGroup.Midwife]: 'midwifes',
   [UserGroup.DoctorGeneral]: 'doctor-general',
   [UserGroup.DoctorSpecialist]: 'doctor-specialist',
+  [UserGroup.Administrator]: 'administrator',
 };

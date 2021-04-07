@@ -1,4 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import administratorReducer from './administratorReducer';
 import cadresReducer from './cadresReducer';
 import conselorsReducer from './conselorsReducer';
 import doctorGeneralsReducer from './doctorGeneralsReducer';
@@ -13,6 +14,7 @@ const userListReducer = combineReducers({
   conselors: conselorsReducer,
   doctorGenerals: doctorGeneralsReducer,
   doctorSpecialists: doctorSpecialistsReducer,
+  administrators: administratorReducer,
 });
 
 export default userListReducer;

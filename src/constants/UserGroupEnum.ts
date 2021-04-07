@@ -5,6 +5,7 @@ enum UserGroup {
   Conselor = 'cons',
   DoctorGeneral = 'du',
   DoctorSpecialist = 'dsp',
+  Administrator = 'admin',
 }
 
 export default UserGroup;
