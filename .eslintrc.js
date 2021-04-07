@@ -54,6 +54,7 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/no-array-index-key': 'off',
         'react/no-unused-prop-types': 'off',
+        'react/react-in-jsx-scope': 'off',
       },
     },
     {

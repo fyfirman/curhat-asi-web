@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Breadcrumbs, makeStyles, Theme, Typography,
 } from '@material-ui/core';

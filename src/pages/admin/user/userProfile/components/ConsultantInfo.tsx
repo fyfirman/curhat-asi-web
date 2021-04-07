@@ -1,4 +1,3 @@
-import React from 'react';
 import { RootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
 import { consultantProfile } from './data';

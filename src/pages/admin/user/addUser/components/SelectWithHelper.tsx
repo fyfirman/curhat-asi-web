@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   FormHelperText, InputLabel, Select, SelectProps,
 } from '@material-ui/core';

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+
 import { RootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
 import Alert, { AlertProps } from '@material-ui/lab/Alert';

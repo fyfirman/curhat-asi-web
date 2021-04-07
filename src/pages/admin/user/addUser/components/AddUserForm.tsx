@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Button, makeStyles, MenuItem, Theme,
 } from '@material-ui/core';
