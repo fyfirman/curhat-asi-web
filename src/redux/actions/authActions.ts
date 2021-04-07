@@ -19,9 +19,13 @@ export const requestLogin = (
   }
 };
 
-export const requestlogout = () => ({
+const flushSession = () => ({
   type: sessionActionTypes.FLUSH_SESSION,
 });
+
+export const requestlogout = flushSession;
+
+export const resetAuthState = flushSession;
 
 const loginSuccess = () => ({
   type: sessionActionTypes.FETCH_LOGIN_SUCCESS,

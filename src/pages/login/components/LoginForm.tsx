@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
+import * as React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import {
   Button, makeStyles, Theme,
 } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
-import { requestLogin } from '@redux/actions/authActions';
+import { requestLogin, resetAuthState } from '@redux/actions/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import UserGroup from '@constants/UserGroupEnum';
@@ -34,13 +33,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface ILoginInput {
   username: string;
   password: string;
-  userGroupId: string;
+  userGroupId: UserGroup;
 }
 
 const LoginForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const error = useSelector((state: RootState) => state.session.error);
+  const { error, isLoading } = useSelector((state: RootState) => state.session);
+
+  React.useEffect(() => {
+    dispatch(resetAuthState());
+  }, []);
 
   const initialValues = {
     username: '',
@@ -48,7 +51,7 @@ const LoginForm = () => {
     userGroupId: UserGroup.Administrator,
   };
 
-  const onSubmit = ({ userGroupId, username, password } : ILoginInput) => {
+  const handleSubmit = ({ userGroupId, username, password } : ILoginInput) => {
     dispatch(requestLogin(userGroupId, username, password));
   };
 
@@ -56,24 +59,27 @@ const LoginForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <Form>
         <UserGroupField
           name="userGroupId"
           label="Jabatan"
+          disabled={isLoading}
         />
         <Field
           component={TextField}
           name="username"
           label="Nomor Handphone"
           autoFocus
+          disabled={isLoading}
         />
         <Field
           component={TextField}
           name="password"
           label="PIN (6 Digit)"
           type="password"
+          disabled={isLoading}
         />
         {error.message !== undefined && <LoginErrorAlert className={classes.loginAlert} />}
         <Button
@@ -82,6 +88,7 @@ const LoginForm = () => {
           type="submit"
           fullWidth
           disableElevation
+          disabled={isLoading}
         >
           Login
         </Button>
