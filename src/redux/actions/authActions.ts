@@ -15,7 +15,7 @@ export const requestLogin = (
     dispatch(setSession(session as ISession));
     dispatch(loginSuccess());
   } catch (error) {
-    dispatch(loginFailure(error.response.data));
+    dispatch(loginFailure(error.response?.data || { message: 'Tidak terkoneksi dengan server' }));
   }
 };
 
