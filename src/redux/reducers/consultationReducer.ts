@@ -12,7 +12,7 @@ const initialState: IConsultation = {
   info: undefined,
 };
 
-const consultationListReducer = (state = initialState, action: ConsultationsAction) => {
+const consultationListReducer = (state = initialState, action: IConsultationsAction) => {
   const { type, payload } = action;
 
   switch (type) {

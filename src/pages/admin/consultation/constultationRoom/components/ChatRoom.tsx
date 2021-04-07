@@ -23,7 +23,7 @@ const ChatRoom = () => {
 
   const user = useSelector((state: RootState) => state.user);
 
-  const renderPosts = () => consultation?.posts.map((post) => (
+  const renderPosts = () => consultation?.posts.map((post: IConsultationPost) => (
     <ChatBubble
       key={post.id}
       imageUri={post.picture}

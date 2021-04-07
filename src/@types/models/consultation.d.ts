@@ -21,24 +21,3 @@ interface IConsultationInfo {
   feedUsing: string;
   otherFoodGiven: string;
 }
-
-interface IConsultationPayload{
-  payload: {
-    currentPage: number;
-    data: IConsultation[];
-    from: number;
-    lastPage: number;
-    firtsPageUrl: string;
-    lastPageUrl: string;
-    nextPageUrl: string | null;
-    prevPageUrl: string | null;
-    perPage: number;
-    to: number;
-    total: number;
-  }
-}
-
-interface ConsultationsAction implements Action {
-  type: string;
-  payload?: IConsultationPayload;
-}

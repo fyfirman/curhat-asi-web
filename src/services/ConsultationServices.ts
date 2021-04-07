@@ -12,7 +12,7 @@ export const getConsultations = (type?: ConsultationType) => {
     ...(type && { params: { type } }),
   };
 
-  return get('api/consultations', Config.withToken(config));
+  return get<PayloadResponse<IConsultationPayload>>('api/dashboard/consultations', Config.withToken(config));
 };
 
 export const getConsultation = (id: IConsultation['id']) => get<PayloadResponse<IConsultation>>(

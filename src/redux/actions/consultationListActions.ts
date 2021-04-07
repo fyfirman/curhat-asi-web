@@ -6,7 +6,7 @@ export const requestConsultations = (type?: ConsultationType) => async (dispatch
   try {
     const consultations = await ConsultationService.getConsultations(type);
 
-    dispatch(requestConsultationsSuccess(consultations as IConsultationPayload));
+    dispatch(requestConsultationsSuccess(consultations.payload as IConsultationPayload));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert

@@ -1,6 +1,8 @@
 import { consultationTypes } from '../../constants/actionTypes';
 
-const initialState: IConsultationPayload = {
+const initialState: IConsultationState = {
+  isLoading: false,
+  error: {},
   payload: {
     currentPage: 1,
     data: [],
@@ -16,7 +18,7 @@ const initialState: IConsultationPayload = {
   },
 };
 
-const consultationListReducer = (state = initialState, action: ConsultationsAction) => {
+const consultationListReducer = (state = initialState, action: IConsultationsAction) => {
   const { type, payload } = action;
 
   switch (type) {
