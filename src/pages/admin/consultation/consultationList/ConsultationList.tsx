@@ -16,19 +16,19 @@ const useStyle = makeStyles((theme: Theme) => ({
 const Consultations = () => {
   const classes = useStyle();
   const dispatch = useDispatch();
-  const consultations = useSelector((state: RootState) => state.consultationList);
+  const consultationList = useSelector((state: RootState) => state.consultationList);
 
   useEffect(() => {
     dispatch(requestConsultations());
   }, []);
 
   const rows: IRowConsultation[] = useMemo(
-    () => consultations.payload.data.map((consultation) => ({
+    () => consultationList.payload.data.map((consultation) => ({
       id: consultation.id,
       openBy: consultation.user?.fullName || 'Belum mengisi profil',
       problem: consultation.description,
     })),
-    [consultations],
+    [consultationList],
   );
 
   return (

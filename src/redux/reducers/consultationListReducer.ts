@@ -25,7 +25,7 @@ const consultationListReducer = (state = initialState, action: IConsultationsAct
     case consultationTypes.FETCH_CONSULTATION_LIST_SUCCESS:
       return {
         ...initialState,
-        ...payload,
+        payload,
       };
     default:
       return state;
