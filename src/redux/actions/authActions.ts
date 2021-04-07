@@ -1,8 +1,13 @@
 import * as Auth from '@services/AuthServices';
+import { AppThunk } from '@utils/AppThunk';
+import { requestSelfUser } from './selfUserActions';
 import { loginErrorTypes, sessionTypes } from '../../constants/actionTypes';
 
-export const requestLogin = (userGroupId: IUserGroup['id'], username: string, password: string) => async (
-  dispatch: DispatchType,
+export const requestLogin = (
+  userGroupId: IUserGroup['id'],
+  username: string, password: string,
+): AppThunk<Promise<void>> => async (
+  dispatch,
 ) => {
   try {
     const session = await Auth.login(userGroupId, username, password);
@@ -17,13 +22,17 @@ export const requestlogout = () => ({
   type: sessionTypes.FLUSH_SESSION,
 });
 
-const loginSuccess = (session: ISession) => ({
-  type: sessionTypes.SET_SESSION,
-  payload: {
-    ...session,
-    isLoggedIn: true,
-  },
-});
+const loginSuccess = (session: ISession): AppThunk<Promise<void>> => async (dispatch) => {
+  dispatch(requestSelfUser());
+
+  dispatch({
+    type: sessionTypes.SET_SESSION,
+    payload: {
+      ...session,
+      isLoggedIn: true,
+    },
+  });
+};
 
 const loginFailed = (error: ILoginError) => ({
   type: loginErrorTypes.SET_LOGIN_ERROR,

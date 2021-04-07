@@ -1,7 +1,8 @@
 import selfUserActionTypes from '@redux/constants/selfUserActionTypes';
 import * as UserServices from '@services/UserServices';
+import { AppThunk } from '@utils/AppThunk';
 
-export const requestSelfUser = () => async (dispatch: DispatchType) => {
+export const requestSelfUser = (): AppThunk<Promise<void>> => async (dispatch) => {
   try {
     const response = await UserServices.getSelfUser();
 

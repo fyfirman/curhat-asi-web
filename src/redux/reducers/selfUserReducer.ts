@@ -19,21 +19,24 @@ const initialState: ISelfUserState = {
   },
 };
 
-const userReducer = (state = initialState, action: ISelfUserAction) => {
+const userReducer = (state = initialState, action: ISelfUserAction): ISelfUserState => {
   const { type, payload, error } = action;
 
   switch (type) {
     case selfUserActionTypes.FETCH_SELF_USER:
       return {
+        ...state,
         isLoading: true,
       };
     case selfUserActionTypes.FETCH_SELF_USER_SUCCESS:
       return {
+        ...state,
         isLoading: false,
         payload,
       };
     case selfUserActionTypes.FETCH_SELF_USER_FAILURE:
       return {
+        ...state,
         isLoading: false,
         error,
       };

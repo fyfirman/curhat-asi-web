@@ -18,4 +18,4 @@ interface IStandardAction {
   error?: Record;
 }
 
-type DispatchType = (args: Action) => Action;
+type DispatchType<T=Action> = (args: T) => T;
