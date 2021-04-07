@@ -12,6 +12,7 @@ import { requestAddUser } from '@redux/actions/addUserActions';
 import { IUserRequest } from '@services/UserServices';
 import UserGroup from '@constants/UserGroupEnum';
 import { format } from 'date-fns';
+import { useDispatch } from 'react-redux';
 import Field from './CustomField';
 import LocationFields from './LocationFields';
 
@@ -92,6 +93,8 @@ const AddUserForm = () => {
   // eslint-disable-next-line no-underscore-dangle
   const _classes = useStyles();
 
+  const dispatch = useDispatch();
+
   const initialValues : AddUserFormValue = {
     phoneNumber: '',
     pin: '',
@@ -111,7 +114,7 @@ const AddUserForm = () => {
       villageId: values.village?.id || '',
     };
 
-    await requestAddUser(data);
+    dispatch(requestAddUser(data));
   };
 
   const renderUserGroupMenu = () => userGroupMenu.map((menu) => (
