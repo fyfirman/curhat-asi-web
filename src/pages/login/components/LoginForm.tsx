@@ -47,8 +47,8 @@ const LoginForm = () => {
     userGroupId: UserGroup.Administrator,
   };
 
-  const onSubmit = ({ username, password } : ILoginInput) => {
-    dispatch(requestLogin(username, password));
+  const onSubmit = ({ userGroupId, username, password } : ILoginInput) => {
+    dispatch(requestLogin(userGroupId, username, password));
   };
 
   return (

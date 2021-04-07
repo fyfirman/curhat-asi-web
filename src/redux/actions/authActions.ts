@@ -1,11 +1,11 @@
 import * as Auth from '@services/AuthServices';
 import { loginErrorTypes, sessionTypes } from '../../constants/actionTypes';
 
-export const requestLogin = (username: string, password: string) => async (
+export const requestLogin = (userGroupId: IUserGroup['id'], username: string, password: string) => async (
   dispatch: DispatchType,
 ) => {
   try {
-    const session = await Auth.login('admin', username, password);
+    const session = await Auth.login(userGroupId, username, password);
 
     dispatch(loginSuccess(session as ISession));
   } catch (error) {

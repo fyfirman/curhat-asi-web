@@ -7,11 +7,6 @@ import Field from './CustomField';
 
 const userGroupMenu : IUserGroup[] = [
   {
-    id: UserGroup.Mommies,
-    name: 'Ibu',
-    level: 0,
-  },
-  {
     id: UserGroup.Cadre,
     name: 'Kader',
     level: 0,
