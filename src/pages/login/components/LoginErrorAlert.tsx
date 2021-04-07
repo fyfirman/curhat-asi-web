@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 import Alert, { AlertProps } from '@material-ui/lab/Alert';
 
 const LoginErrorAlert = (props: AlertProps) => {
-  // const loginError = useSelector((state: RootState) => state.loginError);
+  const error = useSelector((state: RootState) => state.session.error);
 
   return (
-    <Alert severity="error" {...props}>loginError.message</Alert>
+    <Alert severity="error" {...props}>{error?.message}</Alert>
   );
 };
 

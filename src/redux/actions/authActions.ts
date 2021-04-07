@@ -15,7 +15,7 @@ export const requestLogin = (
     dispatch(setSession(session as ISession));
     dispatch(loginSuccess());
   } catch (error) {
-    dispatch(loginFailure(error));
+    dispatch(loginFailure(error.response.data));
   }
 };
 
@@ -34,5 +34,5 @@ const setSession = (session: ISession) => ({
 
 const loginFailure = (error: object) => ({
   type: sessionActionTypes.FETCH_LOGIN_FAILURE,
-  payload: error,
+  error,
 });

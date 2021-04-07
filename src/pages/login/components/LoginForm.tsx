@@ -40,7 +40,7 @@ interface ILoginInput {
 const LoginForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  // const loginError = useSelector((state: RootState) => state.loginError);
+  const error = useSelector((state: RootState) => state.session.error);
 
   const initialValues = {
     username: '',
@@ -75,7 +75,7 @@ const LoginForm = () => {
           label="PIN (6 Digit)"
           type="password"
         />
-        {/* {loginError.message !== '' && <LoginErrorAlert className={classes.loginAlert} />} */}
+        {error.message !== undefined && <LoginErrorAlert className={classes.loginAlert} />}
         <Button
           color="primary"
           variant="contained"
