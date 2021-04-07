@@ -1,6 +1,6 @@
 import * as Auth from '@services/AuthServices';
 import { AppThunk } from '@utils/AppThunk';
-import { loginErrorTypes, sessionTypes } from '../../constants/actionTypes';
+import sessionActionTypes from '@redux/constants/sessionActionTypes';
 
 export const requestLogin = (
   userGroupId: IUserGroup['id'],
@@ -9,6 +9,7 @@ export const requestLogin = (
   dispatch,
 ) => {
   try {
+    dispatch({ type: sessionActionTypes.FETCH_LOGIN });
     const session = await Auth.login(userGroupId, username, password);
 
     dispatch(setSession(session as ISession));
@@ -19,19 +20,19 @@ export const requestLogin = (
 };
 
 export const requestlogout = () => ({
-  type: sessionTypes.FLUSH_SESSION,
+  type: sessionActionTypes.FLUSH_SESSION,
 });
 
 const loginSuccess = () => ({
-  type: sessionTypes.FETCH_LOGIN_SUCCESS,
+  type: sessionActionTypes.FETCH_LOGIN_SUCCESS,
 });
 
 const setSession = (session: ISession) => ({
-  type: sessionTypes.SET_SESSION,
+  type: sessionActionTypes.SET_SESSION,
   payload: session,
 });
 
 const loginFailure = (error: object) => ({
-  type: loginErrorTypes.SET_LOGIN_ERROR,
+  type: sessionActionTypes.FETCH_LOGIN_FAILURE,
   payload: error,
 });

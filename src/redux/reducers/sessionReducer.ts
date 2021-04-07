@@ -1,4 +1,4 @@
-import { sessionTypes } from '@constants/actionTypes';
+import sessionActionTypes from '@redux/constants/sessionActionTypes';
 
 const initialState: ISessionState = {
   isLoading: false,
@@ -16,25 +16,25 @@ const sessionReducer = (state = initialState, action: ISessionAction): ISessionS
   const { type, payload, error } = action;
 
   switch (type) {
-    case sessionTypes.FLUSH_SESSION:
+    case sessionActionTypes.FLUSH_SESSION:
       return initialState;
-    case sessionTypes.SET_SESSION:
+    case sessionActionTypes.SET_SESSION:
       return {
         ...state,
         payload,
       };
-    case sessionTypes.FETCH_LOGIN:
+    case sessionActionTypes.FETCH_LOGIN:
       return {
         ...state,
         isLoading: true,
       };
-    case sessionTypes.FETCH_LOGIN_SUCCESS:
+    case sessionActionTypes.FETCH_LOGIN_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isLoggedIn: true,
       };
-    case sessionTypes.FETCH_LOGIN_FAILURE:
+    case sessionActionTypes.FETCH_LOGIN_FAILURE:
       return {
         ...state,
         error,
