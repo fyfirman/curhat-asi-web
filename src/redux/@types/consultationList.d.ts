@@ -17,5 +17,5 @@ interface IConsultationState extends IStandardState {
 }
 
 interface IConsultationsAction extends IStandardAction {
-  payload?: IConsultationPayload;
+  payload: IConsultationPayload;
 }

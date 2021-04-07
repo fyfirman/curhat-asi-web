@@ -14,7 +14,7 @@ const persistConfig = {
   storage,
   blacklist: [
     'loginError',
-    'consultations',
+    'consultation',
     'consultationList',
     'consultationPosts',
     'userList',

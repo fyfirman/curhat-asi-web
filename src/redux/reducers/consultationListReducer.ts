@@ -18,7 +18,10 @@ const initialState: IConsultationState = {
   },
 };
 
-const consultationListReducer = (state = initialState, action: IConsultationsAction) => {
+const consultationListReducer = (
+  state = initialState,
+  action: IConsultationsAction,
+): IConsultationState => {
   const { type, payload } = action;
 
   switch (type) {
