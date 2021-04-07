@@ -11,9 +11,10 @@ export const requestLogin = (
   try {
     const session = await Auth.login(userGroupId, username, password);
 
-    dispatch(loginSuccess(session as ISession));
+    dispatch(setSession(session as ISession));
+    dispatch(loginSuccess());
   } catch (error) {
-    dispatch(loginFailed(error));
+    dispatch(loginFailure(error));
   }
 };
 
@@ -21,15 +22,16 @@ export const requestlogout = () => ({
   type: sessionTypes.FLUSH_SESSION,
 });
 
-const loginSuccess = (session: ISession) => ({
-  type: sessionTypes.SET_SESSION,
-  payload: {
-    ...session,
-    isLoggedIn: true,
-  },
+const loginSuccess = () => ({
+  type: sessionTypes.FETCH_LOGIN_SUCCESS,
 });
 
-const loginFailed = (error: object) => ({
+const setSession = (session: ISession) => ({
+  type: sessionTypes.SET_SESSION,
+  payload: session,
+});
+
+const loginFailure = (error: object) => ({
   type: loginErrorTypes.SET_LOGIN_ERROR,
   payload: error,
 });

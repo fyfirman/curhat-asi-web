@@ -3,7 +3,7 @@ import { CLIENT_ID, CLIENT_SECRET } from '@utils/config';
 import store from '@redux/store';
 
 export const withToken = (config?: AxiosRequestConfig) => {
-  const { session } = store.getState();
+  const session = store.getState().session.payload;
 
   return {
     ...config,
