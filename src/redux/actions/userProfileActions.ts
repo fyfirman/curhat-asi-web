@@ -3,9 +3,9 @@ import * as UserServices from '@services/UserServices';
 
 export const requestUserProfile = (id: IUser['id']) => async (dispatch: DispatchType) => {
   try {
-    const user = await UserServices.getUser(id);
+    const response = await UserServices.getUser(id);
 
-    dispatch(requestUserProfileSuccess(user.payload as IMoms));
+    dispatch(requestUserProfileSuccess(response.payload as IMoms));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert
