@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core';
 import { privateRoutes as routes } from '@router/routes';
@@ -6,8 +6,9 @@ import Sidebar from '@components/Sidebar';
 import UserProfile from '@pages/admin/user/userProfile/UserProfile';
 import ConsultationRoom from '@pages/admin/consultation/constultationRoom/ConsultationRoom';
 import AddUser from '@pages/admin/user/addUser/AddUser';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
+import { requestSelfUser } from '@redux/actions/selfUserActions';
 
 const routeName = '/admin';
 const sideBarWidth = 250;
@@ -24,7 +25,14 @@ const useStyle = makeStyles((theme: Theme) => ({
 
 const Admin = () => {
   const classes = useStyle();
-  const session = useSelector((state: RootState) => state.session);
+  const { session, selfUser } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (selfUser.payload.id === 0 && session.isLoggedIn) {
+      dispatch(requestSelfUser());
+    }
+  }, []);
 
   return (
     <Route>
