@@ -1,13 +1,3 @@
-interface IOccupation{
-  id: number;
-  name: string;
-}
-
-interface UserAction implements Action {
-  type: string;
-  payload?: IUser;
-}
-
 interface IUser extends TimeStamp {
   id: number;
   userGroupId?: UserGroupId;
@@ -16,9 +6,4 @@ interface IUser extends TimeStamp {
   deletedAt: string | null;
   chatAccessToken: string | null;
   fullName: string | null;
-}
-
-interface UserAction implements Action {
-  type: string;
-  payload?: IUser;
 }

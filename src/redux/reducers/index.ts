@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import loginErrorReducer from './loginErrorReducer';
 import sessionReducer from './sessionReducer';
-import userReducer from './userReducer';
+import selfUserReducer from './selfUserReducer';
 import consultationReducer from './consultationReducer';
 import consultationListReducer from './consultationListReducer';
 import consultationPostsReducer from './consultationPostReducer';
@@ -11,7 +11,7 @@ import locationsReducer from './locationsReducer';
 import addUserReducer from './addUserReducer';
 
 const rootReducer = combineReducers({
-  user: userReducer,
+  selfUser: selfUserReducer,
   session: sessionReducer,
   loginError: loginErrorReducer,
   consultation: consultationReducer,

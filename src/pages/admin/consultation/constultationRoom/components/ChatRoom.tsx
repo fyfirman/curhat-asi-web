@@ -21,7 +21,7 @@ const ChatRoom = () => {
 
   const consultation = useSelector((state: RootState) => state.consultation);
 
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((state: RootState) => state.selfUser.payload);
 
   const renderPosts = () => consultation?.posts.map((post: IConsultationPost) => (
     <ChatBubble

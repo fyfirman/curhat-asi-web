@@ -14,22 +14,22 @@ const userGroupMenu : IUserGroup[] = [
   {
     id: UserGroup.Midwife,
     name: 'Bidan',
-    level: 0,
+    level: 4,
   },
   {
     id: UserGroup.Conselor,
     name: 'Konselor',
-    level: 0,
+    level: 3,
   },
   {
     id: UserGroup.DoctorGeneral,
     name: 'Dokter Umum',
-    level: 0,
+    level: 2,
   },
   {
     id: UserGroup.DoctorSpecialist,
     name: 'Dokter Spesialis',
-    level: 0,
+    level: 1,
   },
   {
     id: UserGroup.Administrator,
