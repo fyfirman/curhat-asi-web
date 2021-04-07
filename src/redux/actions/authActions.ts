@@ -13,7 +13,7 @@ export const requestLogin = (
 
     dispatch(loginSuccess(session as ISession));
   } catch (error) {
-    dispatch(loginFailed(error.data as ILoginError));
+    dispatch(loginFailed(error));
   }
 };
 
@@ -29,7 +29,7 @@ const loginSuccess = (session: ISession) => ({
   },
 });
 
-const loginFailed = (error: ILoginError) => ({
+const loginFailed = (error: object) => ({
   type: loginErrorTypes.SET_LOGIN_ERROR,
   payload: error,
 });

@@ -1,5 +1,4 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import loginErrorReducer from './loginErrorReducer';
 import sessionReducer from './sessionReducer';
 import selfUserReducer from './selfUserReducer';
 import consultationReducer from './consultationReducer';
@@ -13,7 +12,6 @@ import addUserReducer from './addUserReducer';
 const rootReducer = combineReducers({
   selfUser: selfUserReducer,
   session: sessionReducer,
-  loginError: loginErrorReducer,
   consultation: consultationReducer,
   consultationList: consultationListReducer,
   consultationPosts: consultationPostsReducer,

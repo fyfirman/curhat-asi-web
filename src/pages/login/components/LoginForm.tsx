@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
@@ -39,7 +40,7 @@ interface ILoginInput {
 const LoginForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const loginError = useSelector((state: RootState) => state.loginError);
+  // const loginError = useSelector((state: RootState) => state.loginError);
 
   const initialValues = {
     username: '',
@@ -74,7 +75,7 @@ const LoginForm = () => {
           label="PIN (6 Digit)"
           type="password"
         />
-        {loginError.message !== '' && <LoginErrorAlert className={classes.loginAlert} />}
+        {/* {loginError.message !== '' && <LoginErrorAlert className={classes.loginAlert} />} */}
         <Button
           color="primary"
           variant="contained"
