@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { makeStyles, Theme } from '@material-ui/core';
+import { CircularProgress, makeStyles, Theme } from '@material-ui/core';
 import { privateRoutes as routes } from '@router/routes';
 import Sidebar from '@components/Sidebar';
 import UserProfile from '@pages/admin/user/userProfile/UserProfile';
@@ -20,6 +20,14 @@ const useStyle = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(6),
     ...theme.mixins.toolbar,
+  },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    width: '100%',
+
   },
 }));
 
@@ -44,23 +52,26 @@ const Admin = () => {
             width={sideBarWidth}
           />
           <main className={classes.content}>
-            <Switch>
-              {routes.map((route, key) => (
-                <Route
-                  exact
-                  path={routeName + route.path}
-                  component={route.component}
-                  key={key}
-                />
-              ))}
-              <Route path={`${routeName}/user/add`} component={AddUser} />
-              <Route path={`${routeName}/user/:id`} component={UserProfile} />
-              <Route
-                path={`${routeName}/consultation/:id`}
-                component={ConsultationRoom}
-              />
-              <Redirect from={routeName} to={`${routeName}/user`} />
-            </Switch>
+            {!selfUser.isLoading
+              ? (
+                <Switch>
+                  {routes.map((route, key) => (
+                    <Route
+                      exact
+                      path={routeName + route.path}
+                      component={route.component}
+                      key={key}
+                    />
+                  ))}
+                  <Route path={`${routeName}/user/add`} component={AddUser} />
+                  <Route path={`${routeName}/user/:id`} component={UserProfile} />
+                  <Route
+                    path={`${routeName}/consultation/:id`}
+                    component={ConsultationRoom}
+                  />
+                  <Redirect from={routeName} to={`${routeName}/user`} />
+                </Switch>
+              ) : <div className={classes.loading}><CircularProgress /></div>}
           </main>
         </>
       ) : (
