@@ -1,4 +1,5 @@
 import selfUserActionTypes from '@redux/constants/selfUserActionTypes';
+import sessionActionTypes from '@redux/constants/sessionActionTypes';
 
 const initialState: ISelfUserState = {
   isLoading: false,
@@ -7,7 +8,7 @@ const initialState: ISelfUserState = {
     id: 0,
     userGroup: {
       id: 'admin',
-      level: 0,
+      level: -1,
       name: 'Administrator',
     },
     chatAccessToken: null,
@@ -40,6 +41,8 @@ const userReducer = (state = initialState, action: ISelfUserAction): ISelfUserSt
         isLoading: false,
         error,
       };
+    case sessionActionTypes.FLUSH_SESSION:
+      return initialState;
     default:
       return state;
   }
