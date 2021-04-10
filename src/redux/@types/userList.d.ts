@@ -1,11 +1,11 @@
 interface UserListAction implements Action {
   type: string;
-  payload: IUser[];
+  payload: IPagination<IUser>;
   error?: {}
 }
 
 interface UserListState<U = IUser> {
-  payload: U[];
+  payload: IPagination<U>;
   isLoading: boolean;
   error: Record;
 }

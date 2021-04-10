@@ -2,14 +2,18 @@ import get from '@utils/axios/get';
 import post from '@utils/axios/post';
 import * as Config from '@utils/axios/axiosConfig';
 import UserGroup from '@constants/UserGroupEnum';
-import UserGroupRoutes from '@constants/UserGroupRoutes';
 
-export const getUsers = (type: UserGroup) => {
-  const config = {
-    ...(type && { params: { type } }),
-  };
+export interface IGetUsersParams {
+  userGroupId?: UserGroup;
+  villageId?: IVillage['id'];
+  subDistrictId?: ISubDistrict['id'];
+  districtId?: IDistrict['id'];
+}
 
-  return get<{ message: string, payload: IUser[] }>(`api/${UserGroupRoutes[type]}`, Config.withToken(config));
+export const getUsers = (params: IGetUsersParams) => {
+  const config = { params };
+
+  return get<{ message: string, payload: IUser[] }>('api/users', Config.withToken(config));
 };
 
 interface IGetUserResponse {

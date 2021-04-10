@@ -1,17 +1,41 @@
+import store from '@redux/store';
 import UserGroup from '@constants/UserGroupEnum';
 import * as UserGroupActions from '@constants/UserGroupActions';
 import * as UserServices from '@services/UserServices';
+import { IGetUsersParams } from '../../services/UserServices';
 
-export const requestUserList = (type: UserGroup) => async (dispatch: DispatchType) => {
+const getLocationParams = () : IGetUsersParams => {
+  const selfUser : IConsultant = store.getState().selfUser.payload;
+
+  switch (selfUser.userGroupId) {
+    case UserGroup.Midwife:
+      return { villageId: selfUser.profile?.villageId };
+    case UserGroup.Conselor || UserGroup.DoctorGeneral:
+      return { subDistrictId: selfUser.profile?.village?.subDistrictId };
+    case UserGroup.DoctorGeneral:
+      return { districtId: selfUser.profile?.village?.subDistrict.districtId };
+    default:
+      return {};
+  }
+};
+
+export const requestUserList = (userGroupId: UserGroup) => async (dispatch: DispatchType) => {
   try {
-    const userList = await UserServices.getUsers(type);
+    const params = getLocationParams();
+    const userList = await UserServices.getUsers({
+      userGroupId,
+      ...params,
+    });
 
-    dispatch(requestUserListSuccess(userList.payload as IUser[], type));
+    dispatch(requestUserListSuccess(
+      userList.payload as IUser[],
+      userGroupId,
+    ));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert
     alert(JSON.stringify(error));
-    dispatch(requestUserListFailure(type));
+    dispatch(requestUserListFailure(userGroupId));
   }
 };
 

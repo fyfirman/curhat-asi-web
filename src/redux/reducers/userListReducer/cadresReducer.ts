@@ -1,7 +1,19 @@
 import { cadresTypes } from '../../../constants/userListActionTypes';
 
 const initialState: UserListState = {
-  payload: [],
+  payload: {
+    currentPage: 0,
+    data: new Array<IUser>(),
+    from: 0,
+    lastPage: 0,
+    firtsPageUrl: '',
+    lastPageUrl: '',
+    nextPageUrl: '',
+    prevPageUrl: 'string',
+    perPage: 0,
+    to: 0,
+    total: 0,
+  },
   isLoading: false,
   error: {},
 };
