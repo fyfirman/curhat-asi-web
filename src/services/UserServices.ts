@@ -1,3 +1,4 @@
+import { snakefy } from 'snakelize';
 import get from '@utils/axios/get';
 import post from '@utils/axios/post';
 import * as Config from '@utils/axios/axiosConfig';
@@ -11,7 +12,7 @@ export interface IGetUsersParams {
 }
 
 export const getUsers = (params: IGetUsersParams) => {
-  const config = { params };
+  const config = snakefy({ params });
 
   return get<{ message: string, payload: IUser[] }>('api/users', Config.withToken(config));
 };
