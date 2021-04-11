@@ -17,6 +17,7 @@ const initialState: ISelfUserState = {
     deletedAt: null,
     fullName: '',
     username: '',
+    activities: [],
   },
 };
 

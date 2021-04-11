@@ -9,6 +9,7 @@ import TabPanel, { InfoList } from './TabPanel';
 import {
   babyInfo, consultantProfile, husbandInfo, momsProfile, pregnancyInfo,
 } from './data';
+import ActivityInfo from './ActivityInfo';
 
 const useStyles = makeStyles((_theme: Theme) => ({
   tab: {
@@ -77,6 +78,9 @@ const TabsInfo = ({ consultant } : TabsInfoProps) => {
         <Tab className={classes.tab} label="Aktivitas" {...a11yProps(0)} />
         {renderTabs()}
       </Tabs>
+      <TabPanel value={value} index={0}>
+        <ActivityInfo />
+      </TabPanel>
       {renderTabPanels()}
     </>
   );

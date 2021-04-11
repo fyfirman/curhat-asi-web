@@ -6,4 +6,5 @@ interface IUser extends TimeStamp {
   deletedAt: string | null;
   chatAccessToken: string | null;
   fullName: string | null;
+  activities: IUserActivity[];
 }

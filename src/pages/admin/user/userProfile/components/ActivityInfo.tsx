@@ -1,15 +1,34 @@
-import TabPanel from './TabPanel';
+import { DataGrid } from '@material-ui/data-grid';
+import { useMemo } from 'react';
+import { RootState } from '@redux/reducers';
+import { useSelector } from 'react-redux';
+import { columns, IActivityRow } from './activityGridOptions';
 
-interface ActivityInfoProps {
-  index: number;
-  value: number;
-}
+const ActivityInfo = () => {
+  const activities = useSelector((state:RootState) => state.userProfile.payload?.activities);
 
-const ActivityInfo = ({ index, value }: ActivityInfoProps) => {
+  const rows: IActivityRow[] | undefined = useMemo(
+    () => activities?.map((activity: IUserActivity, index): IActivityRow => ({
+      id: activity.id,
+      number: index + 1,
+      createdAt: activity.createdAt,
+      eventName: activity.eventName,
+    })),
+    [activities],
+  );
+
   return (
-    <TabPanel index={index} value={value}>
-      <div>test</div>
-    </TabPanel>
+    <>
+      {rows && (
+      <DataGrid
+        autoHeight
+        rows={rows}
+        columns={columns}
+        pageSize={20}
+        checkboxSelection={false}
+      />
+      )}
+    </>
   );
 };
 
