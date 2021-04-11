@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';

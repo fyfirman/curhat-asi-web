@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Breadcrumbs from '@components/CustomBreadcrumbs';
 import { makeStyles, Theme } from '@material-ui/core';
 import Container from '@components/Container';
