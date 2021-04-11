@@ -25,6 +25,11 @@ const doctorGeneralsReducer = (
   const { type, payload, error } = action;
 
   switch (type) {
+    case doctorGeneralTypes.FETCH_DOCTOR_GENERAL:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case doctorGeneralTypes.FETCH_DOCTOR_GENERAL_SUCCESS:
       return {
         ...state,

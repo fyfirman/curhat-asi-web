@@ -25,6 +25,11 @@ const administratorReducer = (
   const { type, payload, error } = action;
 
   switch (type) {
+    case administratorTypes.FETCH_ADMINISTRATOR:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case administratorTypes.FETCH_ADMINISTRATOR_SUCCESS:
       return {
         ...state,

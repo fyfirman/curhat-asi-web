@@ -25,6 +25,11 @@ const mommiesReducer = (
   const { type, payload, error } = action;
 
   switch (type) {
+    case mommiesTypes.FETCH_MOMMIES:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case mommiesTypes.FETCH_MOMMIES_SUCCESS:
       return {
         ...state,

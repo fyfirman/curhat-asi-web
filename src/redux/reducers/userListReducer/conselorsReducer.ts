@@ -25,6 +25,11 @@ const conselorsReducer = (
   const { type, payload, error } = action;
 
   switch (type) {
+    case conselorsTypes.FETCH_CONSELORS:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case conselorsTypes.FETCH_CONSELORS_SUCCESS:
       return {
         ...state,

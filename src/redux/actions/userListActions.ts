@@ -21,6 +21,7 @@ const getLocationParams = () : IGetUsersParams => {
 
 export const requestUserList = (userGroupId: UserGroup) => async (dispatch: DispatchType) => {
   try {
+    dispatch({ type: UserGroupActions.FETCH[userGroupId] });
     const params = getLocationParams();
 
     const userList = await UserServices.getUsers({

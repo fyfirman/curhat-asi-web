@@ -25,6 +25,11 @@ const cadresReducer = (
   const { type, payload, error } = action;
 
   switch (type) {
+    case cadresTypes.FETCH_CADRES:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case cadresTypes.FETCH_CADRES_SUCCESS:
       return {
         ...state,

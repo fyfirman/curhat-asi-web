@@ -25,6 +25,11 @@ const midwifesReducer = (
   const { type, payload, error } = action;
 
   switch (type) {
+    case midwifesTypes.FETCH_MIDWIFES:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case midwifesTypes.FETCH_MIDWIFES_SUCCESS:
       return {
         ...state,

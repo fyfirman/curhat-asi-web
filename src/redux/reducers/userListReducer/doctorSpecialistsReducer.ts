@@ -25,6 +25,11 @@ const doctorSpecialistsReducer = (
   const { type, payload, error } = action;
 
   switch (type) {
+    case doctorSpecialistTypes.FETCH_DOCTOR_SPECIALIST:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case doctorSpecialistTypes.FETCH_DOCTOR_SPECIALIST_SUCCESS:
       return {
         ...state,
