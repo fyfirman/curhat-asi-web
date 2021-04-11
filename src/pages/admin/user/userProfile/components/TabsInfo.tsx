@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   makeStyles, Tab, Tabs, Theme,
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
+import Info from '@pages/admin/consultation/constultationRoom/components/Info';
 import TabPanel, { InfoList } from './TabPanel';
 import {
-  babyInfo, husbandInfo, momsProfile, pregnancyInfo,
+  babyInfo, consultantProfile, husbandInfo, momsProfile, pregnancyInfo,
 } from './data';
 
 const useStyles = makeStyles((_theme: Theme) => ({
@@ -16,18 +17,29 @@ const useStyles = makeStyles((_theme: Theme) => ({
   },
 }));
 
-const MomsTabsInfo = () => {
+interface TabsInfoProps {
+  consultant: boolean
+}
+
+const TabsInfo = ({ consultant } : TabsInfoProps) => {
   const [value, setValue] = useState(0);
+
   const classes = useStyles();
 
   const user = useSelector((state: RootState) => state.userProfile.payload);
 
-  const tabsData: { label: string; infoList: InfoList }[] = [
+  const momTabsData: { label: string; infoList: InfoList }[] = [
     { label: 'Profil', infoList: momsProfile(user) },
     { label: 'Kehamilan', infoList: pregnancyInfo(user?.profile?.pregnancy) },
     { label: 'Bayi', infoList: babyInfo(user?.profile?.baby) },
     { label: 'Anggota Keluarga Lain', infoList: husbandInfo(user?.profile?.husband) },
   ];
+
+  const consultantTabsData: { label: string; infoList: InfoList }[] = [
+    { label: 'Profil', infoList: consultantProfile(user) },
+  ];
+
+  const tabsData = consultant ? consultantTabsData : momTabsData;
 
   const handleChange = (_event: any, newValue: number) => {
     setValue(newValue);
@@ -39,11 +51,17 @@ const MomsTabsInfo = () => {
   });
 
   const renderTabs = () => tabsData.map((tab, index) => (
-    <Tab className={classes.tab} label={tab.label} {...a11yProps(index)} />
+    <Tab className={classes.tab} label={tab.label} {...a11yProps(index + 1)} />
   ));
 
   const renderTabPanels = () => tabsData.map((tab, index) => (
-    <TabPanel value={value} index={index} infoList={tab.infoList} />
+    <TabPanel value={value} index={index + 1}>
+      {renderInfoList(tab.infoList)}
+    </TabPanel>
+  ));
+
+  const renderInfoList = (infoList: InfoList) => Object.keys(infoList).map((key, i) => (
+    <Info key={i} label={key} info={infoList[key]} />
   ));
 
   return (
@@ -56,6 +74,7 @@ const MomsTabsInfo = () => {
         scrollButtons="auto"
         aria-label="tabs user"
       >
+        <Tab className={classes.tab} label="Aktivitas" {...a11yProps(0)} />
         {renderTabs()}
       </Tabs>
       {renderTabPanels()}
@@ -63,4 +82,4 @@ const MomsTabsInfo = () => {
   );
 };
 
-export default MomsTabsInfo;
+export default TabsInfo;

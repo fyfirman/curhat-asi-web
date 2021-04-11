@@ -20,7 +20,7 @@ export const consultantProfile = (user?: IConsultant): InfoList => ({
   'Nomor Telepon': user?.username,
   'Tempat Lahir': user?.profile?.pob,
   'Tanggal Lahir': `${user?.profile?.dob} (${user?.profile?.age} tahun)`,
-  Alamat: user?.profile?.address,
+  Alamat: user?.profile?.address || '-',
   Domisili: user?.profile?.domicile,
 });
 

@@ -1,22 +1,17 @@
 import * as React from 'react';
-import Info from './Info';
 
 export type InfoList = Record<string, string | undefined>;
 
 interface TabPanelProps{
   index: number,
   value: number,
-  infoList: InfoList,
+  children: React.ReactNode,
 }
 
 const TabPanel = (props: TabPanelProps) => {
   const {
-    index, value, infoList, ...rest
+    index, value, children, ...rest
   } = props;
-
-  const renderInfoList = () => Object.keys(infoList).map((key, i) => (
-    <Info key={i} label={key} info={infoList[key]} />
-  ));
 
   return (
     <div
@@ -27,7 +22,7 @@ const TabPanel = (props: TabPanelProps) => {
       {...rest}
     >
       {value === index && (
-        renderInfoList()
+        children
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Breadcrumbs from '@components/CustomBreadcrumbs';
 import { makeStyles, Theme } from '@material-ui/core';
@@ -8,8 +8,7 @@ import { requestUserProfile } from '@redux/actions/userProfileActions';
 import UserGroup from '@constants/UserGroupEnum';
 import Container from '@components/Container';
 import Header from './components/Header';
-import MomsTabsInfo from './components/MomsTabsInfo';
-import ConsultantInfo from './components/ConsultantInfo';
+import TabsInfo from './components/TabsInfo';
 
 const useStyles = makeStyles((theme: Theme) => ({
   breadCrumbs: {
@@ -41,7 +40,7 @@ const ShowUser = () => {
       />
       <Container>
         <Header />
-        {user?.userGroup.id === UserGroup.Mommies ? <MomsTabsInfo /> : <ConsultantInfo />}
+        <TabsInfo consultant={user?.userGroup.id !== UserGroup.Mommies} />
       </Container>
     </div>
   );
