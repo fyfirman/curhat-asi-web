@@ -3,11 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { Redirect, Route } from 'react-router-dom';
+import { DEBUG_MODE } from '@utils/config';
 import LoginForm from './components/LoginForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
+    flexDirection: 'column',
     padding: theme.spacing(4),
     justifyContent: 'center',
     height: '100vh',
@@ -40,6 +42,13 @@ const Login = () => {
             </div>
             <LoginForm />
           </Container>
+          {DEBUG_MODE && (
+            <span>
+              You are running this application in
+              <b>{` ${process.env.NODE_ENV} `}</b>
+              mode.
+            </span>
+          )}
         </div>
       ) : (
         <Redirect to="/admin" />
