@@ -52,11 +52,11 @@ const TabsInfo = ({ consultant } : TabsInfoProps) => {
   });
 
   const renderTabs = () => tabsData.map((tab, index) => (
-    <Tab className={classes.tab} label={tab.label} {...a11yProps(index + 1)} />
+    <Tab className={classes.tab} label={tab.label} {...a11yProps(index + 1)} key={index + 1} />
   ));
 
   const renderTabPanels = () => tabsData.map((tab, index) => (
-    <TabPanel value={value} index={index + 1}>
+    <TabPanel value={value} index={index + 1} key={index + 1}>
       {renderInfoList(tab.infoList)}
     </TabPanel>
   ));

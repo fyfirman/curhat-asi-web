@@ -37,11 +37,11 @@ const UserContent = () => {
   });
 
   const renderTabs = () => filteredTab.map((tab, index) => (
-    <Tab label={tab.label} {...a11yProps(index)} />
+    <Tab label={tab.label} {...a11yProps(index)} key={index} />
   ));
 
   const renderTabPanels = () => filteredTab.map((tab, index) => (
-    <TabPanel value={value} index={index}>
+    <TabPanel value={value} index={index} key={index}>
       <UserDataGrid type={tab.type} />
     </TabPanel>
   ));
