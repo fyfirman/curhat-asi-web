@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
+import Button from '@components/LinkButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestConsultations } from '@redux/actions/consultationListActions';
 import { RootState } from '@redux/reducers';
@@ -12,12 +13,18 @@ const useStyle = makeStyles((theme: Theme) => ({
   header: {
     marginBottom: theme.spacing(3),
   },
+  headerContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: theme.spacing(3),
+  },
 }));
 
 const ArticleList = () => {
   const classes = useStyle();
   // const dispatch = useDispatch();
   // const consultationList = useSelector((state: RootState) => state.consultationList);
+  const { level } = useSelector((state: RootState) => state.selfUser.payload.userGroup);
 
   useEffect(() => {
     // dispatch(requestConsultations());
@@ -35,9 +42,16 @@ const ArticleList = () => {
 
   return (
     <>
-      <Typography variant="h4" className={classes.header}>
-        Daftar Konsultasi
-      </Typography>
+      <div className={classes.headerContainer}>
+        <Typography variant="h4" className={classes.header}>
+          Daftar Konsultasi
+        </Typography>
+        {level === 0 && (
+        <Button to="article/add" variant="contained" color="secondary">
+          Buat artikel
+        </Button>
+        )}
+      </div>
       <DataGrid
         autoHeight
         rows={mockRows}
