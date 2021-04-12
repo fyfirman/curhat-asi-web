@@ -3,10 +3,9 @@ import { Tab, Tabs } from '@material-ui/core';
 import UserGroup from '@constants/UserGroupEnum';
 import { RootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
-import TabPanel from './TabPanel';
+import TabPanel from '../../../../../components/TabPanel';
 import UserDataGrid from './UserDataGrid';
 
-// TODO: add administrator when API created
 const tabsData: { label: string; type: UserGroup, level: number }[] = [
   { label: 'Ibu', type: UserGroup.Mommies, level: 6 },
   { label: 'Kader', type: UserGroup.Cadre, level: 5 },
@@ -20,7 +19,6 @@ const tabsData: { label: string; type: UserGroup, level: number }[] = [
 const UserContent = () => {
   const [value, setValue] = useState(0);
 
-  // eslint-disable-next-line no-underscore-dangle
   const selfUser = useSelector((state:RootState) => state.selfUser.payload);
 
   const filteredTab = useMemo(() => tabsData
