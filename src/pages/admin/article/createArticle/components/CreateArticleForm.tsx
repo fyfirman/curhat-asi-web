@@ -13,6 +13,7 @@ import RichEditor from '@components/RichEditor';
 import Field from './CustomField';
 import TagsField from './TagsField';
 import CategoryField from './CategoryField';
+import AccessByField from './AccessByField';
 
 const useStyles = makeStyles((theme: Theme) => ({
   loginAlert: {
@@ -107,6 +108,7 @@ const AddUserForm = () => {
           />
           <CategoryField />
           <TagsField />
+          <AccessByField />
           <RichEditor
             initialValue="<p>Tulis konten anda disini</p>"
             onEditorChange={handleEditorChange}
