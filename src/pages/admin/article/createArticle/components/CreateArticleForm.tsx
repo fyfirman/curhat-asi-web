@@ -128,7 +128,7 @@ const AddUserForm = () => {
           </Field>
           <Editor
             apiKey="wih2rf5zdv0xfg2k76jg6xin5dzi1xafmly22xp6btipsjkg"
-            initialValue="<p>This is the initial content of the editor</p>"
+            initialValue="<p>Tulis konten anda disini</p>"
             init={{
               height: 500,
               menubar: false,
@@ -137,7 +137,7 @@ const AddUserForm = () => {
                 'searchreplace visualblocks code fullscreen',
                 'insertdatetime media table paste code help wordcount',
               ],
-              toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | media image link | bullist numlist outdent indent | removeformat searchreplace | preview help ',
+              toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | media image link | bullist numlist outdent indent | removeformat searchreplace | preview help ',
             }}
             onEditorChange={handleEditorChange}
           />
