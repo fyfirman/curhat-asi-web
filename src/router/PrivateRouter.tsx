@@ -9,6 +9,7 @@ import AddUser from '@pages/admin/user/addUser/AddUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { requestSelfUser } from '@redux/actions/selfUserActions';
+import CreateArticle from '@pages/admin/article/createArticle/CreateArticle';
 
 const routeName = '/admin';
 const sideBarWidth = 250;
@@ -69,6 +70,7 @@ const Admin = () => {
                     path={`${routeName}/consultation/:id`}
                     component={ConsultationRoom}
                   />
+                  <Route path={`${routeName}/article/add`} component={CreateArticle} />
                   <Redirect from={routeName} to={`${routeName}/user`} />
                 </Switch>
               ) : <div className={classes.loading}><CircularProgress /></div>}
