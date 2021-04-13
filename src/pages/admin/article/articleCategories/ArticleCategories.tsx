@@ -25,11 +25,11 @@ const ArticleCategories = () => {
     <>
       <div className={classes.headerContainer}>
         <Typography variant="h4" className={classes.header}>
-          Daftar Artikel
+          Daftar Kategori Artikel
         </Typography>
         {level === 0 && (
         <Button to="../article/add" variant="contained" color="secondary">
-          Buat artikel
+          Tambah Kategori
         </Button>
         )}
       </div>
