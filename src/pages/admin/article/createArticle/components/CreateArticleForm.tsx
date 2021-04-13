@@ -4,16 +4,14 @@ import {
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
 import { Select, TextField } from 'formik-material-ui';
-import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { requestAddUser } from '@redux/actions/addUserActions';
 import { IUserRequest } from '@services/UserServices';
-import UserGroup from '@constants/UserGroupEnum';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
+import { Editor } from '@tinymce/tinymce-react';
 import Field from './CustomField';
-import LocationFields from './LocationFields';
 
 const useStyles = makeStyles((theme: Theme) => ({
   loginAlert: {
@@ -60,31 +58,14 @@ const validationSchema = yup.object({
   village: yup.object().required('Kelurahan/desa harus diisi'),
 });
 
-const userGroupMenu : IUserGroup[] = [
+const userGroupMenu : { label: string, value: string }[] = [
   {
-    id: UserGroup.Cadre,
-    name: 'Kader',
-    level: 0,
+    label: 'ASI',
+    value: 'asi',
   },
   {
-    id: UserGroup.Conselor,
-    name: 'Konselor',
-    level: 0,
-  },
-  {
-    id: UserGroup.DoctorGeneral,
-    name: 'Dokter Umum',
-    level: 0,
-  },
-  {
-    id: UserGroup.DoctorSpecialist,
-    name: 'Dokter Spesialis',
-    level: 0,
-  },
-  {
-    id: UserGroup.Midwife,
-    name: 'Bidan',
-    level: 0,
+    label: 'Menyusui',
+    value: 'menyusui',
   },
 ];
 
@@ -93,6 +74,10 @@ const AddUserForm = () => {
   const _classes = useStyles();
 
   const dispatch = useDispatch();
+
+  const handleEditorChange = (content: any) => {
+    console.log('Content was updated:', content);
+  };
 
   const initialValues : AddUserFormValue = {
     phoneNumber: '',
@@ -116,8 +101,8 @@ const AddUserForm = () => {
     dispatch(requestAddUser(data));
   };
 
-  const renderUserGroupMenu = () => userGroupMenu.map((menu) => (
-    <MenuItem key={menu.id} value={menu.id}>{menu.name}</MenuItem>));
+  const renderUserGroupMenu = () => userGroupMenu.map((menu, index) => (
+    <MenuItem key={index} value={menu.value}>{menu.label}</MenuItem>));
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -128,43 +113,34 @@ const AddUserForm = () => {
       >
         <Form>
           <Field
+            component={TextField}
+            name="title"
+            label="Judul"
+            autoFocus
+          />
+          <Field
             component={Select}
-            name="userGroupId"
-            label="Jabatan"
+            name="category"
+            label="Kategori"
             autoFocus
           >
             {renderUserGroupMenu()}
           </Field>
-          <Field
-            component={TextField}
-            name="phoneNumber"
-            label="Nomor Handphone"
-            autoFocus
+          <Editor
+            apiKey="wih2rf5zdv0xfg2k76jg6xin5dzi1xafmly22xp6btipsjkg"
+            initialValue="<p>This is the initial content of the editor</p>"
+            init={{
+              height: 500,
+              menubar: false,
+              plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount',
+              ],
+              toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | media image link | bullist numlist outdent indent | removeformat searchreplace | preview help ',
+            }}
+            onEditorChange={handleEditorChange}
           />
-          <Field
-            component={TextField}
-            name="pin"
-            type="number"
-            label="PIN Sementara"
-          />
-          <Field
-            component={TextField}
-            name="name"
-            label="Nama"
-          />
-          <Field
-            component={TextField}
-            name="pob"
-            label="Tempat Lahir"
-          />
-          <Field
-            component={KeyboardDatePicker}
-            label="Tanggal Lahir"
-            name="dob"
-            variant="inline"
-            format="dd MMM yyyy"
-          />
-          <LocationFields />
           <Button
             color="primary"
             variant="contained"
@@ -172,7 +148,7 @@ const AddUserForm = () => {
             fullWidth
             disableElevation
           >
-            Daftar
+            Buat artikel
           </Button>
         </Form>
       </Formik>
