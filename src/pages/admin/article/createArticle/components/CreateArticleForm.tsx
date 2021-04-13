@@ -1,9 +1,9 @@
 import {
-  Button, makeStyles, MenuItem, Theme,
+  Button, makeStyles, MenuItem, TextField, Theme,
 } from '@material-ui/core';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
-import { Select, TextField } from 'formik-material-ui';
+import { Select } from 'formik-material-ui';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { requestAddUser } from '@redux/actions/addUserActions';
@@ -12,6 +12,7 @@ import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { Editor } from '@tinymce/tinymce-react';
 import Field from './CustomField';
+import TagsField from './TagsField';
 
 const useStyles = makeStyles((theme: Theme) => ({
   loginAlert: {
@@ -58,7 +59,7 @@ const validationSchema = yup.object({
   village: yup.object().required('Kelurahan/desa harus diisi'),
 });
 
-const userGroupMenu : { label: string, value: string }[] = [
+const categoryMenu : { label: string, value: string }[] = [
   {
     label: 'ASI',
     value: 'asi',
@@ -101,7 +102,7 @@ const AddUserForm = () => {
     dispatch(requestAddUser(data));
   };
 
-  const renderUserGroupMenu = () => userGroupMenu.map((menu, index) => (
+  const renderUserGroupMenu = () => categoryMenu.map((menu, index) => (
     <MenuItem key={index} value={menu.value}>{menu.label}</MenuItem>));
 
   return (
@@ -126,6 +127,7 @@ const AddUserForm = () => {
           >
             {renderUserGroupMenu()}
           </Field>
+          <TagsField />
           <Editor
             apiKey="wih2rf5zdv0xfg2k76jg6xin5dzi1xafmly22xp6btipsjkg"
             initialValue="<p>Tulis konten anda disini</p>"

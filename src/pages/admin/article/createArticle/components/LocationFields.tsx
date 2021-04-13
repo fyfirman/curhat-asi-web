@@ -5,7 +5,7 @@ import { requestProvinces } from '@redux/actions/locationsActions/provincesActio
 import { requestDistricts } from '@redux/actions/locationsActions/districtsActions';
 import { requestSubDistricts } from '@redux/actions/locationsActions/subDistrictsActions';
 import { requestVillages } from '@redux/actions/locationsActions/villagesActions';
-import CustomAutocomplete from './CustomAutocomplete';
+import CustomAutocomplete from '@components/CustomAutocomplete';
 
 const LocationFields = () => {
   const dispatch = useDispatch();
