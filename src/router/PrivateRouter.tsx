@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { requestSelfUser } from '@redux/actions/selfUserActions';
 import CreateArticle from '@pages/admin/article/createArticle/CreateArticle';
+import ArticleShow from '@pages/admin/article/articleShow/ArticleShow';
 
 const routeName = '/admin';
 const sideBarWidth = 250;
@@ -83,6 +84,7 @@ const Admin = () => {
                     component={ConsultationRoom}
                   />
                   <Route path={`${routeName}/article/add`} component={CreateArticle} />
+                  <Route path={`${routeName}/article/show/:id`} component={ArticleShow} />
                   <Redirect from={`${routeName}/article`} to={`${routeName}/article/list`} />
                   <Redirect from={routeName} to={`${routeName}/user`} />
                 </Switch>
