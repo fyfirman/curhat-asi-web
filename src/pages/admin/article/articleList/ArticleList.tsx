@@ -37,7 +37,7 @@ const ArticleList = () => {
     <>
       <div className={classes.headerContainer}>
         <Typography variant="h4" className={classes.header}>
-          Daftar Konsultasi
+          Daftar Artikel
         </Typography>
         {level === 0 && (
         <Button to="article/add" variant="contained" color="secondary">

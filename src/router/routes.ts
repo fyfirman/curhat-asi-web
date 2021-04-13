@@ -7,6 +7,7 @@ export interface Route {
   path: string;
   component: React.ComponentType;
   name: string;
+  collapsible?: boolean;
 }
 
 export const privateRoutes: Route[] = [
@@ -24,5 +25,6 @@ export const privateRoutes: Route[] = [
     path: '/article',
     component: Articles,
     name: 'Artikel',
+    collapsible: true,
   },
 ];
