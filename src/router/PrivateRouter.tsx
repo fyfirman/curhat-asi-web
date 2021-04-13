@@ -56,14 +56,26 @@ const Admin = () => {
             {!selfUser.isLoading
               ? (
                 <Switch>
-                  {routes.map((route, key) => (
-                    <Route
-                      exact
-                      path={routeName + route.path}
-                      component={route.component}
-                      key={key}
-                    />
-                  ))}
+                  {routes
+                    .filter((route) => !route.collapsible)
+                    .map((route, key) => (
+                      <Route
+                        exact
+                        path={routeName + route.path}
+                        component={route.component}
+                        key={key}
+                      />
+                    ))}
+                  {routes
+                    .filter((route) => !!route.subRoutes)
+                    .map(({ subRoutes }) => subRoutes?.map((route, key) => (
+                      <Route
+                        exact
+                        path={routeName + route.path}
+                        component={route.component}
+                        key={key}
+                      />
+                    )))}
                   <Route path={`${routeName}/user/add`} component={AddUser} />
                   <Route path={`${routeName}/user/:id`} component={UserProfile} />
                   <Route
