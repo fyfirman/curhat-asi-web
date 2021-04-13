@@ -40,7 +40,7 @@ const ArticleList = () => {
           Daftar Artikel
         </Typography>
         {level === 0 && (
-        <Button to="article/add" variant="contained" color="secondary">
+        <Button to="../article/add" variant="contained" color="secondary">
           Buat artikel
         </Button>
         )}
