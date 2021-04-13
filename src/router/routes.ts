@@ -5,9 +5,10 @@ import Articles from '@pages/admin/article/articleList/ArticleList';
 
 export interface Route {
   path: string;
-  component: React.ComponentType;
+  component?: React.ComponentType;
   name: string;
   collapsible?: boolean;
+  subRoutes?: Route[];
 }
 
 export const privateRoutes: Route[] = [
@@ -23,8 +24,19 @@ export const privateRoutes: Route[] = [
   },
   {
     path: '/article',
-    component: Articles,
     name: 'Artikel',
     collapsible: true,
+    subRoutes: [
+      {
+        path: '/article',
+        component: Articles,
+        name: 'Daftar Artikel',
+      },
+      {
+        path: '/article/category',
+        component: Articles,
+        name: 'Kategori Artikel',
+      },
+    ],
   },
 ];

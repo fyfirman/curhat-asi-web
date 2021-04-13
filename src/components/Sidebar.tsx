@@ -2,12 +2,12 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   Collapse,
-  Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Theme,
+  Drawer, List, ListItem, ListItemText, makeStyles, Theme,
 } from '@material-ui/core';
 import { Route as IRoute } from 'src/router/routes';
 import { requestlogout } from '@redux/actions/authActions';
 import { useDispatch } from 'react-redux';
-import { StarBorder } from '@material-ui/icons';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 interface SidebarProps {
   routes: IRoute[];
@@ -34,6 +34,9 @@ const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) => ({
   activeNav: {
     color: theme.palette.secondary.main,
   },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
 }));
 
 const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
@@ -57,32 +60,55 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
     setIsOpen((prev) => ({ ...prev, [name]: !prev[name] }));
   };
 
+  const handleNavLinkClick = (event: React.SyntheticEvent, disabled: boolean = false) => {
+    if (disabled) event.preventDefault();
+  };
+
   return (
     <Drawer variant="permanent" open>
       <div className={classes.toolbar} />
       <div className={classes.containerMenu}>
         <List>
-          {routes.map(({ name, path, collapsible }, key) => (
+          {routes.map(({
+            name, path, collapsible, subRoutes,
+          }, key) => (
             <>
               <NavLink
                 to={prefixPath + path}
                 className={classes.nav}
                 activeClassName={classes.activeNav}
                 key={key}
+                onClick={(event) => handleNavLinkClick(event, collapsible)}
               >
                 <ListItem button key={name} onClick={() => handleClick(name)}>
                   <ListItemText primary={name} />
+                  {collapsible && (
+                  <>
+                    {isOpen[name] ? <ExpandLess /> : <ExpandMore />}
+                  </>
+                  )}
                 </ListItem>
               </NavLink>
-              {collapsible && (
+              { subRoutes && (
               <Collapse in={isOpen[name]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
-                    <ListItemText primary="Kategori Artikel" />
-                  </ListItem>
+                  {subRoutes.map((subRoute, index) => (
+                    <NavLink
+                      to={prefixPath + subRoute.path}
+                      activeClassName={classes.activeNav}
+                      className={classes.nav}
+                      key={index}
+                    >
+                      <ListItem
+                        key={subRoute.name}
+                        className={classes.nested}
+                        button
+                        onClick={() => handleClick(subRoute.name)}
+                      >
+                        <ListItemText primary={subRoute.name} />
+                      </ListItem>
+                    </NavLink>
+                  ))}
                 </List>
               </Collapse>
               )}
