@@ -1,13 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useMemo } from 'react';
+import {
+  ChangeEvent, useState,
+} from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, Theme } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
+import { makeStyles, Tabs, Theme } from '@material-ui/core';
 import Button from '@components/LinkButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { requestConsultations } from '@redux/actions/consultationListActions';
+import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
-import { columns, mockRows, IRowConsultation } from './dataGridOptions';
+import Tab from '@components/Tab';
+import TabPanel from '@components/TabPanel';
+import ActiveArticleDataGrid from './components/ActiveArticleDataGrid';
 
 const useStyle = makeStyles((theme: Theme) => ({
   header: {
@@ -22,23 +23,14 @@ const useStyle = makeStyles((theme: Theme) => ({
 
 const ArticleList = () => {
   const classes = useStyle();
-  // const dispatch = useDispatch();
-  // const consultationList = useSelector((state: RootState) => state.consultationList);
+
+  const [value, setValue] = useState(0);
+
   const { level } = useSelector((state: RootState) => state.selfUser.payload.userGroup);
 
-  useEffect(() => {
-    // dispatch(requestConsultations());
-  }, []);
-
-  // const rows: IRowConsultation[] = useMemo(
-  //   () => consultationList.payload.data.map((consultation, index) => ({
-  //     id: consultation.id,
-  //     no: index + 1,
-  //     openBy: consultation.user?.fullName || 'Belum mengisi profil',
-  //     problem: consultation.description,
-  //   })),
-  //   [consultationList],
-  // );
+  const handleChange = (_event: ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
 
   return (
     <>
@@ -52,13 +44,25 @@ const ArticleList = () => {
         </Button>
         )}
       </div>
-      <DataGrid
-        autoHeight
-        rows={mockRows}
-        columns={columns}
-        pageSize={20}
-        checkboxSelection={false}
-      />
+      <div>
+        <Tabs
+          value={value}
+          indicatorColor="primary"
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="tabs article"
+          onChange={handleChange}
+        >
+          <Tab label="Aktif" index={0} />
+          <Tab label="Sampah" index={1} />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <ActiveArticleDataGrid />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <ActiveArticleDataGrid />
+        </TabPanel>
+      </div>
     </>
   );
 };

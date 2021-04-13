@@ -3,7 +3,7 @@ import { Tab, Tabs } from '@material-ui/core';
 import UserGroup from '@constants/UserGroupEnum';
 import { RootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
-import TabPanel from '../../../../../components/TabPanel';
+import TabPanel from '@components/TabPanel';
 import UserDataGrid from './UserDataGrid';
 
 const tabsData: { label: string; type: UserGroup, level: number }[] = [
