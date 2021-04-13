@@ -9,6 +9,7 @@ import { RootState } from '@redux/reducers';
 import Tab from '@components/Tab';
 import TabPanel from '@components/TabPanel';
 import ActiveArticleDataGrid from './components/ActiveArticleDataGrid';
+import TrashArticleDataGrid from './components/TrashArticleDataGrid';
 
 const useStyle = makeStyles((theme: Theme) => ({
   header: {
@@ -60,7 +61,7 @@ const ArticleList = () => {
           <ActiveArticleDataGrid />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <ActiveArticleDataGrid />
+          <TrashArticleDataGrid />
         </TabPanel>
       </div>
     </>
