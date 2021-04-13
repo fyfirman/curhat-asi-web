@@ -33,7 +33,7 @@ const columns: GridColDef[] = [
   {
     field: 'action',
     headerName: 'Aksi',
-    width: 175,
+    width: 300,
     sortable: false,
     filterable: false,
     disableColumnMenu: true,

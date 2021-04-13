@@ -6,6 +6,8 @@ interface IRowConsultation {
   no: number;
   title: string;
   createdAt: string;
+  publishedAt: string;
+  status: string;
 }
 
 const mockRows: IRowConsultation[] = [
@@ -14,6 +16,8 @@ const mockRows: IRowConsultation[] = [
     no: 1,
     title: 'Cara menyusui dengan benar',
     createdAt: '2021-12-13 11:21:31',
+    publishedAt: '2021-12-13 11:21:31',
+    status: 'Dipublikasikan',
   },
 ];
 
@@ -29,6 +33,8 @@ const columns: GridColDef[] = [
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'title', headerName: 'Judul', flex: 1 },
   { field: 'createdAt', headerName: 'Dibuat pada', width: 200 },
+  { field: 'status', headerName: 'Status', width: 128 },
+  { field: 'publishedAt', headerName: 'Dipublikasikan pada', width: 200 },
   {
     field: 'action',
     headerName: 'Aksi',
