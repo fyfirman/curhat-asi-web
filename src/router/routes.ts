@@ -2,6 +2,7 @@ import * as React from 'react';
 import Consultations from '@pages/admin/consultation/consultationList/ConsultationList';
 import Users from '@pages/admin/user/userList/UserList';
 import Articles from '@pages/admin/article/articleList/ArticleList';
+import ArticleCategories from '@pages/admin/article/articleCategories/ArticleCategories';
 
 export interface Route {
   path: string;
@@ -34,7 +35,7 @@ export const privateRoutes: Route[] = [
       },
       {
         path: '/article/category',
-        component: Articles,
+        component: ArticleCategories,
         name: 'Kategori Artikel',
       },
     ],
