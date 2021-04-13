@@ -17,7 +17,7 @@ const mockRows: IRowCategories[] = [
 
 const ActionButtons = (params: GridCellParams) => (
   <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
-    <ActionButton label="Lihat" to={`/admin/consultation/${params.getValue('id')}`} />
+    <ActionButton label="Edit" to={`/admin/consultation/${params.getValue('id')}`} />
     <ActionButton label="Hapus" to={`/admin/consultation/${params.getValue('id')}`} />
   </div>
 );
