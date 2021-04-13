@@ -83,6 +83,7 @@ const Admin = () => {
                     component={ConsultationRoom}
                   />
                   <Route path={`${routeName}/article/add`} component={CreateArticle} />
+                  <Redirect from={`${routeName}/article`} to={`${routeName}/article/list`} />
                   <Redirect from={routeName} to={`${routeName}/user`} />
                 </Switch>
               ) : <div className={classes.loading}><CircularProgress /></div>}
