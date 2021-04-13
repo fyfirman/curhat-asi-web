@@ -9,7 +9,7 @@ import { requestAddUser } from '@redux/actions/addUserActions';
 import { IUserRequest } from '@services/UserServices';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
-import { Editor } from '@tinymce/tinymce-react';
+import RichEditor from '@components/RichEditor';
 import Field from './CustomField';
 import TagsField from './TagsField';
 import CategoryField from './CategoryField';
@@ -107,19 +107,8 @@ const AddUserForm = () => {
           />
           <CategoryField />
           <TagsField />
-          <Editor
-            apiKey="wih2rf5zdv0xfg2k76jg6xin5dzi1xafmly22xp6btipsjkg"
+          <RichEditor
             initialValue="<p>Tulis konten anda disini</p>"
-            init={{
-              height: 500,
-              menubar: false,
-              plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount',
-              ],
-              toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | media image link | bullist numlist outdent indent | removeformat searchreplace | preview help ',
-            }}
             onEditorChange={handleEditorChange}
           />
           <Button
