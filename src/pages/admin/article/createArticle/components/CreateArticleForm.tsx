@@ -1,9 +1,8 @@
 import {
-  Button, makeStyles, MenuItem, TextField, Theme,
+  Button, makeStyles, TextField, Theme,
 } from '@material-ui/core';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
-import { Select } from 'formik-material-ui';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { requestAddUser } from '@redux/actions/addUserActions';
@@ -13,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { Editor } from '@tinymce/tinymce-react';
 import Field from './CustomField';
 import TagsField from './TagsField';
+import CategoryField from './CategoryField';
 
 const useStyles = makeStyles((theme: Theme) => ({
   loginAlert: {
@@ -59,17 +59,6 @@ const validationSchema = yup.object({
   village: yup.object().required('Kelurahan/desa harus diisi'),
 });
 
-const categoryMenu : { label: string, value: string }[] = [
-  {
-    label: 'ASI',
-    value: 'asi',
-  },
-  {
-    label: 'Menyusui',
-    value: 'menyusui',
-  },
-];
-
 const AddUserForm = () => {
   // eslint-disable-next-line no-underscore-dangle
   const _classes = useStyles();
@@ -102,9 +91,6 @@ const AddUserForm = () => {
     dispatch(requestAddUser(data));
   };
 
-  const renderUserGroupMenu = () => categoryMenu.map((menu, index) => (
-    <MenuItem key={index} value={menu.value}>{menu.label}</MenuItem>));
-
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Formik
@@ -119,14 +105,7 @@ const AddUserForm = () => {
             label="Judul"
             autoFocus
           />
-          <Field
-            component={Select}
-            name="category"
-            label="Kategori"
-            autoFocus
-          >
-            {renderUserGroupMenu()}
-          </Field>
+          <CategoryField />
           <TagsField />
           <Editor
             apiKey="wih2rf5zdv0xfg2k76jg6xin5dzi1xafmly22xp6btipsjkg"
