@@ -1,5 +1,8 @@
 import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
 import ActionButton from '@components/ActionButton';
+import { useState } from 'react';
+import PromptDialog from '@components/PromptDialog';
+import CategoryDialog from './CategoryDialog';
 
 interface IRowCategories {
   id: string;
@@ -15,14 +18,19 @@ const mockRows: IRowCategories[] = [
   },
 ];
 
-const ActionButtons = (params: GridCellParams) => (
+interface ActionButtonsProps {
+  onDelete: ()=> any;
+  onEdit: ()=> any
+}
+
+const ActionButtons = ({ onDelete, onEdit }: ActionButtonsProps) => (_params: GridCellParams) => (
   <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
-    <ActionButton label="Edit" to={`/admin/consultation/${params.getValue('id')}`} />
-    <ActionButton label="Hapus" to={`/admin/consultation/${params.getValue('id')}`} />
+    <ActionButton label="Edit" onClick={onEdit} noLink />
+    <ActionButton label="Hapus" onClick={onDelete} noLink />
   </div>
 );
 
-const columns: GridColDef[] = [
+const columns = (props: ActionButtonsProps): GridColDef[] => ([
   { field: 'id', headerName: 'ID', hide: true },
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'name', headerName: 'Judul', flex: 1 },
@@ -33,19 +41,43 @@ const columns: GridColDef[] = [
     sortable: false,
     filterable: false,
     disableColumnMenu: true,
-    renderCell: ActionButtons,
+    renderCell: ActionButtons(props),
   },
-];
+]);
 
 const ArticleCategoriesDataGrid = () => {
+  const [openEditCategory, setOpenEditCategory] = useState(false);
+  const [openDeleteCategory, setOpenDeleteCategory] = useState(false);
+
+  const handleDelete = () => {
+    setOpenDeleteCategory(true);
+  };
+
+  const handleEdit = () => {
+    setOpenEditCategory(true);
+  };
+
   return (
-    <DataGrid
-      autoHeight
-      rows={mockRows}
-      columns={columns}
-      pageSize={20}
-      checkboxSelection={false}
-    />
+    <>
+      <DataGrid
+        autoHeight
+        rows={mockRows}
+        columns={columns({ onDelete: handleDelete, onEdit: handleEdit })}
+        pageSize={20}
+        checkboxSelection={false}
+      />
+      <CategoryDialog
+        title="Edit kategori"
+        open={openEditCategory}
+        handleClose={() => { setOpenEditCategory(false); }}
+      />
+      <PromptDialog
+        open={openDeleteCategory}
+        handleClose={() => { setOpenDeleteCategory(false); }}
+        title="Anda yakin untuk menghapus kategori?"
+        content="Artikel dengan kategori tersebut akan kehilangan kategori."
+      />
+    </>
   );
 };
 

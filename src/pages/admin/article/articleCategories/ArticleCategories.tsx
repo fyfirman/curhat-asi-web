@@ -2,7 +2,7 @@ import Typography from '@material-ui/core/Typography';
 import { Button, makeStyles, Theme } from '@material-ui/core';
 import { useState } from 'react';
 import ArticleCategoriesDataGrid from './components/ArticleCategoriesDatagrid';
-import AddCategoryDialog from './components/AddCategoryDialog';
+import CategoryDialog from './components/CategoryDialog';
 
 const useStyle = makeStyles((theme: Theme) => ({
   header: {
@@ -35,7 +35,8 @@ const ArticleCategories = () => {
       <div>
         <ArticleCategoriesDataGrid />
       </div>
-      <AddCategoryDialog
+      <CategoryDialog
+        title="Tambah Kategori"
         open={openAddCategory}
         handleClose={() => { setOpenAddCategory(false); }}
       />

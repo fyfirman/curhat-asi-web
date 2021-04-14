@@ -3,12 +3,13 @@ import {
 } from '@material-ui/core';
 import AddCategoryForm from './AddCategoryForm';
 
-interface AddCategoryDialogProps {
+interface CategoryDialogProps {
   open: boolean;
   handleClose: () => void;
+  title: string;
 }
 
-const AddCategoryDialog = ({ open, handleClose }: AddCategoryDialogProps) => {
+const CategoryDialog = ({ open, handleClose, title }: CategoryDialogProps) => {
   return (
     <Dialog
       open={open}
@@ -17,10 +18,10 @@ const AddCategoryDialog = ({ open, handleClose }: AddCategoryDialogProps) => {
       maxWidth="sm"
       fullWidth
     >
-      <DialogTitle id="form-dialog-title">Tambah Kategori</DialogTitle>
+      <DialogTitle id="form-dialog-title">{title}</DialogTitle>
       <AddCategoryForm handleClose={handleClose} />
     </Dialog>
   );
 };
 
-export default AddCategoryDialog;
+export default CategoryDialog;
