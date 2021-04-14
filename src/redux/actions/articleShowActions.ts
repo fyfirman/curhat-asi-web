@@ -6,7 +6,7 @@ export const requestArticle = (id: string) => async (dispatch: DispatchType) => 
     dispatch({ type: articleShowActionTypes.FETCH_ARTICLE_SHOW });
     const response = await ArticleServices.getArticle(id);
 
-    dispatch(requestArticleSuccess(response as IArticle));
+    dispatch(requestArticleSuccess(response.payload as IArticle));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert

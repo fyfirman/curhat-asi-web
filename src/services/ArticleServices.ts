@@ -11,4 +11,4 @@ export const getArticles = (params : getArticlesParams) => {
   return get<IPagination<IArticle>>('api/restricted/articles', Config.withToken({ params: { status } }));
 };
 
-export const getArticle = (id : string) => get<IArticle>(`api/restricted/articles/${id}`, Config.withToken());
+export const getArticle = (id : string) => get<PayloadResponse<IArticle>>(`api/restricted/articles/${id}`, Config.withToken());
