@@ -68,6 +68,7 @@ const AddUserForm = () => {
   const dispatch = useDispatch();
 
   const handleEditorChange = (content: any) => {
+    // eslint-disable-next-line no-console
     console.log('Content was updated:', content);
   };
 
