@@ -13,7 +13,7 @@ import RichEditor from '@components/RichEditor';
 import { SimpleFileUpload } from 'formik-material-ui';
 import Field from '@components/CustomField';
 import TagsField from './TagsField';
-import CategoryField from './CategoryField';
+import CategoryField from '../../../../../components/CategoryField';
 import AccessByField from './AccessByField';
 
 const useStyles = makeStyles((theme: Theme) => ({

@@ -2,6 +2,7 @@ import { Button, DialogActions, DialogContent } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import Field from '@components/CustomField';
 import { TextField } from 'formik-material-ui';
+import CategoryField from '@components/CategoryField';
 
 interface AddCategoryFormValue {
   parrentCategory: string;
@@ -30,6 +31,10 @@ const AddCategoryForm = ({ handleClose } : AddCategoryFormProps) => {
     >
       <Form>
         <DialogContent>
+          <CategoryField
+            label="Induk kategory"
+            name="parrentCategory"
+          />
           <Field
             component={TextField}
             name="category"

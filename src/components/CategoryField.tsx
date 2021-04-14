@@ -13,15 +13,20 @@ const categoryMenu : { label: string, value: string }[] = [
   },
 ];
 
-const CategoryField = () => {
+interface CategoryFieldProps {
+  label?: string;
+  name?: string;
+}
+
+const CategoryField = ({ label = 'Kategori', name = 'category' } : CategoryFieldProps) => {
   const renderUserGroupMenu = () => categoryMenu.map((menu, index) => (
     <MenuItem key={index} value={menu.value}>{menu.label}</MenuItem>));
 
   return (
     <Field
       component={Select}
-      name="category"
-      label="Kategori"
+      name={name}
+      label={label}
       autoFocus
     >
       {renderUserGroupMenu()}
