@@ -53,7 +53,7 @@ const ArticleShow = () => {
           <br />
           <span>{`Rata-rata penilaian : ${payload.averageRating ?? '-'}`}</span>
           <br />
-          <span>Jumlah yang menilai : - orang</span>
+          <span>{`Jumlah yang menilai : ${payload.rates.length} orang`}</span>
           <ArticleRatingDataGrid />
         </TabPanel>
       </ContentLayout>
