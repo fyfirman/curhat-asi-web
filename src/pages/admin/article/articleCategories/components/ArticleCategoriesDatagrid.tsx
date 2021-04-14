@@ -1,22 +1,17 @@
 import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
 import ActionButton from '@components/ActionButton';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PromptDialog from '@components/PromptDialog';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
+import { requestArticleCategories } from '@redux/actions/articleCategoriesActions';
 import CategoryDialog from './CategoryDialog';
 
 interface IRowCategories {
-  id: string;
+  id: number;
   no: number;
   name: string;
 }
-
-const mockRows: IRowCategories[] = [
-  {
-    id: '1',
-    no: 1,
-    name: 'ASI',
-  },
-];
 
 interface ActionButtonsProps {
   onDelete: ()=> any;
@@ -49,6 +44,23 @@ const ArticleCategoriesDataGrid = () => {
   const [openEditCategory, setOpenEditCategory] = useState(false);
   const [openDeleteCategory, setOpenDeleteCategory] = useState(false);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(requestArticleCategories());
+  }, []);
+
+  const { payload, isLoading } = useSelector((state:RootState) => state.articleCategories);
+
+  const rows = useMemo(
+    () => payload.data.map((category, index): IRowCategories => ({
+      id: category.id,
+      no: index + 1,
+      name: category.name,
+    })),
+    [payload],
+  );
+
   const handleDelete = () => {
     setOpenDeleteCategory(true);
   };
@@ -61,10 +73,11 @@ const ArticleCategoriesDataGrid = () => {
     <>
       <DataGrid
         autoHeight
-        rows={mockRows}
+        rows={rows}
         columns={columns({ onDelete: handleDelete, onEdit: handleEdit })}
         pageSize={20}
         checkboxSelection={false}
+        loading={isLoading}
       />
       <CategoryDialog
         title="Edit kategori"
