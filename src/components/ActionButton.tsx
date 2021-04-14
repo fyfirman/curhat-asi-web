@@ -12,7 +12,7 @@ const ActionButton = (props: ActionButtonProps) => {
   const {
     to, label, noLink = false, onClick,
   } = props;
-  return noLink && to ? (
+  return !noLink && to ? (
     <LinkButton
       to={to}
       variant="contained"
@@ -24,15 +24,17 @@ const ActionButton = (props: ActionButtonProps) => {
     </LinkButton>
   )
     : (
-      <Button
-        variant="contained"
-        color="secondary"
-        size="small"
-        disableElevation
-        onClick={onClick}
-      >
-        {label}
-      </Button>
+      <div>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          disableElevation
+          onClick={onClick}
+        >
+          {label}
+        </Button>
+      </div>
     );
 };
 
