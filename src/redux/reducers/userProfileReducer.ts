@@ -12,6 +12,11 @@ const userProfileReducer = (
   const { type, payload, error } = action;
 
   switch (type) {
+    case userProfileActionTypes.FETCH_USER_PROFILE:
+      return {
+        ...initialState,
+        isLoading: true,
+      };
     case userProfileActionTypes.FETCH_USER_PROFILE_SUCCESS:
       return {
         ...state,

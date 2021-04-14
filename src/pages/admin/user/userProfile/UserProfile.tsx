@@ -5,6 +5,7 @@ import { RootState } from '@redux/reducers';
 import { requestUserProfile } from '@redux/actions/userProfileActions';
 import UserGroup from '@constants/UserGroupEnum';
 import ContentLayout from '@components/ContentLayout';
+import { CircularProgress } from '@material-ui/core';
 import Header from './components/Header';
 import TabsInfo from './components/TabsInfo';
 
@@ -17,18 +18,18 @@ const ShowUser = () => {
     dispatch(requestUserProfile(parseInt(id, 10)));
   }, []);
 
-  const user = useSelector((state: RootState) => state.userProfile.payload);
+  const { payload, isLoading } = useSelector((state: RootState) => state.userProfile);
 
-  return (
+  return !isLoading ? (
     <ContentLayout
       levelOneLabel="Pengguna"
       levelOneTo="/admin/user"
-      levelTwoLabel={user?.fullName || 'Belum mengisi profile'}
+      levelTwoLabel={payload?.fullName || 'Belum mengisi profile'}
     >
       <Header />
-      <TabsInfo consultant={user?.userGroup.id !== UserGroup.Mommies} />
+      <TabsInfo consultant={payload?.userGroup.id !== UserGroup.Mommies} />
     </ContentLayout>
-  );
+  ) : <CircularProgress />;
 };
 
 export default ShowUser;

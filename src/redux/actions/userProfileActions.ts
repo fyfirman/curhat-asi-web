@@ -3,6 +3,10 @@ import * as UserServices from '@services/UserServices';
 
 export const requestUserProfile = (id: IUser['id']) => async (dispatch: DispatchType) => {
   try {
+    dispatch({
+      type: userProfileActionTypes.FETCH_USER_PROFILE,
+    });
+
     const response = await UserServices.getUser(id);
 
     dispatch(requestUserProfileSuccess(response.payload as IMoms));
