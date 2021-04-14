@@ -1,6 +1,6 @@
 import { MenuItem } from '@material-ui/core';
 import { Select } from 'formik-material-ui';
-import Field from './CustomField';
+import Field from '@components/CustomField';
 
 const categoryMenu : { label: string, value: string }[] = [
   {

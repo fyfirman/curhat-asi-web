@@ -11,7 +11,7 @@ import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import RichEditor from '@components/RichEditor';
 import { SimpleFileUpload } from 'formik-material-ui';
-import Field from './CustomField';
+import Field from '@components/CustomField';
 import TagsField from './TagsField';
 import CategoryField from './CategoryField';
 import AccessByField from './AccessByField';
