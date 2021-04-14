@@ -1,4 +1,4 @@
-interface UserProfileAction implements Action {
+interface UserProfileAction implements IStandardAction {
   type: string;
   payload: IMoms;
   error?: {}

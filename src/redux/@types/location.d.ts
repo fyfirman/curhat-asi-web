@@ -1,4 +1,4 @@
-interface LocationAction<T> implements Action {
+interface LocationAction<T> implements IStandardAction {
   type: string;
   payload: T;
   error?: {};

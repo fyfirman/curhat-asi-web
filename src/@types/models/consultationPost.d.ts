@@ -19,7 +19,7 @@ interface IConsultationPostState {
   isLoaded: boolean,
 }
 
-interface ConsultationPostsAction implements Action {
+interface ConsultationPostsAction implements IStandardAction {
   type: string;
   payload?: IConsultationPostState;
 }

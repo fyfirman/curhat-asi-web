@@ -1,4 +1,4 @@
-interface UserListAction implements Action {
+interface UserListAction implements IStandardAction {
   type: string;
   payload: IPagination<IUser>;
   error?: {}

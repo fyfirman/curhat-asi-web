@@ -3,11 +3,6 @@ interface TimeStamp{
   updatedAt: string;
 }
 
-interface Action {
-  type: string;
-  payload?: any;
-}
-
 interface IStandardState {
   isLoading: boolean;
   error: Record;
@@ -18,4 +13,4 @@ interface IStandardAction {
   error?: Record;
 }
 
-type DispatchType<T=Action> = (args: T) => T;
+type DispatchType<T=IStandardAction> = (args: T) => T;
