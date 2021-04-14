@@ -1,4 +1,3 @@
-// import { RootState } from '@redux/reducers/index';
 import { createStore, applyMiddleware } from '@reduxjs/toolkit';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer } from 'redux-persist';
@@ -21,6 +20,7 @@ const persistConfig = {
     'userProfile',
     'locations',
     'addUser',
+    'articleList',
   ],
 };
 
