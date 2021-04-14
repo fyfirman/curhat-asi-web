@@ -1,9 +1,8 @@
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, Theme } from '@material-ui/core';
-import Button from '@components/LinkButton';
-import { useSelector } from 'react-redux';
-import { RootState } from '@redux/reducers';
+import { Button, makeStyles, Theme } from '@material-ui/core';
+import { useState } from 'react';
 import ArticleCategoriesDataGrid from './components/ArticleCategoriesDatagrid';
+import AddCategoryDialog from './components/AddCategoryDialog';
 
 const useStyle = makeStyles((theme: Theme) => ({
   header: {
@@ -19,7 +18,7 @@ const useStyle = makeStyles((theme: Theme) => ({
 const ArticleCategories = () => {
   const classes = useStyle();
 
-  const { level } = useSelector((state: RootState) => state.selfUser.payload.userGroup);
+  const [openAddCategory, setOpenAddCategory] = useState(false);
 
   return (
     <>
@@ -27,15 +26,19 @@ const ArticleCategories = () => {
         <Typography variant="h4" className={classes.header}>
           Daftar Kategori Artikel
         </Typography>
-        {level === 0 && (
-        <Button to="../article/add" variant="contained" color="secondary">
-          Tambah Kategori
-        </Button>
-        )}
+        <div>
+          <Button onClick={() => { setOpenAddCategory(true); }} variant="contained" color="secondary">
+            Tambah Kategori
+          </Button>
+        </div>
       </div>
       <div>
         <ArticleCategoriesDataGrid />
       </div>
+      <AddCategoryDialog
+        open={openAddCategory}
+        handleClose={() => { setOpenAddCategory(false); }}
+      />
     </>
   );
 };
