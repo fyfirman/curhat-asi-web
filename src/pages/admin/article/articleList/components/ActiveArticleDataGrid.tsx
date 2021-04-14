@@ -1,7 +1,7 @@
 import { DataGrid, GridColDef } from '@material-ui/data-grid';
 import { Button } from '@material-ui/core';
 import { useState } from 'react';
-import DeletePromptDialog from './DeletePromptDialog';
+import PromptDialog from '@components/PromptDialog';
 
 interface IRowConsultation {
   id: string;
@@ -78,9 +78,11 @@ const ActiveArticleDataGrid = () => {
         pageSize={20}
         checkboxSelection={false}
       />
-      <DeletePromptDialog
+      <PromptDialog
         open={openDeletePrompt}
         handleClose={() => { setOpenDeletePrompt(false); }}
+        title="Anda yakin untuk menghapus artikel?"
+        content="Artikel yang sudah dihapus akan muncul di tab sampah."
       />
     </>
   );

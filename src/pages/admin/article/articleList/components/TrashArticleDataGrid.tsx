@@ -1,7 +1,7 @@
 import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
 import ActionButton from '@components/ActionButton';
 import { useState } from 'react';
-import DeletePromptDialog from './DeletePromptDialog';
+import PromptDialog from '@components/PromptDialog';
 
 interface IRowConsultation {
   id: string;
@@ -19,15 +19,20 @@ const mockRows: IRowConsultation[] = [
   },
 ];
 
-const ActionButtons = (onDelete: ()=> any) => (params: GridCellParams) => (
+interface ActionButtonsProps {
+  onDelete: ()=> any;
+  onRecover: ()=> any
+}
+
+const ActionButtons = ({ onDelete, onRecover }: ActionButtonsProps) => (params: GridCellParams) => (
   <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
     <ActionButton label="Lihat" to={`/admin/consultation/${params.getValue('id')}`} />
     <ActionButton label="Hapus" onClick={onDelete} noLink />
-    <ActionButton label="Kembalikan" onClick={onDelete} noLink />
+    <ActionButton label="Kembalikan" onClick={onRecover} noLink />
   </div>
 );
 
-const columns = (onDelete: ()=> any): GridColDef[] => ([
+const columns = ({ onDelete, onRecover }: ActionButtonsProps): GridColDef[] => ([
   { field: 'id', headerName: 'ID', hide: true },
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'title', headerName: 'Judul', flex: 1 },
@@ -39,15 +44,20 @@ const columns = (onDelete: ()=> any): GridColDef[] => ([
     sortable: false,
     filterable: false,
     disableColumnMenu: true,
-    renderCell: ActionButtons(onDelete),
+    renderCell: ActionButtons({ onDelete, onRecover }),
   },
 ]);
 
 const TrashArticleDataGrid = () => {
   const [openDeletePrompt, setOpenDeletePrompt] = useState(false);
+  const [openRecoverPrompt, setOpenRecoverPrompt] = useState(false);
 
   const handleDelete = () => {
     setOpenDeletePrompt(true);
+  };
+
+  const handleRecover = () => {
+    setOpenRecoverPrompt(true);
   };
 
   return (
@@ -55,13 +65,21 @@ const TrashArticleDataGrid = () => {
       <DataGrid
         autoHeight
         rows={mockRows}
-        columns={columns(handleDelete)}
+        columns={columns({ onDelete: handleDelete, onRecover: handleRecover })}
         pageSize={20}
         checkboxSelection={false}
       />
-      <DeletePromptDialog
+      <PromptDialog
         open={openDeletePrompt}
         handleClose={() => { setOpenDeletePrompt(false); }}
+        title="Anda yakin untuk menghapus artikel?"
+        content="Artikel yang sudah dihapus tidak bisa dikembalikan."
+      />
+      <PromptDialog
+        open={openRecoverPrompt}
+        handleClose={() => { setOpenRecoverPrompt(false); }}
+        title="Anda yakin untuk mengembalikan artikel?"
+        content="Artikel akan dikembalikan pada tab aktif. Anda bisa mempublikasikannya kembali."
       />
     </>
   );
