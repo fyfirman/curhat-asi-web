@@ -24,7 +24,7 @@ export const privateRoutes: Route[] = [
     name: 'Konsultasi',
   },
   {
-    path: '',
+    path: '/article',
     name: 'Artikel',
     collapsible: true,
     subRoutes: [
