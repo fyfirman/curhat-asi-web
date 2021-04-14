@@ -14,6 +14,7 @@ interface IArticle extends TimeStamp {
   viewCount: number;
   creator: IUser;
   // TODO: fix this
+  rates: IArticleRate[];
   category: null;
   tags: string[];
 }
