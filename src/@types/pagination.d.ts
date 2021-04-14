@@ -1,4 +1,4 @@
-interface IPagination<U>{
+interface IPagination<U = any>{
   currentPage: number;
   data: U[];
   from: number;
