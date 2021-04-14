@@ -1,38 +1,27 @@
 import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
 import ActionButton from '@components/ActionButton';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PromptDialog from '@components/PromptDialog';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestArticleList } from '@redux/actions/articleListActions';
+import { RootState } from '@redux/reducers';
 
-interface IRowConsultation {
-  id: string;
+interface IRowTrashedArticle {
+  id: number;
   no: number;
   title: string;
   createdAt: string;
 }
 
-const mockRows: IRowConsultation[] = [
-  {
-    id: '1',
-    no: 1,
-    title: 'Cara menyusui dengan benar',
-    createdAt: '2021-12-13 11:21:31',
-  },
-];
-
 interface ActionButtonsProps {
-  onDelete: ()=> any;
   onRecover: ()=> any
 }
 
-const ActionButtons = ({ onDelete, onRecover }: ActionButtonsProps) => (params: GridCellParams) => (
-  <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
-    <ActionButton label="Lihat" to={`/admin/consultation/${params.getValue('id')}`} />
-    <ActionButton label="Hapus" onClick={onDelete} noLink />
-    <ActionButton label="Kembalikan" onClick={onRecover} noLink />
-  </div>
+const ActionButtons = ({ onRecover }: ActionButtonsProps) => (_params: GridCellParams) => (
+  <ActionButton label="Kembalikan" onClick={onRecover} noLink />
 );
 
-const columns = ({ onDelete, onRecover }: ActionButtonsProps): GridColDef[] => ([
+const columns = ({ onRecover }: ActionButtonsProps): GridColDef[] => ([
   { field: 'id', headerName: 'ID', hide: true },
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'title', headerName: 'Judul', flex: 1 },
@@ -44,17 +33,30 @@ const columns = ({ onDelete, onRecover }: ActionButtonsProps): GridColDef[] => (
     sortable: false,
     filterable: false,
     disableColumnMenu: true,
-    renderCell: ActionButtons({ onDelete, onRecover }),
+    renderCell: ActionButtons({ onRecover }),
   },
 ]);
 
 const TrashArticleDataGrid = () => {
-  const [openDeletePrompt, setOpenDeletePrompt] = useState(false);
   const [openRecoverPrompt, setOpenRecoverPrompt] = useState(false);
 
-  const handleDelete = () => {
-    setOpenDeletePrompt(true);
-  };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(requestArticleList('trash'));
+  }, []);
+
+  const { payload, isLoading } = useSelector((state:RootState) => state.articleList);
+
+  const rows = useMemo(
+    () => payload.data.map((article, index): IRowTrashedArticle => ({
+      id: article.id,
+      no: index + 1,
+      title: article.title,
+      createdAt: article.createdAt,
+    })),
+    [payload],
+  );
 
   const handleRecover = () => {
     setOpenRecoverPrompt(true);
@@ -64,16 +66,11 @@ const TrashArticleDataGrid = () => {
     <>
       <DataGrid
         autoHeight
-        rows={mockRows}
-        columns={columns({ onDelete: handleDelete, onRecover: handleRecover })}
+        rows={rows}
+        columns={columns({ onRecover: handleRecover })}
         pageSize={20}
         checkboxSelection={false}
-      />
-      <PromptDialog
-        open={openDeletePrompt}
-        handleClose={() => { setOpenDeletePrompt(false); }}
-        title="Anda yakin untuk menghapus artikel?"
-        content="Artikel yang sudah dihapus tidak bisa dikembalikan."
+        loading={isLoading}
       />
       <PromptDialog
         open={openRecoverPrompt}

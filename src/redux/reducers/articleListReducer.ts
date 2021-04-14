@@ -27,7 +27,7 @@ const articleListReducer = (
   switch (type) {
     case articleListActionTypes.FETCH_ARTICLE_LIST:
       return {
-        ...state,
+        ...initialState,
         isLoading: true,
       };
     case articleListActionTypes.FETCH_ARTICLE_LIST_SUCCESS:
