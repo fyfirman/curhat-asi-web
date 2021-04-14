@@ -5,6 +5,7 @@ import { makeStyles, Tabs, Theme } from '@material-ui/core';
 import ContentLayout from '@components/ContentLayout';
 import Tab from '@components/Tab';
 import TabPanel from '@components/TabPanel';
+import ArticleRatingDataGrid from './components/ArticleRatingDataGrid';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -51,7 +52,10 @@ const ArticleShow = () => {
         Test 2
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Test 3
+        <span>Rata-rata penilaian : 4.24</span>
+        <br />
+        <span>Jumlah yang menilai : 45 orang</span>
+        <ArticleRatingDataGrid />
       </TabPanel>
     </ContentLayout>
   );
