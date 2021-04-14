@@ -1,4 +1,4 @@
-interface IArticleRates extends TimeStamp {
+interface IArticleRate extends TimeStamp {
   id: number;
   articleId: IArticle['id'];
   userId: IUser['id'];
