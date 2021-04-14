@@ -10,6 +10,7 @@ import Tab from '@components/Tab';
 import TabPanel from '@components/TabPanel';
 import ActiveArticleDataGrid from './components/ActiveArticleDataGrid';
 import TrashArticleDataGrid from './components/TrashArticleDataGrid';
+import DeletePromptDialog from './components/DeletePromptDialog';
 
 const useStyle = makeStyles((theme: Theme) => ({
   header: {
@@ -26,6 +27,8 @@ const ArticleList = () => {
   const classes = useStyle();
 
   const [value, setValue] = useState(0);
+
+  const [openDeletePrompt, setOpenDeletePrompt] = useState(false);
 
   const { level } = useSelector((state: RootState) => state.selfUser.payload.userGroup);
 
@@ -58,12 +61,16 @@ const ArticleList = () => {
           <Tab label="Sampah" index={1} />
         </Tabs>
         <TabPanel value={value} index={0}>
-          <ActiveArticleDataGrid />
+          <ActiveArticleDataGrid onDelete={() => { setOpenDeletePrompt(true); }} />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <TrashArticleDataGrid />
         </TabPanel>
       </div>
+      <DeletePromptDialog
+        open={openDeletePrompt}
+        handleClose={() => { setOpenDeletePrompt(false); }}
+      />
     </>
   );
 };

@@ -1,5 +1,5 @@
-import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
-import ActionButton from '@components/ActionButton';
+import { DataGrid, GridColDef } from '@material-ui/data-grid';
+import { Button } from '@material-ui/core';
 
 interface IRowConsultation {
   id: string;
@@ -21,14 +21,28 @@ const mockRows: IRowConsultation[] = [
   },
 ];
 
-const ActionButtons = (params: GridCellParams) => (
+const ActionButton = ({ label, onClick }: { label:string, onClick: () => any }) => {
+  return (
+    <Button
+      variant="contained"
+      color="secondary"
+      size="small"
+      disableElevation
+      onClick={onClick}
+    >
+      {label}
+    </Button>
+  );
+};
+
+const ActionButtons = (onDelete: ()=> any) => () => (
   <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
-    <ActionButton label="Lihat" to={`/admin/consultation/${params.getValue('id')}`} />
-    <ActionButton label="Hapus" to={`/admin/consultation/${params.getValue('id')}`} />
+    <ActionButton label="Lihat" onClick={onDelete} />
+    <ActionButton label="Hapus" onClick={onDelete} />
   </div>
 );
 
-const columns: GridColDef[] = [
+const columns = (onDelete: ()=> any): GridColDef[] => ([
   { field: 'id', headerName: 'ID', hide: true },
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'title', headerName: 'Judul', flex: 1 },
@@ -42,16 +56,16 @@ const columns: GridColDef[] = [
     sortable: false,
     filterable: false,
     disableColumnMenu: true,
-    renderCell: ActionButtons,
+    renderCell: ActionButtons(onDelete),
   },
-];
+]);
 
-const ActiveArticleDataGrid = () => {
+const ActiveArticleDataGrid = ({ onDelete }:{ onDelete: ()=> any }) => {
   return (
     <DataGrid
       autoHeight
       rows={mockRows}
-      columns={columns}
+      columns={columns(onDelete)}
       pageSize={20}
       checkboxSelection={false}
     />
