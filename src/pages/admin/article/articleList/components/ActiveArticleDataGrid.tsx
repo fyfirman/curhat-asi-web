@@ -1,7 +1,7 @@
 import { DataGrid, GridColDef } from '@material-ui/data-grid';
-import { Button } from '@material-ui/core';
 import { useState } from 'react';
 import PromptDialog from '@components/PromptDialog';
+import ActionButton from '@components/ActionButton';
 
 interface IRowConsultation {
   id: string;
@@ -23,24 +23,10 @@ const mockRows: IRowConsultation[] = [
   },
 ];
 
-const ActionButton = ({ label, onClick }: { label:string, onClick: () => any }) => {
-  return (
-    <Button
-      variant="contained"
-      color="secondary"
-      size="small"
-      disableElevation
-      onClick={onClick}
-    >
-      {label}
-    </Button>
-  );
-};
-
 const ActionButtons = (onDelete: ()=> any) => () => (
   <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
-    <ActionButton label="Lihat" onClick={onDelete} />
-    <ActionButton label="Hapus" onClick={onDelete} />
+    <ActionButton label="Lihat" to="" />
+    <ActionButton label="Hapus" onClick={onDelete} noLink />
   </div>
 );
 
