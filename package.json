@@ -26,6 +26,7 @@
     "formik-material-ui": "^3.0.1",
     "formik-material-ui-lab": "^0.0.8",
     "formik-material-ui-pickers": "^0.0.12",
+    "html-react-parser": "^1.2.5",
     "jss": "^10.6.0",
     "jss-plugin-extend": "^10.6.0",
     "react": "^17.0.1",
