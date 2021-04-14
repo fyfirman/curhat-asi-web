@@ -1,4 +1,4 @@
-import { DataGrid, GridColDef } from '@material-ui/data-grid';
+import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
 import { useEffect, useMemo, useState } from 'react';
 import PromptDialog from '@components/PromptDialog';
 import ActionButton from '@components/ActionButton';
@@ -15,9 +15,9 @@ interface IRowActiveArticle {
   status: string;
 }
 
-const ActionButtons = (onDelete: ()=> any) => () => (
+const ActionButtons = (onDelete: ()=> any) => (params: GridCellParams) => (
   <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
-    <ActionButton label="Lihat" to="" />
+    <ActionButton label="Lihat" to={`/admin/article/show/${params.getValue('id')}`} />
     <ActionButton label="Hapus" onClick={onDelete} noLink />
   </div>
 );
