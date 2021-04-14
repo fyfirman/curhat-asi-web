@@ -6,6 +6,7 @@ import ContentLayout from '@components/ContentLayout';
 import Tab from '@components/Tab';
 import TabPanel from '@components/TabPanel';
 import ArticleRatingDataGrid from './components/ArticleRatingDataGrid';
+import ArticleReaderDataGrid from './components/ArticleReaderDataGrid';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -42,16 +43,19 @@ const ArticleShow = () => {
         onChange={handleChange}
       >
         <Tab label="Pratinjau" index={0} />
-        <Tab label="Pembaca" index={1} />
-        <Tab label="Penilaian" index={2} />
+        {/* <Tab label="Pembaca" index={1} /> */}
+        <Tab label="Penilaian" index={1} />
       </Tabs>
       <TabPanel value={value} index={0}>
         Preview
       </TabPanel>
+      {/* <TabPanel value={value} index={1}>
+        <span>Jumlah kali dibaca : 323 kali</span>
+        <br />
+        <span>Jumlah pembaca : 45 orang</span>
+        <ArticleReaderDataGrid />
+      </TabPanel> */}
       <TabPanel value={value} index={1}>
-        Test 2
-      </TabPanel>
-      <TabPanel value={value} index={2}>
         <span>Rata-rata penilaian : 4.24</span>
         <br />
         <span>Jumlah yang menilai : 45 orang</span>
