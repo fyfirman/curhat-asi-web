@@ -1,30 +1,19 @@
 import { DataGrid, GridColDef } from '@material-ui/data-grid';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PromptDialog from '@components/PromptDialog';
 import ActionButton from '@components/ActionButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestArticleList } from '@redux/actions/articleListActions';
 import { RootState } from '@redux/reducers';
 
-interface IRowConsultation {
-  id: string;
+interface IRowActiveArticle {
+  id: number;
   no: number;
   title: string;
   createdAt: string;
-  publishedAt: string;
+  postedAt: string | null;
   status: string;
 }
-
-const mockRows: IRowConsultation[] = [
-  {
-    id: '1',
-    no: 1,
-    title: 'Cara menyusui dengan benar',
-    createdAt: '2021-12-13 11:21:31',
-    publishedAt: '2021-12-13 11:21:31',
-    status: 'Dipublikasikan',
-  },
-];
 
 const ActionButtons = (onDelete: ()=> any) => () => (
   <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
@@ -39,7 +28,7 @@ const columns = (onDelete: ()=> any): GridColDef[] => ([
   { field: 'title', headerName: 'Judul', flex: 1 },
   { field: 'createdAt', headerName: 'Dibuat pada', width: 200 },
   { field: 'status', headerName: 'Status', width: 128 },
-  { field: 'publishedAt', headerName: 'Dipublikasikan pada', width: 200 },
+  { field: 'postedAt', headerName: 'Dipublikasikan pada', width: 200 },
   {
     field: 'action',
     headerName: 'Aksi',
@@ -58,10 +47,21 @@ const ActiveArticleDataGrid = () => {
 
   useEffect(() => {
     dispatch(requestArticleList());
-    console.log(payload);
   }, []);
 
   const { payload, isLoading } = useSelector((state:RootState) => state.articleList);
+
+  const rows = useMemo(
+    () => payload.data.map((article, index): IRowActiveArticle => ({
+      id: article.id,
+      no: index + 1,
+      title: article.title,
+      createdAt: article.createdAt,
+      postedAt: article.postedAt ?? '-',
+      status: article.status,
+    })),
+    [payload],
+  );
 
   const handleDelete = () => {
     setOpenDeletePrompt(true);
@@ -71,7 +71,7 @@ const ActiveArticleDataGrid = () => {
     <>
       <DataGrid
         autoHeight
-        rows={mockRows}
+        rows={rows}
         columns={columns(handleDelete)}
         pageSize={20}
         checkboxSelection={false}

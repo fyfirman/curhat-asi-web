@@ -1,7 +1,7 @@
 interface IArticle extends TimeStamp {
   title: string;
   content: string;
-  create_by: IUser['id'];
+  createBy: IUser['id'];
   id: number;
   status: string;
   showApiUrl: string;
@@ -10,4 +10,10 @@ interface IArticle extends TimeStamp {
   deleteUrl: string;
   restoreUrl: string;
   averageRating: string | null;
+  postedAt: string | null;
+  viewCount: number;
+  creator: IUser;
+  // TODO: fix this
+  category: null;
+  tags: string[];
 }
