@@ -1,5 +1,7 @@
 import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
 import ActionButton from '@components/ActionButton';
+import { useState } from 'react';
+import DeletePromptDialog from './DeletePromptDialog';
 
 interface IRowConsultation {
   id: string;
@@ -17,15 +19,15 @@ const mockRows: IRowConsultation[] = [
   },
 ];
 
-const ActionButtons = (params: GridCellParams) => (
+const ActionButtons = (onDelete: ()=> any) => (params: GridCellParams) => (
   <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
     <ActionButton label="Lihat" to={`/admin/consultation/${params.getValue('id')}`} />
-    <ActionButton label="Hapus" to={`/admin/consultation/${params.getValue('id')}`} />
-    <ActionButton label="Kembalikan" to={`/admin/consultation/${params.getValue('id')}`} />
+    <ActionButton label="Hapus" onClick={onDelete} noLink />
+    <ActionButton label="Kembalikan" onClick={onDelete} noLink />
   </div>
 );
 
-const columns: GridColDef[] = [
+const columns = (onDelete: ()=> any): GridColDef[] => ([
   { field: 'id', headerName: 'ID', hide: true },
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'title', headerName: 'Judul', flex: 1 },
@@ -37,19 +39,31 @@ const columns: GridColDef[] = [
     sortable: false,
     filterable: false,
     disableColumnMenu: true,
-    renderCell: ActionButtons,
+    renderCell: ActionButtons(onDelete),
   },
-];
+]);
 
 const TrashArticleDataGrid = () => {
+  const [openDeletePrompt, setOpenDeletePrompt] = useState(false);
+
+  const handleDelete = () => {
+    setOpenDeletePrompt(true);
+  };
+
   return (
-    <DataGrid
-      autoHeight
-      rows={mockRows}
-      columns={columns}
-      pageSize={20}
-      checkboxSelection={false}
-    />
+    <>
+      <DataGrid
+        autoHeight
+        rows={mockRows}
+        columns={columns(handleDelete)}
+        pageSize={20}
+        checkboxSelection={false}
+      />
+      <DeletePromptDialog
+        open={openDeletePrompt}
+        handleClose={() => { setOpenDeletePrompt(false); }}
+      />
+    </>
   );
 };
 

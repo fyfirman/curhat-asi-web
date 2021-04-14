@@ -1,13 +1,19 @@
-import Button from '@components/LinkButton';
+import LinkButton from '@components/LinkButton';
+import { Button } from '@material-ui/core';
 
 interface ActionButtonProps {
-  to: string;
-  label: string
+  to?: string;
+  label: string;
+  noLink?: boolean;
+  onClick?: () => any;
 }
 
-const ActionButton = ({ to, label }: ActionButtonProps) => {
-  return (
-    <Button
+const ActionButton = (props: ActionButtonProps) => {
+  const {
+    to, label, noLink = false, onClick,
+  } = props;
+  return noLink && to ? (
+    <LinkButton
       to={to}
       variant="contained"
       color="secondary"
@@ -15,8 +21,19 @@ const ActionButton = ({ to, label }: ActionButtonProps) => {
       disableElevation
     >
       {label}
-    </Button>
-  );
+    </LinkButton>
+  )
+    : (
+      <Button
+        variant="contained"
+        color="secondary"
+        size="small"
+        disableElevation
+        onClick={onClick}
+      >
+        {label}
+      </Button>
+    );
 };
 
 export default ActionButton;
