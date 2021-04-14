@@ -1,5 +1,7 @@
 import { DataGrid, GridColDef } from '@material-ui/data-grid';
 import { Button } from '@material-ui/core';
+import { useState } from 'react';
+import DeletePromptDialog from './DeletePromptDialog';
 
 interface IRowConsultation {
   id: string;
@@ -60,15 +62,27 @@ const columns = (onDelete: ()=> any): GridColDef[] => ([
   },
 ]);
 
-const ActiveArticleDataGrid = ({ onDelete }:{ onDelete: ()=> any }) => {
+const ActiveArticleDataGrid = () => {
+  const [openDeletePrompt, setOpenDeletePrompt] = useState(false);
+
+  const handleDelete = () => {
+    setOpenDeletePrompt(true);
+  };
+
   return (
-    <DataGrid
-      autoHeight
-      rows={mockRows}
-      columns={columns(onDelete)}
-      pageSize={20}
-      checkboxSelection={false}
-    />
+    <>
+      <DataGrid
+        autoHeight
+        rows={mockRows}
+        columns={columns(handleDelete)}
+        pageSize={20}
+        checkboxSelection={false}
+      />
+      <DeletePromptDialog
+        open={openDeletePrompt}
+        handleClose={() => { setOpenDeletePrompt(false); }}
+      />
+    </>
   );
 };
 
