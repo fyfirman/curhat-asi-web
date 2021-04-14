@@ -8,5 +8,5 @@ interface getArticlesParams {
 export const getArticles = (params : getArticlesParams) => {
   const { status = 'all' } = params;
 
-  return get<IPagination>('api/users', Config.withToken({ params: { status } }));
+  return get<PayloadResponse<IPagination<IArticle>>>('api/users', Config.withToken({ params: { status } }));
 };

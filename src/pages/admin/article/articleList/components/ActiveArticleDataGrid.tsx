@@ -1,7 +1,10 @@
 import { DataGrid, GridColDef } from '@material-ui/data-grid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PromptDialog from '@components/PromptDialog';
 import ActionButton from '@components/ActionButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestArticleList } from '@redux/actions/articleListActions';
+import { RootState } from '@redux/reducers';
 
 interface IRowConsultation {
   id: string;
@@ -51,6 +54,15 @@ const columns = (onDelete: ()=> any): GridColDef[] => ([
 const ActiveArticleDataGrid = () => {
   const [openDeletePrompt, setOpenDeletePrompt] = useState(false);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(requestArticleList());
+    console.log(payload);
+  }, []);
+
+  const { payload, isLoading } = useSelector((state:RootState) => state.articleList);
+
   const handleDelete = () => {
     setOpenDeletePrompt(true);
   };
@@ -63,6 +75,7 @@ const ActiveArticleDataGrid = () => {
         columns={columns(handleDelete)}
         pageSize={20}
         checkboxSelection={false}
+        loading={isLoading}
       />
       <PromptDialog
         open={openDeletePrompt}
