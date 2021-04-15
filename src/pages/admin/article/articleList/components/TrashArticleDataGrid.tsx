@@ -3,7 +3,7 @@ import ActionButton from '@components/ActionButton';
 import { useEffect, useMemo, useState } from 'react';
 import PromptDialog from '@components/PromptDialog';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestArticleList } from '@redux/actions/articleListActions';
+import { requestArticleList, restoreDeletedArticle } from '@redux/actions/articleListActions';
 import { RootState } from '@redux/reducers';
 
 interface IRowTrashedArticle {
@@ -14,11 +14,11 @@ interface IRowTrashedArticle {
 }
 
 interface ActionButtonsProps {
-  onRecover: ()=> any
+  onRecover: (id: IArticle['id']) => any
 }
 
-const ActionButtons = ({ onRecover }: ActionButtonsProps) => (_params: GridCellParams) => (
-  <ActionButton label="Kembalikan" onClick={onRecover} noLink />
+const ActionButtons = ({ onRecover }: ActionButtonsProps) => (params: GridCellParams) => (
+  <ActionButton label="Kembalikan" onClick={() => onRecover(params.getValue('id') as number)} noLink />
 );
 
 const columns = ({ onRecover }: ActionButtonsProps): GridColDef[] => ([
@@ -39,6 +39,7 @@ const columns = ({ onRecover }: ActionButtonsProps): GridColDef[] => ([
 
 const TrashArticleDataGrid = () => {
   const [openRecoverPrompt, setOpenRecoverPrompt] = useState(false);
+  const [selectedId, setSelectedId] = useState(-1);
 
   const dispatch = useDispatch();
 
@@ -58,8 +59,13 @@ const TrashArticleDataGrid = () => {
     [payload],
   );
 
-  const handleRecover = () => {
+  const handleRecover = (id: IArticle['id']) => {
+    setSelectedId(id);
     setOpenRecoverPrompt(true);
+  };
+
+  const handleRecoverPrompt = () => {
+    dispatch(restoreDeletedArticle(selectedId));
   };
 
   return (
@@ -75,6 +81,7 @@ const TrashArticleDataGrid = () => {
       <PromptDialog
         open={openRecoverPrompt}
         onClose={() => { setOpenRecoverPrompt(false); }}
+        onClickYes={handleRecoverPrompt}
         title="Anda yakin untuk mengembalikan artikel?"
         content="Artikel akan dikembalikan pada tab aktif. Anda bisa mempublikasikannya kembali."
       />

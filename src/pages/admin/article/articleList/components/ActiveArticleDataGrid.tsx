@@ -3,9 +3,8 @@ import { useEffect, useMemo, useState } from 'react';
 import PromptDialog from '@components/PromptDialog';
 import ActionButton from '@components/ActionButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestArticleList } from '@redux/actions/articleListActions';
+import { requestArticleList, deleteArticle } from '@redux/actions/articleListActions';
 import { RootState } from '@redux/reducers';
-import { deleteArticle } from '@services/ArticleServices';
 
 interface IRowActiveArticle {
   id: number;
@@ -43,7 +42,7 @@ const columns = (onDelete: (id: IArticle['id']) => any): GridColDef[] => ([
 
 const ActiveArticleDataGrid = () => {
   const [openDeletePrompt, setOpenDeletePrompt] = useState(false);
-  const [selected, setSelected] = useState(-1);
+  const [selectedId, setSelectedId] = useState(-1);
 
   const dispatch = useDispatch();
 
@@ -67,7 +66,7 @@ const ActiveArticleDataGrid = () => {
 
   const handleDelete = (id: IArticle['id']) => {
     setOpenDeletePrompt(true);
-    setSelected(id);
+    setSelectedId(id);
   };
 
   return (
@@ -83,7 +82,7 @@ const ActiveArticleDataGrid = () => {
       <PromptDialog
         open={openDeletePrompt}
         onClose={() => { setOpenDeletePrompt(false); }}
-        onClickYes={() => { dispatch(deleteArticle(selected)); }}
+        onClickYes={() => { dispatch(deleteArticle(selectedId)); }}
         title="Anda yakin untuk menghapus artikel?"
         content="Artikel yang sudah dihapus akan muncul di tab sampah."
       />

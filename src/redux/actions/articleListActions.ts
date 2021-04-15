@@ -2,7 +2,7 @@ import * as ArticleServices from '@services/ArticleServices';
 import articleListActionTypes from '@redux/constants/articleListActionTypes';
 import { AppThunk } from '@utils/AppThunk';
 
-export const requestArticleList = (status?: string) => async (dispatch: DispatchType) => {
+export const requestArticleList = (status?: string):AppThunk<Promise<void>> => async (dispatch) => {
   try {
     dispatch({ type: articleListActionTypes.FETCH_ARTICLE_LIST });
     const response = await ArticleServices.getArticles({ status });
@@ -21,6 +21,19 @@ export const deleteArticle = (id: IArticle['id']):AppThunk<Promise<void>> => asy
     await ArticleServices.deleteArticle(id);
 
     dispatch(requestArticleList());
+  } catch (error) {
+    // TODO:  dispatch() error;
+    // eslint-disable-next-line no-alert
+    alert(JSON.stringify(error.response));
+    dispatch(requestArticleListFailure(error.response));
+  }
+};
+
+export const restoreDeletedArticle = (id: IArticle['id']):AppThunk<Promise<void>> => async (dispatch) => {
+  try {
+    await ArticleServices.restoreDeletedArticle(id);
+
+    dispatch(requestArticleList('trash'));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert
