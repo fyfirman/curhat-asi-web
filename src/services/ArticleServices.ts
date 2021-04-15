@@ -17,4 +17,4 @@ export const getArticle = (id : string) => get<PayloadResponse<IArticle>>(`api/r
 
 export const deleteArticle = (id: IArticle['id']) => destroy(`api/restricted/articles/${id}`, Config.withToken());
 
-export const restoreDeletedArticle = (id: IArticle['id']) => patch(`api/restricted/articles/${id}/restore`, Config.withToken());
+export const restoreDeletedArticle = (id: IArticle['id']) => patch(`api/restricted/articles/${id}/restore`, undefined, Config.withToken());
