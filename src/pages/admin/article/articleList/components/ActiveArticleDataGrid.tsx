@@ -5,6 +5,7 @@ import ActionButton from '@components/ActionButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestArticleList } from '@redux/actions/articleListActions';
 import { RootState } from '@redux/reducers';
+import { deleteArticle } from '@services/ArticleServices';
 
 interface IRowActiveArticle {
   id: number;
@@ -15,14 +16,14 @@ interface IRowActiveArticle {
   status: string;
 }
 
-const ActionButtons = (onDelete: ()=> any) => (params: GridCellParams) => (
+const ActionButtons = (onDelete: (id: IArticle['id']) => any) => (params: GridCellParams) => (
   <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
     <ActionButton label="Lihat" to={`/admin/article/show/${params.getValue('id')}`} />
-    <ActionButton label="Hapus" onClick={onDelete} noLink />
+    <ActionButton label="Hapus" onClick={() => onDelete(params.getValue('id') as number)} noLink />
   </div>
 );
 
-const columns = (onDelete: ()=> any): GridColDef[] => ([
+const columns = (onDelete: (id: IArticle['id']) => any): GridColDef[] => ([
   { field: 'id', headerName: 'ID', hide: true },
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'title', headerName: 'Judul', flex: 1 },
@@ -42,6 +43,7 @@ const columns = (onDelete: ()=> any): GridColDef[] => ([
 
 const ActiveArticleDataGrid = () => {
   const [openDeletePrompt, setOpenDeletePrompt] = useState(false);
+  const [selected, setSelected] = useState(-1);
 
   const dispatch = useDispatch();
 
@@ -63,8 +65,9 @@ const ActiveArticleDataGrid = () => {
     [payload],
   );
 
-  const handleDelete = () => {
+  const handleDelete = (id: IArticle['id']) => {
     setOpenDeletePrompt(true);
+    setSelected(id);
   };
 
   return (
@@ -79,7 +82,8 @@ const ActiveArticleDataGrid = () => {
       />
       <PromptDialog
         open={openDeletePrompt}
-        handleClose={() => { setOpenDeletePrompt(false); }}
+        onClose={() => { setOpenDeletePrompt(false); }}
+        onClickYes={() => { dispatch(deleteArticle(selected)); }}
         title="Anda yakin untuk menghapus artikel?"
         content="Artikel yang sudah dihapus akan muncul di tab sampah."
       />
