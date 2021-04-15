@@ -10,7 +10,7 @@ const post = <T>(path: string, data?: any, config?: AxiosRequestConfig) => {
     if (config) {
       axios.post<T>(
         `${BASE_URL}/${path}`,
-        data ? getFormData(snakefy(data)) : {},
+        data ? getFormData(snakefy(data)) : new FormData(),
         { ...config, headers: config?.headers },
       ).then(
         (result) => {
@@ -23,7 +23,7 @@ const post = <T>(path: string, data?: any, config?: AxiosRequestConfig) => {
     } else {
       axios.post<T>(
         `${BASE_URL}/${path}`,
-        data ? getFormData(snakefy(data)) : {},
+        data ? getFormData(snakefy(data)) : new FormData(),
       ).then(
         (result) => {
           resolve(camelize(result.data));
