@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
+import { Helmet } from 'react-helmet';
 import {
   ThemeProvider, jssPreset, StylesProvider,
 } from '@material-ui/core/styles';
@@ -18,6 +19,11 @@ const jss = create({
 export default function App() {
   return (
     <StylesProvider jss={jss}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Curhat ASI</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <ThemeProvider theme={theme}>
         <PersistGate
           loading={<div>Mohon tunggu</div>}
