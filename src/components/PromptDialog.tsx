@@ -4,7 +4,8 @@ import {
 
 interface PromptDialogProps {
   open: boolean;
-  handleClose: () => void;
+  onClose: () => void;
+  onClickYes?: () => any;
   title: string;
   content?: string;
   yesLabel?: string;
@@ -13,13 +14,20 @@ interface PromptDialogProps {
 
 const PromptDialog = (props: PromptDialogProps) => {
   const {
-    open, handleClose, title, content, yesLabel = 'Yakin', noLabel = 'Batalkan',
+    open, onClose, title, content, onClickYes, yesLabel = 'Yakin', noLabel = 'Batalkan',
   } = props;
+
+  const handleYes = () => {
+    if (onClickYes) {
+      onClickYes();
+    }
+    onClose();
+  };
 
   return (
     <Dialog
       open={open}
-      onClose={handleClose}
+      onClose={onClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
@@ -30,10 +38,10 @@ const PromptDialog = (props: PromptDialogProps) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={onClose} color="primary">
           {noLabel}
         </Button>
-        <Button onClick={handleClose} color="primary" autoFocus>
+        <Button onClick={handleYes} color="primary" autoFocus>
           {yesLabel}
         </Button>
       </DialogActions>

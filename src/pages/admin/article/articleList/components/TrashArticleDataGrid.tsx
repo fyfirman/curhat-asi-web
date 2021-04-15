@@ -74,7 +74,7 @@ const TrashArticleDataGrid = () => {
       />
       <PromptDialog
         open={openRecoverPrompt}
-        handleClose={() => { setOpenRecoverPrompt(false); }}
+        onClose={() => { setOpenRecoverPrompt(false); }}
         title="Anda yakin untuk mengembalikan artikel?"
         content="Artikel akan dikembalikan pada tab aktif. Anda bisa mempublikasikannya kembali."
       />

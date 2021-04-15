@@ -86,7 +86,7 @@ const ArticleCategoriesDataGrid = () => {
       />
       <PromptDialog
         open={openDeleteCategory}
-        handleClose={() => { setOpenDeleteCategory(false); }}
+        onClose={() => { setOpenDeleteCategory(false); }}
         title="Anda yakin untuk menghapus kategori?"
         content="Artikel dengan kategori tersebut akan kehilangan kategori."
       />
