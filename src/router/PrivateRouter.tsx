@@ -84,6 +84,7 @@ const Admin = () => {
                     component={ConsultationRoom}
                   />
                   <Route path={`${routeName}/article/add`} component={CreateArticle} />
+                  <Route path={`${routeName}/article/edit/:id`} component={CreateArticle} />
                   <Route path={`${routeName}/article/show/:id`} component={ArticleShow} />
                   <Redirect from={`${routeName}/article`} to={`${routeName}/article/list`} />
                   <Redirect from={routeName} to={`${routeName}/user`} />

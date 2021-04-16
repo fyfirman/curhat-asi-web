@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import Breadcrumbs from '@components/CustomBreadcrumbs';
 import { makeStyles, Theme } from '@material-ui/core';
 import Container from '@components/Container';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
+import { requestArticle } from '@redux/actions/articleShowActions';
 import CreateArticleForm from './components/CreateArticleForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -16,11 +17,19 @@ const useStyles = makeStyles((theme: Theme) => ({
 const CreateArticle = () => {
   const classes = useStyles();
 
-  const { isSubmitted } = useSelector((state: RootState) => state.addUser);
+  const dispatch = useDispatch();
 
+  const { url } = useRouteMatch();
+  const { id } = useParams<{ id: string }>();
   const history = useHistory();
 
+  const { isSubmitted } = useSelector((state: RootState) => state.addUser);
+
   useEffect(() => {
+    if (url.includes('edit')) {
+      console.log(id);
+      dispatch(requestArticle(id));
+    }
     if (isSubmitted) {
       history.push('/admin/article');
     }
