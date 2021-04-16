@@ -46,6 +46,9 @@ const ArticleShow = () => {
           <Tab label="Statistik" index={1} />
         </Tabs>
         <TabPanel value={value} index={0}>
+          <div>
+            <span>{`Dapat dilihat oleh : ${payload.articleScopes.map((scope) => scope.name).join(', ')}`}</span>
+          </div>
           {parse(payload.content)}
         </TabPanel>
         <TabPanel value={value} index={1}>
