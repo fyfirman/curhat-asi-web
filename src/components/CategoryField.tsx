@@ -1,4 +1,4 @@
-import { MenuItem } from '@material-ui/core';
+import { FormControl, InputLabel, MenuItem } from '@material-ui/core';
 import { Select } from 'formik-material-ui';
 import Field from '@components/CustomField';
 
@@ -23,14 +23,18 @@ const CategoryField = ({ label = 'Kategori', name = 'category' } : CategoryField
     <MenuItem key={index} value={menu.value}>{menu.label}</MenuItem>));
 
   return (
-    <Field
-      component={Select}
-      name={name}
-      label={label}
-      autoFocus
-    >
-      {renderUserGroupMenu()}
-    </Field>
+    <FormControl>
+      <InputLabel>{label}</InputLabel>
+      <Field
+        component={Select}
+        name={name}
+        label={label}
+        autoFocus
+      >
+        {renderUserGroupMenu()}
+      </Field>
+    </FormControl>
+
   );
 };
 
