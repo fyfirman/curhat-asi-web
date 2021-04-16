@@ -5,13 +5,12 @@ import * as yup from 'yup';
 import { Form, Formik } from 'formik';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import { requestAddUser } from '@redux/actions/addUserActions';
-import { IUserRequest } from '@services/UserServices';
-import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import RichEditor from '@components/RichEditor';
 import { SimpleFileUpload } from 'formik-material-ui';
 import Field from '@components/CustomField';
+import { IArticleRequest } from '@services/ArticleServices';
+import UserGroup from '@constants/UserGroupEnum';
 import TagsField from './TagsField';
 import CategoryField from '../../../../../components/CategoryField';
 import AccessByField from './AccessByField';
@@ -20,80 +19,66 @@ const useStyles = makeStyles((theme: Theme) => ({
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: theme.spacing(3),
+    gap: theme.spacing(2),
   },
 }));
 
-interface AddUserFormValue {
-  userGroupId?: IUserGroup['id'];
-  phoneNumber: string;
-  pin: string;
-  name: string;
-  pob: string;
-  dob: Date;
-  province?: IProvince;
-  district?: IDistrict;
-  subDistrict?: ISubDistrict;
-  village?: IVillage;
+interface ArticleFormValues {
+  title: string;
+  category?: IArticleCategory;
+  scopes: { [key: string] : boolean };
+  content: string;
 }
 
 const validationSchema = yup.object({
-  userGroupId: yup.string().required(),
-  phoneNumber: yup
-    .string()
-    .required('Nomor Handphone harus diisi'),
-  pin: yup
-    .string()
-    .matches(/^[0-9]+$/, 'PIN harus angka')
-    .min(6, 'PIN harus 6 digit')
-    .max(6, 'PIN harus 6 digit')
-    .required('PIN harus diisi'),
-  name: yup
-    .string()
-    .required('Nama harus diisi'),
-  pob: yup
-    .string()
-    .required('Tempat lahir harus diisi'),
-  dob: yup
-    .date()
-    .required('Tanggal lahir harus diisi'),
-  province: yup.object().required('Provinsi harus diisi'),
-  district: yup.object().required('Kota/kabupaten harus diisi'),
-  subDistrict: yup.object().required('Kecamatan harus diisi'),
-  village: yup.object().required('Kelurahan/desa harus diisi'),
+  title: yup.string().required(),
+  content: yup.string().required(),
 });
 
 const AddUserForm = () => {
-  // eslint-disable-next-line no-underscore-dangle
   const classes = useStyles();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useDispatch();
+
+  const initialValues : ArticleFormValues = {
+    title: '',
+    category: undefined,
+    scopes: {
+      [UserGroup.Cadre]: false,
+      [UserGroup.Midwife]: false,
+      [UserGroup.Conselor]: false,
+      [UserGroup.DoctorGeneral]: false,
+      [UserGroup.DoctorSpecialist]: false,
+      [UserGroup.Mommies]: false,
+    },
+    content: '',
+  };
 
   const handleEditorChange = (content: any) => {
     // eslint-disable-next-line no-console
     console.log('Content was updated:', content);
   };
 
-  const initialValues : AddUserFormValue = {
-    phoneNumber: '',
-    pin: '',
-    name: '',
-    pob: '',
-    dob: new Date(1970, 0, 1),
-  };
-
-  const onSubmit = async (values: AddUserFormValue) => {
-    const data : IUserRequest = {
-      userGroupId: values.userGroupId || '',
-      name: values.name,
-      phoneNumber: values.phoneNumber,
-      pin: values.pin,
-      pob: values.pob,
-      dob: format(values.dob, 'yyyy-MM-dd'),
-      villageId: values.village?.id || '',
+  const onSubmit = async (values: ArticleFormValues) => {
+    const data : IArticleRequest = {
+      title: values.title,
+      content: values.content,
+      articleCategoryId: values.category?.id,
+      scopes: Object.keys(values.scopes)
+        .filter((key) => values.scopes[key])
+        .map((key) => `${key}`),
     };
 
-    dispatch(requestAddUser(data));
+    console.log(data);
+    // dispatch(requestAddUser(data));
+  };
+
+  /**
+   * DEBUGGING
+   */
+  const handleChange = (values: any) => {
+    console.log(values);
   };
 
   return (
@@ -102,6 +87,7 @@ const AddUserForm = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
+        validate={handleChange}
       >
         <Form className={classes.form}>
           <Field
