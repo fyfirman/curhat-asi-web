@@ -16,8 +16,9 @@ interface IRowActiveArticle {
 }
 
 const ActionButtons = (onDelete: (id: IArticle['id']) => any) => (params: GridCellParams) => (
-  <div style={{ display: 'flex', flex: 1, justifyContent: 'space-around' }}>
+  <div style={{ display: 'flex', flex: 1, justifyContent: 'space-between' }}>
     <ActionButton label="Lihat" to={`/admin/article/show/${params.getValue('id')}`} />
+    <ActionButton label="Edit" to={`/admin/article/edit/${params.getValue('id')}`} />
     <ActionButton label="Hapus" onClick={() => onDelete(params.getValue('id') as number)} noLink />
   </div>
 );
@@ -32,7 +33,7 @@ const columns = (onDelete: (id: IArticle['id']) => any): GridColDef[] => ([
   {
     field: 'action',
     headerName: 'Aksi',
-    width: 175,
+    width: 240,
     sortable: false,
     filterable: false,
     disableColumnMenu: true,
