@@ -1,5 +1,5 @@
 import {
-  Button, makeStyles, TextField, Theme,
+  Button, makeStyles, Theme,
 } from '@material-ui/core';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
@@ -7,10 +7,12 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { useDispatch } from 'react-redux';
 import RichEditor from '@components/RichEditor';
-import { SimpleFileUpload } from 'formik-material-ui';
+import { SimpleFileUpload, TextField } from 'formik-material-ui';
 import Field from '@components/CustomField';
 import { IArticleRequest } from '@services/ArticleServices';
 import UserGroup from '@constants/UserGroupEnum';
+import { useEffect, useState } from 'react';
+import { requestArticleCategories } from '@redux/actions/articleCategoriesActions';
 import TagsField from './TagsField';
 import CategoryField from '../../../../../components/CategoryField';
 import AccessByField from './AccessByField';
@@ -25,25 +27,30 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface ArticleFormValues {
   title: string;
-  category?: IArticleCategory;
+  articleCategoryId?: IArticleCategory['id'];
   scopes: { [key: string] : boolean };
   content: string;
 }
 
 const validationSchema = yup.object({
   title: yup.string().required(),
-  content: yup.string().required(),
 });
 
 const AddUserForm = () => {
   const classes = useStyles();
 
+  const [content, setContent] = useState('');
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(requestArticleCategories());
+  }, []);
+
   const initialValues : ArticleFormValues = {
     title: '',
-    category: undefined,
+    articleCategoryId: undefined,
     scopes: {
       [UserGroup.Cadre]: false,
       [UserGroup.Midwife]: false,
@@ -55,16 +62,11 @@ const AddUserForm = () => {
     content: '',
   };
 
-  const handleEditorChange = (content: any) => {
-    // eslint-disable-next-line no-console
-    console.log('Content was updated:', content);
-  };
-
   const onSubmit = async (values: ArticleFormValues) => {
     const data : IArticleRequest = {
       title: values.title,
-      content: values.content,
-      articleCategoryId: values.category?.id,
+      content,
+      articleCategoryId: values.articleCategoryId,
       scopes: Object.keys(values.scopes)
         .filter((key) => values.scopes[key])
         .map((key) => `${key}`),
@@ -77,9 +79,10 @@ const AddUserForm = () => {
   /**
    * DEBUGGING
    */
-  const handleChange = (values: any) => {
-    console.log(values);
-  };
+  // const handleChange = (values: any) => {
+  //   console.log(values);
+  //   console.log(content);
+  // };
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -87,7 +90,7 @@ const AddUserForm = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
-        validate={handleChange}
+        // validate={handleChange}
       >
         <Form className={classes.form}>
           <Field
@@ -96,12 +99,12 @@ const AddUserForm = () => {
             label="Judul"
             autoFocus
           />
-          <CategoryField />
+          <CategoryField name="articleCategoryId" />
           <TagsField />
           <AccessByField />
           <RichEditor
             initialValue="<p>Tulis konten anda disini</p>"
-            onEditorChange={handleEditorChange}
+            onEditorChange={(value) => setContent(value)}
           />
           <Field
             component={SimpleFileUpload}
