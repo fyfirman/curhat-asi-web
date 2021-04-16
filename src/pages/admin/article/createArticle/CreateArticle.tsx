@@ -27,7 +27,6 @@ const CreateArticle = () => {
 
   useEffect(() => {
     if (url.includes('edit')) {
-      console.log(id);
       dispatch(requestArticle(id));
     }
     if (isSubmitted) {

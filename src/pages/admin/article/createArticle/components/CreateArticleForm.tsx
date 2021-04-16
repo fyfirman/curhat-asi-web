@@ -17,8 +17,10 @@ import CategoryField from '../../../../../components/CategoryField';
 import AccessByField from './AccessByField';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  loginAlert: {
-    marginBottom: theme.spacing(3),
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(3),
   },
 }));
 
@@ -63,7 +65,7 @@ const validationSchema = yup.object({
 
 const AddUserForm = () => {
   // eslint-disable-next-line no-underscore-dangle
-  const _classes = useStyles();
+  const classes = useStyles();
 
   const dispatch = useDispatch();
 
@@ -101,7 +103,7 @@ const AddUserForm = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <Form>
+        <Form className={classes.form}>
           <Field
             component={TextField}
             name="title"

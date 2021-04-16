@@ -16,13 +16,13 @@ const AccessByField = () => {
   ));
 
   return (
-    <>
+    <div>
       <span>
         Dapat dilihat oleh
       </span>
       <br />
       { renderCheckBox() }
-    </>
+    </div>
   );
 };
 
