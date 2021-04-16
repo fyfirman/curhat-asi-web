@@ -13,8 +13,9 @@ interface IArticle extends TimeStamp {
   postedAt: string | null;
   viewCount: number;
   creator: IUser;
-  // TODO: fix this
   rates: IArticleRate[];
+  articleScopes: IUserGroup[];
+  // TODO: fix this
   category: null;
   tags: string[];
 }
