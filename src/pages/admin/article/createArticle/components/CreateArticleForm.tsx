@@ -6,7 +6,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { useDispatch } from 'react-redux';
 import RichEditor from '@components/RichEditor';
-import { SimpleFileUpload, TextField } from 'formik-material-ui';
+import { TextField } from 'formik-material-ui';
 import Field from '@components/CustomField';
 import { IArticleRequest, postArticle } from '@services/ArticleServices';
 import UserGroup from '@constants/UserGroupEnum';
