@@ -7,6 +7,10 @@ const get = <T>(path: string, config: AxiosRequestConfig) => {
   const promise = new Promise<T>((resolve, reject) => {
     axios.get<T>(`${BASE_URL}/${path}`, config).then(
       (result) => {
+        const camelizedData = camelize(result.data);
+        if (Object.keys(camelizedData).length === 0) {
+          resolve(result.data);
+        }
         resolve(camelize(result.data));
       },
       (err) => {
