@@ -10,3 +10,5 @@ export const DEBUG_MODE = process.env.REACT_APP_DEBUG_MODE ?? true;
 export const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? '';
 
 export const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? '';
+
+export const TINY_MCE_API_KEY = process.env.REACT_APP_TINY_MCE_API_KEY ?? '';

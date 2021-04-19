@@ -103,12 +103,6 @@ const CreateArticleForm = () => {
             onEditorChange={(value) => setContent(value)}
             disabled={mutation.isLoading}
           />
-          <Field
-            component={SimpleFileUpload}
-            name="file"
-            label="Upload gambar"
-            disabled={mutation.isLoading}
-          />
           <Button
             color="primary"
             variant="contained"

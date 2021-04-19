@@ -1,5 +1,6 @@
 import { IUploadPictureResponse, postUploadPicture } from '@services/PictureServices';
 import { Editor, IAllProps } from '@tinymce/tinymce-react';
+import { TINY_MCE_API_KEY } from '@utils/config';
 
 const RichEditor = (props: IAllProps) => {
   const handleImageUpload = async (blobInfo: any, success: (url: string) => any) => {
@@ -20,7 +21,7 @@ const RichEditor = (props: IAllProps) => {
   return (
     <div style={{ height: props.init?.height ?? 500 }}>
       <Editor
-        apiKey="wih2rf5zdv0xfg2k76jg6xin5dzi1xafmly22xp6btipsjkg"
+        apiKey={TINY_MCE_API_KEY}
         init={{
           height: 500,
           menubar: false,
