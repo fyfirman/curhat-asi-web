@@ -33,6 +33,22 @@ describe('object transform to form data', () => {
 
     expect(getFormData(data)).toStrictEqual(result);
   });
+
+  it('should be support blob', () => {
+    const data = {
+      data: 'data',
+      images: new Blob(),
+      tes: 123,
+    };
+
+    const result = new FormData();
+    result.append('data', 'data');
+    result.append('images', new Blob());
+    result.append('tes', '123');
+
+    expect(getFormData(data)).toMatchObject(result);
+  });
+
   it('should be support object in object', () => {
     const data = {
       data: 'data',

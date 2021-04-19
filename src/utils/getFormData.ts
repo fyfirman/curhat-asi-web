@@ -6,6 +6,10 @@ const getFormData = (object: any) =>
       });
       return formData;
     }
+    if (object[key] instanceof Blob) {
+      formData.append(key, object[key]);
+      return formData;
+    }
     if (typeof object[key] === 'object') {
       formData.append(key, JSON.stringify(object[key]));
       return formData;
