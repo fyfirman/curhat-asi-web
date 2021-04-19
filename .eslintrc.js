@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb-typescript'],
+  extends: ['plugin:react/recommended', 'airbnb-typescript', 'prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -15,7 +15,7 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  plugins: ['react', '@typescript-eslint', 'react-hooks'],
+  plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier'],
   settings: {
     react: {
       version: 'latest',
@@ -34,6 +34,7 @@ module.exports = {
         'implicit-arrow-linebreak': 'off',
         'spaced-comment': ['error', 'always', { markers: ['/'] }],
         'import/no-unresolved': 'off',
+        '@typescript-eslint/indent': 'off',
         '@typescript-eslint/camelcase': 'off',
         '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/no-unused-vars': [
@@ -59,6 +60,7 @@ module.exports = {
         'react/no-unused-prop-types': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/jsx-key': 'error',
+        'prettier/prettier': 'warn',
       },
     },
     {
