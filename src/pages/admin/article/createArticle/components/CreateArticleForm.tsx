@@ -37,14 +37,13 @@ const validationSchema = yup.object({
   title: yup.string().required(),
 });
 
-const AddUserForm = () => {
+const CreateArticleForm = () => {
   const classes = useStyles();
 
   const [content, setContent] = useState('');
 
   const mutation = useMutation(postArticle);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -78,21 +77,12 @@ const AddUserForm = () => {
     mutation.mutate(data);
   };
 
-  /**
-   * DEBUGGING
-   */
-  // const handleChange = (values: any) => {
-  //   console.log(values);
-  //   console.log(content);
-  // };
-
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
-        // validate={handleChange}
       >
         <Form className={classes.form}>
           <Field
@@ -139,4 +129,4 @@ const AddUserForm = () => {
   );
 };
 
-export default AddUserForm;
+export default CreateArticleForm;
