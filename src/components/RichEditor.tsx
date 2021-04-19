@@ -17,11 +17,7 @@ const RichEditor = (props: IAllProps) => {
           images_upload_credentials: true,
           images_upload_handler: async (blobInfo, success) => {
             const res = await postUploadPicture({
-              image: {
-                name: blobInfo.filename(),
-                type: 'image/jpeg',
-                uri: blobInfo.blobUri(),
-              },
+              image: blobInfo.blob(),
             });
             console.log(res);
 
