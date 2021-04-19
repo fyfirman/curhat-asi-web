@@ -1,9 +1,11 @@
 import { useMemo, useState } from 'react';
-import { Tab, Tabs } from '@material-ui/core';
+import { Button, Tab, Tabs } from '@material-ui/core';
 import UserGroup from '@constants/UserGroupEnum';
 import { RootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
 import TabPanel from '@components/TabPanel';
+import { getUserDownload } from '@services/UserServices';
+import { AxiosResponse } from 'axios';
 import UserDataGrid from './UserDataGrid';
 
 const tabsData: { label: string; type: UserGroup, level: number }[] = [
@@ -34,12 +36,32 @@ const UserContent = () => {
     'aria-controls': `scrollable-auto-tabpanel-${index}`,
   });
 
+  const handleDownload = (userGroup: UserGroup) => {
+    return getUserDownload(userGroup).then((data: AxiosResponse['data']) => {
+      const url = window.URL.createObjectURL(new Blob([data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${userGroup}-${new Date().toISOString()}.xlsx`);
+      document.body.appendChild(link);
+      link.click();
+    });
+  };
+
   const renderTabs = () => filteredTab.map((tab, index) => (
     <Tab label={tab.label} {...a11yProps(index)} key={index} />
   ));
 
   const renderTabPanels = () => filteredTab.map((tab, index) => (
     <TabPanel value={value} index={index} key={index}>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        onClick={() => handleDownload(tab.type)}
+        disableElevation
+      >
+        Download
+      </Button>
       <UserDataGrid type={tab.type} />
     </TabPanel>
   ));

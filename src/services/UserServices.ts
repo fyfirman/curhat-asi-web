@@ -47,3 +47,6 @@ export const postUser = (request: IUserRequest) => post<PayloadResponse<IConsult
   request,
   Config.withToken(),
 );
+
+export const getUserDownload = (userGroup: UserGroup) => get(`api/users/export?user_group_id=${userGroup}`,
+  Config.withToken({ responseType: 'blob' }));
