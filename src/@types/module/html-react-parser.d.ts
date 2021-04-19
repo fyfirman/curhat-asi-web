@@ -1,4 +1,4 @@
-declare module 'html-react-parser'{
+declare module 'html-react-parser' {
   function parse(args: string): any;
   export = parse;
 }

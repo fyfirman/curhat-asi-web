@@ -2,15 +2,13 @@ import { Autocomplete, AutocompleteRenderInputParams } from 'formik-material-ui-
 import { Field, FieldAttributes, useFormikContext } from 'formik';
 import { styled, TextField } from '@material-ui/core';
 
-interface CustomAutocompleteProps extends FieldAttributes<any>{
+interface CustomAutocompleteProps extends FieldAttributes<any> {
   label: string;
 }
 
-const AutocompleteTextField = styled(TextField)(
-  ({ theme }) => ({
-    marginBottom: theme.spacing(3),
-  }),
-);
+const AutocompleteTextField = styled(TextField)(({ theme }) => ({
+  marginBottom: theme.spacing(3),
+}));
 
 const CustomAutocomplete = (props: CustomAutocompleteProps) => {
   const { label, onChange, ...rest } = props;

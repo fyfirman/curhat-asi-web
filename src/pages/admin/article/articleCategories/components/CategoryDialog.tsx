@@ -1,6 +1,4 @@
-import {
-  Dialog, DialogTitle,
-} from '@material-ui/core';
+import { Dialog, DialogTitle } from '@material-ui/core';
 import AddCategoryForm from './AddCategoryForm';
 
 interface CategoryDialogProps {

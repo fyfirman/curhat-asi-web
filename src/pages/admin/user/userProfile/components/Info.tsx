@@ -8,17 +8,21 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface InfoProps{
-  label: string,
-  info?: string
+interface InfoProps {
+  label: string;
+  info?: string;
 }
 
 const Info = ({ label, info }: InfoProps) => {
   const classes = useStyles();
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={4}>{label}</Grid>
-      <Grid item xs={8}>{info || '-'}</Grid>
+      <Grid item xs={4}>
+        {label}
+      </Grid>
+      <Grid item xs={8}>
+        {info || '-'}
+      </Grid>
     </Grid>
   );
 };

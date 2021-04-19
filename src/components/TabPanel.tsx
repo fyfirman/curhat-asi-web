@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { Box, Typography } from '@material-ui/core';
 
-interface TabPanelProps{
-  index: number,
-  value: number,
-  children: React.ReactNode
+interface TabPanelProps {
+  index: number;
+  value: number;
+  children: React.ReactNode;
 }
 
 const TabPanel = (props: TabPanelProps) => {
-  const {
-    index, value, children, ...rest
-  } = props;
+  const { index, value, children, ...rest } = props;
 
   return (
     <div
@@ -21,9 +19,9 @@ const TabPanel = (props: TabPanelProps) => {
       {...rest}
     >
       {value === index && (
-      <Box p={3}>
-        <Typography>{children}</Typography>
-      </Box>
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
       )}
     </div>
   );

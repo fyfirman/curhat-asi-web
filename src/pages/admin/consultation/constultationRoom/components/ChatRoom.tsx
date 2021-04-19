@@ -22,22 +22,19 @@ const ChatRoom = () => {
 
   const user = useSelector((state: RootState) => state.selfUser.payload);
 
-  const renderPosts = () => consultation?.posts.map((post: IConsultationPost) => (
-    <ChatBubble
-      key={post.id}
-      imageUri={post.picture}
-      message={post.message}
-      name={post.user.fullName || 'Belum mengisi profile'}
-      time={post.createdAt}
-      opposite={post.userId === user.id}
-    />
-  ));
+  const renderPosts = () =>
+    consultation?.posts.map((post: IConsultationPost) => (
+      <ChatBubble
+        key={post.id}
+        imageUri={post.picture}
+        message={post.message}
+        name={post.user.fullName || 'Belum mengisi profile'}
+        time={post.createdAt}
+        opposite={post.userId === user.id}
+      />
+    ));
 
-  return (
-    <div className={classes.chatRoom}>
-      {renderPosts()}
-    </div>
-  );
+  return <div className={classes.chatRoom}>{renderPosts()}</div>;
 };
 
 export default ChatRoom;

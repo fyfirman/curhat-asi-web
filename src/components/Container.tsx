@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core';
 import * as React from 'react';
 
-const useStyles = makeStyles((theme:Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: 'white',
     padding: theme.spacing(6),
@@ -9,17 +9,13 @@ const useStyles = makeStyles((theme:Theme) => ({
   },
 }));
 
-interface ContainerProps{
-  children?: React.ReactNode
+interface ContainerProps {
+  children?: React.ReactNode;
 }
 
 const Container = ({ children }: ContainerProps) => {
   const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      {children}
-    </div>
-  );
+  return <div className={classes.root}>{children}</div>;
 };
 
 export default Container;

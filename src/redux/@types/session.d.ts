@@ -1,4 +1,4 @@
-interface ISessionState extends IStandardState{
+interface ISessionState extends IStandardState {
   payload: ISession;
   isLoggedIn: boolean;
 }

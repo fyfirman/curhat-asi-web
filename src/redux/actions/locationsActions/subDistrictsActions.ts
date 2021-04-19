@@ -1,7 +1,9 @@
 import { subDistrictsTypes } from '@redux/constants/locationsActionTypes';
 import * as LocationServices from '@services/LocationServices';
 
-export const requestSubDistricts = (districtId: IDistrict['id']) => async (dispatch: DispatchType) => {
+export const requestSubDistricts = (districtId: IDistrict['id']) => async (
+  dispatch: DispatchType,
+) => {
   try {
     const response = await LocationServices.getSubDistricts(districtId);
 

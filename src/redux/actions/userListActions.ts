@@ -4,8 +4,8 @@ import * as UserGroupActions from '@constants/UserGroupActions';
 import * as UserServices from '@services/UserServices';
 import { IGetUsersParams } from '../../services/UserServices';
 
-const getLocationParams = () : IGetUsersParams => {
-  const selfUser : IConsultant = store.getState().selfUser.payload;
+const getLocationParams = (): IGetUsersParams => {
+  const selfUser: IConsultant = store.getState().selfUser.payload;
 
   switch (selfUser.userGroupId) {
     case UserGroup.Midwife:
@@ -29,10 +29,7 @@ export const requestUserList = (userGroupId: UserGroup) => async (dispatch: Disp
       ...params,
     });
 
-    dispatch(requestUserListSuccess(
-      userList.payload as IUser[],
-      userGroupId,
-    ));
+    dispatch(requestUserListSuccess(userList.payload as IUser[], userGroupId));
   } catch (error) {
     // TODO:  dispatch() error;
     // eslint-disable-next-line no-alert

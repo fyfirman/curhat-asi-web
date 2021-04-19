@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
-import {
-  Button, makeStyles, Theme,
-} from '@material-ui/core';
+import { Button, makeStyles, Theme } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import { requestLogin, resetAuthState } from '@redux/actions/authActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,9 +13,7 @@ import UserGroupField from './UserGroupField';
 
 // TODO: Fix validation schema
 const validationSchema = yup.object({
-  username: yup
-    .string()
-    .required('Email is required'),
+  username: yup.string().required('Email is required'),
   password: yup
     .string()
     .max(6, 'Password should be of minimum 8 characters length')
@@ -51,7 +47,7 @@ const LoginForm = () => {
     userGroupId: UserGroup.Administrator,
   };
 
-  const handleSubmit = ({ userGroupId, username, password } : ILoginInput) => {
+  const handleSubmit = ({ userGroupId, username, password }: ILoginInput) => {
     dispatch(requestLogin(userGroupId, username, password));
   };
 
@@ -62,11 +58,7 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
     >
       <Form>
-        <UserGroupField
-          name="userGroupId"
-          label="Jabatan"
-          disabled={isLoading}
-        />
+        <UserGroupField name="userGroupId" label="Jabatan" disabled={isLoading} />
         <Field
           component={TextField}
           name="username"
@@ -93,9 +85,7 @@ const LoginForm = () => {
           Login
         </Button>
       </Form>
-
     </Formik>
-
   );
 };
 

@@ -1,4 +1,4 @@
-interface TimeStamp{
+interface TimeStamp {
   createdAt: string;
   updatedAt: string;
 }
@@ -13,4 +13,4 @@ interface IStandardAction {
   error?: Record;
 }
 
-type DispatchType<T=IStandardAction> = (args: T) => T;
+type DispatchType<T = IStandardAction> = (args: T) => T;

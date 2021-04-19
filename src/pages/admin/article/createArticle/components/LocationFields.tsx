@@ -32,9 +32,9 @@ const LocationFields = () => {
     }
   };
 
-  const {
-    provinces, villages, districts, subDistricts,
-  } = useSelector((state: RootState) => state.locations);
+  const { provinces, villages, districts, subDistricts } = useSelector(
+    (state: RootState) => state.locations,
+  );
 
   return (
     <>

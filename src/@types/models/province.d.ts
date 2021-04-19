@@ -1,4 +1,4 @@
-interface IProvince{
-  id: string,
-  name: string,
+interface IProvince {
+  id: string;
+  name: string;
 }

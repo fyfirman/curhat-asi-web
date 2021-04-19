@@ -1,4 +1,4 @@
-interface IHusband implements TimeStamp {
+interface IHusband {
   id: number;
   profileId: number;
   occupationId: number;

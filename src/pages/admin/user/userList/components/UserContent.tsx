@@ -8,7 +8,7 @@ import { getUserDownload } from '@services/UserServices';
 import { AxiosResponse } from 'axios';
 import UserDataGrid from './UserDataGrid';
 
-const tabsData: { label: string; type: UserGroup, level: number }[] = [
+const tabsData: { label: string; type: UserGroup; level: number }[] = [
   { label: 'Ibu', type: UserGroup.Mommies, level: 6 },
   { label: 'Kader', type: UserGroup.Cadre, level: 5 },
   { label: 'Bidan', type: UserGroup.Midwife, level: 4 },
@@ -21,11 +21,12 @@ const tabsData: { label: string; type: UserGroup, level: number }[] = [
 const UserContent = () => {
   const [value, setValue] = useState(0);
 
-  const selfUser = useSelector((state:RootState) => state.selfUser.payload);
+  const selfUser = useSelector((state: RootState) => state.selfUser.payload);
 
-  const filteredTab = useMemo(() => tabsData
-    .filter(((tab) => tab.level >= selfUser.userGroup.level)),
-  [selfUser]);
+  const filteredTab = useMemo(
+    () => tabsData.filter((tab) => tab.level >= selfUser.userGroup.level),
+    [selfUser],
+  );
 
   const handleChange = (_event: any, newValue: number) => {
     setValue(newValue);
@@ -47,24 +48,24 @@ const UserContent = () => {
     });
   };
 
-  const renderTabs = () => filteredTab.map((tab, index) => (
-    <Tab label={tab.label} {...a11yProps(index)} key={index} />
-  ));
+  const renderTabs = () =>
+    filteredTab.map((tab, index) => <Tab label={tab.label} {...a11yProps(index)} key={index} />);
 
-  const renderTabPanels = () => filteredTab.map((tab, index) => (
-    <TabPanel value={value} index={index} key={index}>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        onClick={() => handleDownload(tab.type)}
-        disableElevation
-      >
-        Download
-      </Button>
-      <UserDataGrid type={tab.type} />
-    </TabPanel>
-  ));
+  const renderTabPanels = () =>
+    filteredTab.map((tab, index) => (
+      <TabPanel value={value} index={index} key={index}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          onClick={() => handleDownload(tab.type)}
+          disableElevation
+        >
+          Download
+        </Button>
+        <UserDataGrid type={tab.type} />
+      </TabPanel>
+    ));
 
   return (
     <>

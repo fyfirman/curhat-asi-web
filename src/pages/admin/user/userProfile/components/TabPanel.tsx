@@ -9,16 +9,14 @@ const useStyle = makeStyles((theme: Theme) => ({
 
 export type InfoList = Record<string, string | undefined>;
 
-interface TabPanelProps{
-  index: number,
-  value: number,
-  children: React.ReactNode,
+interface TabPanelProps {
+  index: number;
+  value: number;
+  children: React.ReactNode;
 }
 
 const TabPanel = (props: TabPanelProps) => {
-  const {
-    index, value, children, ...rest
-  } = props;
+  const { index, value, children, ...rest } = props;
 
   const classes = useStyle();
 
@@ -31,9 +29,7 @@ const TabPanel = (props: TabPanelProps) => {
       className={classes.root}
       {...rest}
     >
-      {value === index && (
-        children
-      )}
+      {value === index && children}
     </div>
   );
 };

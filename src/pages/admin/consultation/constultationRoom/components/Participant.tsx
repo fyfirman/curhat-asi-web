@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface ParticipantProps{
+interface ParticipantProps {
   avatarUri?: string;
   name: string;
   phoneNumber: string;

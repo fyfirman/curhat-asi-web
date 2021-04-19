@@ -13,34 +13,24 @@ interface AddCategoryFormProps {
   handleClose: () => void;
 }
 
-const AddCategoryForm = ({ handleClose } : AddCategoryFormProps) => {
-  const initialValues : AddCategoryFormValue = {
+const AddCategoryForm = ({ handleClose }: AddCategoryFormProps) => {
+  const initialValues: AddCategoryFormValue = {
     parrentCategory: '',
     category: '',
   };
 
   const onSubmit = (values: AddCategoryFormValue) => {
+    // TODO: handle submit category
     // eslint-disable-next-line no-console
     console.log(values);
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-    >
+    <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form>
         <DialogContent>
-          <CategoryField
-            label="Induk kategory"
-            name="parrentCategory"
-          />
-          <Field
-            component={TextField}
-            name="category"
-            label="Kategori"
-            autoFocus
-          />
+          <CategoryField label="Induk kategory" name="parrentCategory" />
+          <Field component={TextField} name="category" label="Kategori" autoFocus />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

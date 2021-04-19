@@ -1,7 +1,7 @@
-interface UserProfileAction implements IStandardAction {
+interface UserProfileAction {
   type: string;
   payload: IMoms;
-  error?: {}
+  error?: {};
 }
 
 interface UserProfileState {

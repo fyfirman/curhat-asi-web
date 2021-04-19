@@ -14,7 +14,7 @@ export interface IGetUsersParams {
 export const getUsers = (params: IGetUsersParams) => {
   const config = snakefy({ params });
 
-  return get<{ message: string, payload: IUser[] }>('api/users', Config.withToken(config));
+  return get<{ message: string; payload: IUser[] }>('api/users', Config.withToken(config));
 };
 
 interface IGetUserResponse {
@@ -22,15 +22,10 @@ interface IGetUserResponse {
   payload: IMoms;
 }
 
-export const getUser = (id: IUser['id']) => get<IGetUserResponse>(
-  `api/users/${id}`,
-  Config.withToken(),
-);
+export const getUser = (id: IUser['id']) =>
+  get<IGetUserResponse>(`api/users/${id}`, Config.withToken());
 
-export const getSelfUser = () => get<PayloadResponse<IUser>>(
-  'api/profile',
-  Config.withToken(),
-);
+export const getSelfUser = () => get<PayloadResponse<IUser>>('api/profile', Config.withToken());
 
 export interface IUserRequest {
   userGroupId: IUserGroup['id'];
@@ -42,11 +37,8 @@ export interface IUserRequest {
   villageId: IVillage['id'];
 }
 
-export const postUser = (request: IUserRequest) => post<PayloadResponse<IConsultant>>(
-  'api/users',
-  request,
-  Config.withToken(),
-);
+export const postUser = (request: IUserRequest) =>
+  post<PayloadResponse<IConsultant>>('api/users', request, Config.withToken());
 
-export const getUserDownload = (userGroup: UserGroup) => get(`api/users/export?user_group_id=${userGroup}`,
-  Config.withToken({ responseType: 'blob' }));
+export const getUserDownload = (userGroup: UserGroup) =>
+  get(`api/users/export?user_group_id=${userGroup}`, Config.withToken({ responseType: 'blob' }));

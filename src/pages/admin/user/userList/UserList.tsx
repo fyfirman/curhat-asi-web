@@ -29,9 +29,9 @@ const Users = () => {
           Daftar Pengguna
         </Typography>
         {level === 0 && (
-        <Button to="user/add" variant="contained" color="secondary">
-          Tambah
-        </Button>
+          <Button to="user/add" variant="contained" color="secondary">
+            Tambah
+          </Button>
         )}
       </div>
       <div>

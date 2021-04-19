@@ -1,6 +1,4 @@
-import {
-  ChangeEvent, useState,
-} from 'react';
+import { ChangeEvent, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Tabs, Theme } from '@material-ui/core';
 import Button from '@components/LinkButton';
@@ -40,9 +38,9 @@ const ArticleList = () => {
           Daftar Artikel
         </Typography>
         {level === 0 && (
-        <Button to="../article/add" variant="contained" color="secondary">
-          Buat artikel
-        </Button>
+          <Button to="../article/add" variant="contained" color="secondary">
+            Buat artikel
+          </Button>
         )}
       </div>
       <div>
@@ -64,7 +62,6 @@ const ArticleList = () => {
           <TrashArticleDataGrid />
         </TabPanel>
       </div>
-
     </>
   );
 };

@@ -4,7 +4,7 @@ import { MenuItem } from '@material-ui/core';
 import { FieldAttributes } from 'formik';
 import Field from './CustomField';
 
-const userGroupMenu : IUserGroup[] = [
+const userGroupMenu: IUserGroup[] = [
   {
     id: UserGroup.Cadre,
     name: 'Kader',
@@ -38,15 +38,15 @@ const userGroupMenu : IUserGroup[] = [
 ];
 
 const UserGroupField = (props: FieldAttributes<any>) => {
-  const renderUserGroupMenu = () => userGroupMenu.map((menu) => (
-    <MenuItem key={menu.id} value={menu.id}>{menu.name}</MenuItem>));
+  const renderUserGroupMenu = () =>
+    userGroupMenu.map((menu) => (
+      <MenuItem key={menu.id} value={menu.id}>
+        {menu.name}
+      </MenuItem>
+    ));
 
   return (
-    <Field
-      component={Select}
-      autoFocus
-      {...props}
-    >
+    <Field component={Select} autoFocus {...props}>
       {renderUserGroupMenu()}
     </Field>
   );

@@ -29,7 +29,9 @@ const ShowUser = () => {
       <Header />
       <TabsInfo consultant={payload?.userGroup.id !== UserGroup.Mommies} />
     </ContentLayout>
-  ) : <CircularProgress />;
+  ) : (
+    <CircularProgress />
+  );
 };
 
 export default ShowUser;

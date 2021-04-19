@@ -20,25 +20,27 @@ const columns: GridColDef[] = [
 ];
 
 const ArticleRatingDataGrid = () => {
-  const rates = useSelector((state:RootState) => state.articleShow.payload?.rates);
+  const rates = useSelector((state: RootState) => state.articleShow.payload?.rates);
 
-  const rows = useMemo(() => rates?.map((rate, index): IRowArticleRating => ({
-    id: rate.id,
-    no: index + 1,
-    name: rate.user.fullName ?? '',
-    rating: rate.rate,
-    userGroup: rate.user.userGroup.name,
-  })), []);
+  const rows = useMemo(
+    () =>
+      rates?.map(
+        (rate, index): IRowArticleRating => ({
+          id: rate.id,
+          no: index + 1,
+          name: rate.user.fullName ?? '',
+          rating: rate.rate,
+          userGroup: rate.user.userGroup.name,
+        }),
+      ),
+    [],
+  );
 
   return rows ? (
-    <DataGrid
-      autoHeight
-      rows={rows}
-      columns={columns}
-      pageSize={20}
-      checkboxSelection={false}
-    />
-  ) : <div />;
+    <DataGrid autoHeight rows={rows} columns={columns} pageSize={20} checkboxSelection={false} />
+  ) : (
+    <div />
+  );
 };
 
 export default ArticleRatingDataGrid;

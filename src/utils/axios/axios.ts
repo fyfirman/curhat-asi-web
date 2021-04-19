@@ -36,13 +36,11 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-instance.interceptors.response.use(
-  (response) => {
-    if (DEBUG_MODE) {
-      console.log(response);
-    }
-    return response;
-  },
-);
+instance.interceptors.response.use((response) => {
+  if (DEBUG_MODE) {
+    console.log(response);
+  }
+  return response;
+});
 
 export default instance;

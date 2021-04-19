@@ -4,10 +4,9 @@ import sessionActionTypes from '@redux/constants/sessionActionTypes';
 
 export const requestLogin = (
   userGroupId: IUserGroup['id'],
-  username: string, password: string,
-): AppThunk<Promise<void>> => async (
-  dispatch,
-) => {
+  username: string,
+  password: string,
+): AppThunk<Promise<void>> => async (dispatch) => {
   try {
     dispatch({ type: sessionActionTypes.FETCH_LOGIN });
     const session = await Auth.login(userGroupId, username, password);

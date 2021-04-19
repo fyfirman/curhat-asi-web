@@ -21,46 +21,48 @@ const ArticleShow = () => {
     dispatch(requestArticle(id));
   }, []);
 
-  const { payload, isLoading } = useSelector((state:RootState) => state.articleShow);
+  const { payload, isLoading } = useSelector((state: RootState) => state.articleShow);
 
   const handleChange = (_event: ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 
-  return (
-    !isLoading && payload ? (
-      <ContentLayout
-        levelOneLabel="Daftar Artikel"
-        levelOneTo="/admin/article"
-        levelTwoLabel={payload.title}
+  return !isLoading && payload ? (
+    <ContentLayout
+      levelOneLabel="Daftar Artikel"
+      levelOneTo="/admin/article"
+      levelTwoLabel={payload.title}
+    >
+      <Tabs
+        value={value}
+        indicatorColor="primary"
+        variant="scrollable"
+        scrollButtons="auto"
+        aria-label="tabs article"
+        onChange={handleChange}
       >
-        <Tabs
-          value={value}
-          indicatorColor="primary"
-          variant="scrollable"
-          scrollButtons="auto"
-          aria-label="tabs article"
-          onChange={handleChange}
-        >
-          <Tab label="Pratinjau" index={0} />
-          <Tab label="Statistik" index={1} />
-        </Tabs>
-        <TabPanel value={value} index={0}>
-          <div>
-            <span>{`Dapat dilihat oleh : ${payload.articleScopes.map((scope) => scope.name).join(', ')}`}</span>
-          </div>
-          {parse(payload.content)}
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <span>{`Jumlah kali dibaca : ${payload.viewCount} kali`}</span>
-          <br />
-          <span>{`Rata-rata penilaian : ${payload.averageRating ?? '-'}`}</span>
-          <br />
-          <span>{`Jumlah yang menilai : ${payload.rates.length} orang`}</span>
-          <ArticleRatingDataGrid />
-        </TabPanel>
-      </ContentLayout>
-    ) : <CircularProgress />
+        <Tab label="Pratinjau" index={0} />
+        <Tab label="Statistik" index={1} />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        <div>
+          <span>
+            {`Dapat dilihat oleh : ${payload.articleScopes.map((scope) => scope.name).join(', ')}`}
+          </span>
+        </div>
+        {parse(payload.content)}
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <span>{`Jumlah kali dibaca : ${payload.viewCount} kali`}</span>
+        <br />
+        <span>{`Rata-rata penilaian : ${payload.averageRating ?? '-'}`}</span>
+        <br />
+        <span>{`Jumlah yang menilai : ${payload.rates.length} orang`}</span>
+        <ArticleRatingDataGrid />
+      </TabPanel>
+    </ContentLayout>
+  ) : (
+    <CircularProgress />
   );
 };
 

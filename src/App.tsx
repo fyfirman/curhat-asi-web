@@ -29,10 +29,7 @@ export default function App() {
             <link rel="canonical" href="http://curhatasi.fit" />
           </Helmet>
           <ThemeProvider theme={theme}>
-            <PersistGate
-              loading={<div>Mohon tunggu</div>}
-              persistor={persistor}
-            >
+            <PersistGate loading={<div>Mohon tunggu</div>} persistor={persistor}>
               <Router>
                 <AppRouter />
               </Router>
@@ -42,6 +39,5 @@ export default function App() {
         </QueryClientProvider>
       </StylesProvider>
     </Provider>
-
   );
 }

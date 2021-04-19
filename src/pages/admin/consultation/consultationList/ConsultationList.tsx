@@ -23,12 +23,13 @@ const Consultations = () => {
   }, []);
 
   const rows: IRowConsultation[] = useMemo(
-    () => consultationList.payload.data.map((consultation, index) => ({
-      id: consultation.id,
-      no: index + 1,
-      openBy: consultation.user?.fullName || 'Belum mengisi profil',
-      problem: consultation.description,
-    })),
+    () =>
+      consultationList.payload.data.map((consultation, index) => ({
+        id: consultation.id,
+        no: index + 1,
+        openBy: consultation.user?.fullName || 'Belum mengisi profil',
+        problem: consultation.description,
+      })),
     [consultationList],
   );
 
@@ -37,13 +38,7 @@ const Consultations = () => {
       <Typography variant="h4" className={classes.header}>
         Daftar Konsultasi
       </Typography>
-      <DataGrid
-        autoHeight
-        rows={rows}
-        columns={columns}
-        pageSize={20}
-        checkboxSelection={false}
-      />
+      <DataGrid autoHeight rows={rows} columns={columns} pageSize={20} checkboxSelection={false} />
     </>
   );
 };

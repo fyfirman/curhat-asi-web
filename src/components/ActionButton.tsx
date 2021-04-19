@@ -9,33 +9,18 @@ interface ActionButtonProps {
 }
 
 const ActionButton = (props: ActionButtonProps) => {
-  const {
-    to, label, noLink = false, onClick,
-  } = props;
+  const { to, label, noLink = false, onClick } = props;
   return !noLink && to ? (
-    <LinkButton
-      to={to}
-      variant="contained"
-      color="secondary"
-      size="small"
-      disableElevation
-    >
+    <LinkButton to={to} variant="contained" color="secondary" size="small" disableElevation>
       {label}
     </LinkButton>
-  )
-    : (
-      <div>
-        <Button
-          variant="contained"
-          color="secondary"
-          size="small"
-          disableElevation
-          onClick={onClick}
-        >
-          {label}
-        </Button>
-      </div>
-    );
+  ) : (
+    <div>
+      <Button variant="contained" color="secondary" size="small" disableElevation onClick={onClick}>
+        {label}
+      </Button>
+    </div>
+  );
 };
 
 export default ActionButton;

@@ -14,14 +14,18 @@ interface IRowTrashedArticle {
 }
 
 interface ActionButtonsProps {
-  onRecover: (id: IArticle['id']) => any
+  onRecover: (id: IArticle['id']) => any;
 }
 
 const ActionButtons = ({ onRecover }: ActionButtonsProps) => (params: GridCellParams) => (
-  <ActionButton label="Kembalikan" onClick={() => onRecover(params.getValue('id') as number)} noLink />
+  <ActionButton
+    label="Kembalikan"
+    onClick={() => onRecover(params.getValue('id') as number)}
+    noLink
+  />
 );
 
-const columns = ({ onRecover }: ActionButtonsProps): GridColDef[] => ([
+const columns = ({ onRecover }: ActionButtonsProps): GridColDef[] => [
   { field: 'id', headerName: 'ID', hide: true },
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'title', headerName: 'Judul', flex: 1 },
@@ -35,7 +39,7 @@ const columns = ({ onRecover }: ActionButtonsProps): GridColDef[] => ([
     disableColumnMenu: true,
     renderCell: ActionButtons({ onRecover }),
   },
-]);
+];
 
 const TrashArticleDataGrid = () => {
   const [openRecoverPrompt, setOpenRecoverPrompt] = useState(false);
@@ -47,15 +51,18 @@ const TrashArticleDataGrid = () => {
     dispatch(requestArticleList('trash'));
   }, []);
 
-  const { payload, isLoading } = useSelector((state:RootState) => state.articleList);
+  const { payload, isLoading } = useSelector((state: RootState) => state.articleList);
 
   const rows = useMemo(
-    () => payload.data.map((article, index): IRowTrashedArticle => ({
-      id: article.id,
-      no: index + 1,
-      title: article.title,
-      createdAt: article.createdAt,
-    })),
+    () =>
+      payload.data.map(
+        (article, index): IRowTrashedArticle => ({
+          id: article.id,
+          no: index + 1,
+          title: article.title,
+          createdAt: article.createdAt,
+        }),
+      ),
     [payload],
   );
 
@@ -80,7 +87,9 @@ const TrashArticleDataGrid = () => {
       />
       <PromptDialog
         open={openRecoverPrompt}
-        onClose={() => { setOpenRecoverPrompt(false); }}
+        onClose={() => {
+          setOpenRecoverPrompt(false);
+        }}
         onClickYes={handleRecoverPrompt}
         title="Anda yakin untuk mengembalikan artikel?"
         content="Artikel akan dikembalikan pada tab aktif. Anda bisa mempublikasikannya kembali."

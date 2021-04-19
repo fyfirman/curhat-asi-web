@@ -1,5 +1,10 @@
 import {
-  Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from '@material-ui/core';
 
 interface PromptDialogProps {
@@ -14,7 +19,13 @@ interface PromptDialogProps {
 
 const PromptDialog = (props: PromptDialogProps) => {
   const {
-    open, onClose, title, content, onClickYes, yesLabel = 'Yakin', noLabel = 'Batalkan',
+    open,
+    onClose,
+    title,
+    content,
+    onClickYes,
+    yesLabel = 'Yakin',
+    noLabel = 'Batalkan',
   } = props;
 
   const handleYes = () => {
@@ -33,9 +44,7 @@ const PromptDialog = (props: PromptDialogProps) => {
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          {content}
-        </DialogContentText>
+        <DialogContentText id="alert-dialog-description">{content}</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">

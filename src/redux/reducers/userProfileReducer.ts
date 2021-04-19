@@ -7,7 +7,8 @@ const initialState: UserProfileState = {
 };
 
 const userProfileReducer = (
-  state: UserProfileState = initialState, action: UserProfileAction,
+  state: UserProfileState = initialState,
+  action: UserProfileAction,
 ): UserProfileState => {
   const { type, payload, error } = action;
 

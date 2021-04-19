@@ -23,10 +23,7 @@ const persistConfig = {
   ],
 };
 
-const store = createStore(
-  persistReducer(persistConfig, rootReducer),
-  composeEnhancers,
-);
+const store = createStore(persistReducer(persistConfig, rootReducer), composeEnhancers);
 
 export const persistor = persistStore(store);
 

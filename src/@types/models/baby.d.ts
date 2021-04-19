@@ -1,4 +1,4 @@
-interface IBaby implements TimeStamp {
+interface IBaby {
   id: number;
   profileId: number;
   pregnancyWeeks: number;

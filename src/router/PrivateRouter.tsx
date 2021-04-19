@@ -29,7 +29,6 @@ const useStyle = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     height: '100%',
     width: '100%',
-
   },
 }));
 
@@ -48,48 +47,46 @@ const Admin = () => {
     <Route>
       {session.isLoggedIn ? (
         <>
-          <Sidebar
-            routes={routes}
-            prefixPath={routeName}
-            width={sideBarWidth}
-          />
+          <Sidebar routes={routes} prefixPath={routeName} width={sideBarWidth} />
           <main className={classes.content}>
-            {!selfUser.isLoading
-              ? (
-                <Switch>
-                  {routes
-                    .filter((route) => !route.collapsible)
-                    .map((route, key) => (
+            {!selfUser.isLoading ? (
+              <Switch>
+                {routes
+                  .filter((route) => !route.collapsible)
+                  .map((route, key) => (
+                    <Route
+                      exact
+                      path={routeName + route.path}
+                      component={route.component}
+                      key={key}
+                    />
+                  ))}
+                {routes
+                  .filter((route) => !!route.subRoutes)
+                  .map(({ subRoutes }) =>
+                    subRoutes?.map((route, key) => (
                       <Route
                         exact
                         path={routeName + route.path}
                         component={route.component}
                         key={key}
                       />
-                    ))}
-                  {routes
-                    .filter((route) => !!route.subRoutes)
-                    .map(({ subRoutes }) => subRoutes?.map((route, key) => (
-                      <Route
-                        exact
-                        path={routeName + route.path}
-                        component={route.component}
-                        key={key}
-                      />
-                    )))}
-                  <Route path={`${routeName}/user/add`} component={AddUser} />
-                  <Route path={`${routeName}/user/:id`} component={UserProfile} />
-                  <Route
-                    path={`${routeName}/consultation/:id`}
-                    component={ConsultationRoom}
-                  />
-                  <Route path={`${routeName}/article/add`} component={CreateArticle} />
-                  <Route path={`${routeName}/article/edit/:id`} component={CreateArticle} />
-                  <Route path={`${routeName}/article/show/:id`} component={ArticleShow} />
-                  <Redirect from={`${routeName}/article`} to={`${routeName}/article/list`} />
-                  <Redirect from={routeName} to={`${routeName}/user`} />
-                </Switch>
-              ) : <div className={classes.loading}><CircularProgress /></div>}
+                    )),
+                  )}
+                <Route path={`${routeName}/user/add`} component={AddUser} />
+                <Route path={`${routeName}/user/:id`} component={UserProfile} />
+                <Route path={`${routeName}/consultation/:id`} component={ConsultationRoom} />
+                <Route path={`${routeName}/article/add`} component={CreateArticle} />
+                <Route path={`${routeName}/article/edit/:id`} component={CreateArticle} />
+                <Route path={`${routeName}/article/show/:id`} component={ArticleShow} />
+                <Redirect from={`${routeName}/article`} to={`${routeName}/article/list`} />
+                <Redirect from={routeName} to={`${routeName}/user`} />
+              </Switch>
+            ) : (
+              <div className={classes.loading}>
+                <CircularProgress />
+              </div>
+            )}
           </main>
         </>
       ) : (

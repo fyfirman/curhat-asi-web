@@ -14,8 +14,8 @@ interface IRowCategories {
 }
 
 interface ActionButtonsProps {
-  onDelete: ()=> any;
-  onEdit: ()=> any
+  onDelete: () => any;
+  onEdit: () => any;
 }
 
 const ActionButtons = ({ onDelete, onEdit }: ActionButtonsProps) => (_params: GridCellParams) => (
@@ -25,7 +25,7 @@ const ActionButtons = ({ onDelete, onEdit }: ActionButtonsProps) => (_params: Gr
   </div>
 );
 
-const columns = (props: ActionButtonsProps): GridColDef[] => ([
+const columns = (props: ActionButtonsProps): GridColDef[] => [
   { field: 'id', headerName: 'ID', hide: true },
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'name', headerName: 'Judul', flex: 1 },
@@ -38,7 +38,7 @@ const columns = (props: ActionButtonsProps): GridColDef[] => ([
     disableColumnMenu: true,
     renderCell: ActionButtons(props),
   },
-]);
+];
 
 const ArticleCategoriesDataGrid = () => {
   const [openEditCategory, setOpenEditCategory] = useState(false);
@@ -50,14 +50,17 @@ const ArticleCategoriesDataGrid = () => {
     dispatch(requestArticleCategories());
   }, []);
 
-  const { payload, isLoading } = useSelector((state:RootState) => state.articleCategories);
+  const { payload, isLoading } = useSelector((state: RootState) => state.articleCategories);
 
   const rows = useMemo(
-    () => payload.data.map((category, index): IRowCategories => ({
-      id: category.id,
-      no: index + 1,
-      name: category.name,
-    })),
+    () =>
+      payload.data.map(
+        (category, index): IRowCategories => ({
+          id: category.id,
+          no: index + 1,
+          name: category.name,
+        }),
+      ),
     [payload],
   );
 
@@ -82,11 +85,15 @@ const ArticleCategoriesDataGrid = () => {
       <CategoryDialog
         title="Edit kategori"
         open={openEditCategory}
-        handleClose={() => { setOpenEditCategory(false); }}
+        handleClose={() => {
+          setOpenEditCategory(false);
+        }}
       />
       <PromptDialog
         open={openDeleteCategory}
-        onClose={() => { setOpenDeleteCategory(false); }}
+        onClose={() => {
+          setOpenDeleteCategory(false);
+        }}
         title="Anda yakin untuk menghapus kategori?"
         content="Artikel dengan kategori tersebut akan kehilangan kategori."
       />

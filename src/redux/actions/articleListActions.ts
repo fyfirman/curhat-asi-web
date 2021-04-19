@@ -2,7 +2,9 @@ import * as ArticleServices from '@services/ArticleServices';
 import articleListActionTypes from '@redux/constants/articleListActionTypes';
 import { AppThunk } from '@utils/AppThunk';
 
-export const requestArticleList = (status?: string):AppThunk<Promise<void>> => async (dispatch) => {
+export const requestArticleList = (status?: string): AppThunk<Promise<void>> => async (
+  dispatch,
+) => {
   try {
     dispatch({ type: articleListActionTypes.FETCH_ARTICLE_LIST });
     const response = await ArticleServices.getArticles({ status });
@@ -16,7 +18,7 @@ export const requestArticleList = (status?: string):AppThunk<Promise<void>> => a
   }
 };
 
-export const deleteArticle = (id: IArticle['id']):AppThunk<Promise<void>> => async (dispatch) => {
+export const deleteArticle = (id: IArticle['id']): AppThunk<Promise<void>> => async (dispatch) => {
   try {
     await ArticleServices.deleteArticle(id);
 
@@ -29,7 +31,9 @@ export const deleteArticle = (id: IArticle['id']):AppThunk<Promise<void>> => asy
   }
 };
 
-export const restoreDeletedArticle = (id: IArticle['id']):AppThunk<Promise<void>> => async (dispatch) => {
+export const restoreDeletedArticle = (id: IArticle['id']): AppThunk<Promise<void>> => async (
+  dispatch,
+) => {
   try {
     await ArticleServices.restoreDeletedArticle(id);
 

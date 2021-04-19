@@ -23,7 +23,7 @@ const ActionButtons = (onDelete: (id: IArticle['id']) => any) => (params: GridCe
   </div>
 );
 
-const columns = (onDelete: (id: IArticle['id']) => any): GridColDef[] => ([
+const columns = (onDelete: (id: IArticle['id']) => any): GridColDef[] => [
   { field: 'id', headerName: 'ID', hide: true },
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'title', headerName: 'Judul', flex: 1 },
@@ -39,7 +39,7 @@ const columns = (onDelete: (id: IArticle['id']) => any): GridColDef[] => ([
     disableColumnMenu: true,
     renderCell: ActionButtons(onDelete),
   },
-]);
+];
 
 const ActiveArticleDataGrid = () => {
   const [openDeletePrompt, setOpenDeletePrompt] = useState(false);
@@ -51,17 +51,20 @@ const ActiveArticleDataGrid = () => {
     dispatch(requestArticleList());
   }, []);
 
-  const { payload, isLoading } = useSelector((state:RootState) => state.articleList);
+  const { payload, isLoading } = useSelector((state: RootState) => state.articleList);
 
   const rows = useMemo(
-    () => payload.data.map((article, index): IRowActiveArticle => ({
-      id: article.id,
-      no: index + 1,
-      title: article.title,
-      createdAt: article.createdAt,
-      postedAt: article.postedAt ?? '-',
-      status: article.status,
-    })),
+    () =>
+      payload.data.map(
+        (article, index): IRowActiveArticle => ({
+          id: article.id,
+          no: index + 1,
+          title: article.title,
+          createdAt: article.createdAt,
+          postedAt: article.postedAt ?? '-',
+          status: article.status,
+        }),
+      ),
     [payload],
   );
 
@@ -82,8 +85,12 @@ const ActiveArticleDataGrid = () => {
       />
       <PromptDialog
         open={openDeletePrompt}
-        onClose={() => { setOpenDeletePrompt(false); }}
-        onClickYes={() => { dispatch(deleteArticle(selectedId)); }}
+        onClose={() => {
+          setOpenDeletePrompt(false);
+        }}
+        onClickYes={() => {
+          dispatch(deleteArticle(selectedId));
+        }}
         title="Anda yakin untuk menghapus artikel?"
         content="Artikel yang sudah dihapus akan muncul di tab sampah."
       />

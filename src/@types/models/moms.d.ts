@@ -1,11 +1,11 @@
-interface IMoms extends IUser{
+interface IMoms extends IUser {
   profile?: IMomsProfile;
 }
 
-interface IMomsProfile implements TimeStamp{
+interface IMomsProfile {
   id: number;
   pictureId?: number;
-  villageId: string,
+  villageId: string;
   occupationId: number;
   nik?: string;
   jkn?: string;

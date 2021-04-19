@@ -1,4 +1,4 @@
-interface IConsultationPost extends TimeStamp{
+interface IConsultationPost extends TimeStamp {
   id: string;
   consultationId: number;
   deletedAt?: string | null;
@@ -15,11 +15,11 @@ interface IConsultationPost extends TimeStamp{
 }
 
 interface IConsultationPostState {
-  data: IConsultationPost[],
-  isLoaded: boolean,
+  data: IConsultationPost[];
+  isLoaded: boolean;
 }
 
-interface ConsultationPostsAction implements IStandardAction {
+interface ConsultationPostsAction {
   type: string;
   payload?: IConsultationPostState;
 }

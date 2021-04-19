@@ -23,7 +23,9 @@ const ConsultationRoom = () => {
     <ContentLayout
       levelOneLabel="Konsultasi"
       levelOneTo="/admin/consultation"
-      levelTwoLabel={`${consultation?.user?.fullName || 'Belum mengisi profile'} ${consultation.description}`}
+      levelTwoLabel={`${consultation?.user?.fullName || 'Belum mengisi profile'} ${
+        consultation.description
+      }`}
       noContainer
     >
       <ChatContainer />

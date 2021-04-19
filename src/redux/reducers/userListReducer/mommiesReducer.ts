@@ -1,6 +1,6 @@
 import { mommiesTypes } from '../../../constants/userListActionTypes';
 
-const initialState: UserListState <IMoms> = {
+const initialState: UserListState<IMoms> = {
   payload: {
     currentPage: 0,
     data: new Array<IUser>(),
@@ -19,9 +19,9 @@ const initialState: UserListState <IMoms> = {
 };
 
 const mommiesReducer = (
-  state: UserListState <IMoms> = initialState,
+  state: UserListState<IMoms> = initialState,
   action: UserListAction,
-): UserListState <IMoms> => {
+): UserListState<IMoms> => {
   const { type, payload, error } = action;
 
   switch (type) {

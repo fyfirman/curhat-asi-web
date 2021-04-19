@@ -6,13 +6,14 @@ import axios from './axios';
 
 const put = (path: string, data: any, config: AxiosRequestConfig) => {
   const promise = new Promise((resolve, reject) => {
-    axios.put(`${BASE_URL}/${path}`, data ? getFormData(data) : {}, {
-      ...config,
-      headers: {
-        ...config.headers,
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    axios
+      .put(`${BASE_URL}/${path}`, data ? getFormData(data) : {}, {
+        ...config,
+        headers: {
+          ...config.headers,
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then(
         (result) => {
           resolve(camelize(result.data));

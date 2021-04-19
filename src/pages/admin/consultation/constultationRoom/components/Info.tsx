@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface InfoProps{
+interface InfoProps {
   label: string;
   info?: string;
 }

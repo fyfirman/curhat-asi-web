@@ -64,9 +64,10 @@ const ChatInfo = () => {
     'Makanan Lain yang diberikan': consultation.info?.otherFoodGiven,
   };
 
-  const renderInfo = () => Object.keys(infoList).map(
-    (key, index) => <Info label={key} info={infoList[key]} key={index} />,
-  );
+  const renderInfo = () =>
+    Object.keys(infoList).map((key, index) => (
+      <Info label={key} info={infoList[key]} key={index} />
+    ));
 
   return (
     <div className={classes.root}>

@@ -8,17 +8,23 @@ interface getArticlesParams {
   status?: string;
 }
 
-export const getArticles = (params : getArticlesParams) => {
+export const getArticles = (params: getArticlesParams) => {
   const { status = 'all' } = params;
 
-  return get<IPagination<IArticle>>('api/restricted/articles', Config.withToken({ params: { status } }));
+  return get<IPagination<IArticle>>(
+    'api/restricted/articles',
+    Config.withToken({ params: { status } }),
+  );
 };
 
-export const getArticle = (id : string) => get<PayloadResponse<IArticle>>(`api/restricted/articles/${id}`, Config.withToken());
+export const getArticle = (id: string) =>
+  get<PayloadResponse<IArticle>>(`api/restricted/articles/${id}`, Config.withToken());
 
-export const deleteArticle = (id: IArticle['id']) => destroy(`api/restricted/articles/${id}`, Config.withToken());
+export const deleteArticle = (id: IArticle['id']) =>
+  destroy(`api/restricted/articles/${id}`, Config.withToken());
 
-export const restoreDeletedArticle = (id: IArticle['id']) => patch(`api/restricted/articles/${id}/restore`, undefined, Config.withToken());
+export const restoreDeletedArticle = (id: IArticle['id']) =>
+  patch(`api/restricted/articles/${id}/restore`, undefined, Config.withToken());
 
 export interface IArticleRequest {
   title: string;
@@ -27,4 +33,5 @@ export interface IArticleRequest {
   scopes?: IUserGroup['id'][];
 }
 
-export const postArticle = (request: IArticleRequest) => post('api/restricted/articles', request, Config.withToken());
+export const postArticle = (request: IArticleRequest) =>
+  post('api/restricted/articles', request, Config.withToken());

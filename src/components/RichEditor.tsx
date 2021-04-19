@@ -13,7 +13,8 @@ const RichEditor = (props: IAllProps) => {
             'searchreplace visualblocks code fullscreen',
             'insertdatetime media table paste code help wordcount',
           ],
-          toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | media image link | bullist numlist outdent indent | removeformat searchreplace | preview help ',
+          toolbar:
+            'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | media image link | bullist numlist outdent indent | removeformat searchreplace | preview help ',
         }}
         {...props}
       />

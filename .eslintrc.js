@@ -30,6 +30,8 @@ module.exports = {
         'no-undef': 'off',
         'no-unused-vars': 'off',
         'prefer-template': 'error',
+        'object-curly-newline': 'off',
+        'implicit-arrow-linebreak': 'off',
         'spaced-comment': ['error', 'always', { markers: ['/'] }],
         'import/no-unresolved': 'off',
         '@typescript-eslint/camelcase': 'off',

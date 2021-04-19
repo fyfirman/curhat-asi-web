@@ -1,6 +1,4 @@
-import {
-  Button, makeStyles, Theme,
-} from '@material-ui/core';
+import { Button, makeStyles, Theme } from '@material-ui/core';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
 import { useMutation } from 'react-query';
@@ -30,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface ArticleFormValues {
   title: string;
   articleCategoryId?: IArticleCategory['id'];
-  scopes: { [key: string] : boolean };
+  scopes: { [key: string]: boolean };
   content: string;
 }
 
@@ -59,7 +57,7 @@ const CreateArticleForm = () => {
     }
   }, [mutation.isSuccess]);
 
-  const initialValues : ArticleFormValues = {
+  const initialValues: ArticleFormValues = {
     title: '',
     articleCategoryId: undefined,
     scopes: {
@@ -74,7 +72,7 @@ const CreateArticleForm = () => {
   };
 
   const onSubmit = async (values: ArticleFormValues) => {
-    const data : IArticleRequest = {
+    const data: IArticleRequest = {
       title: values.title,
       content,
       articleCategoryId: values.articleCategoryId,
@@ -88,11 +86,7 @@ const CreateArticleForm = () => {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         <Form className={classes.form}>
           <Field
             component={TextField}
@@ -101,16 +95,9 @@ const CreateArticleForm = () => {
             disabled={mutation.isLoading}
             autoFocus
           />
-          <CategoryField
-            name="articleCategoryId"
-            disabled={mutation.isLoading}
-          />
-          <TagsField
-            disabled={mutation.isLoading}
-          />
-          <AccessByField
-            disabled={mutation.isLoading}
-          />
+          <CategoryField name="articleCategoryId" disabled={mutation.isLoading} />
+          <TagsField disabled={mutation.isLoading} />
+          <AccessByField disabled={mutation.isLoading} />
           <RichEditor
             initialValue="<p>Tulis konten anda disini</p>"
             onEditorChange={(value) => setContent(value)}

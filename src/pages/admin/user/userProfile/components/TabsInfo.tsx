@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import {
-  makeStyles, Tab, Tabs, Theme,
-} from '@material-ui/core';
+import { makeStyles, Tab, Tabs, Theme } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import Info from '@pages/admin/consultation/constultationRoom/components/Info';
 import TabPanel, { InfoList } from './TabPanel';
-import {
-  babyInfo, consultantProfile, husbandInfo, momsProfile, pregnancyInfo,
-} from './data';
+import { babyInfo, consultantProfile, husbandInfo, momsProfile, pregnancyInfo } from './data';
 import ActivityInfo from './ActivityInfo';
 
 const useStyles = makeStyles((_theme: Theme) => ({
@@ -19,10 +15,10 @@ const useStyles = makeStyles((_theme: Theme) => ({
 }));
 
 interface TabsInfoProps {
-  consultant: boolean
+  consultant: boolean;
 }
 
-const TabsInfo = ({ consultant } : TabsInfoProps) => {
+const TabsInfo = ({ consultant }: TabsInfoProps) => {
   const [value, setValue] = useState(0);
 
   const classes = useStyles();
@@ -51,19 +47,20 @@ const TabsInfo = ({ consultant } : TabsInfoProps) => {
     'aria-controls': `scrollable-auto-tabpanel-${index}`,
   });
 
-  const renderTabs = () => tabsData.map((tab, index) => (
-    <Tab className={classes.tab} label={tab.label} {...a11yProps(index + 1)} key={index + 1} />
-  ));
+  const renderTabs = () =>
+    tabsData.map((tab, index) => (
+      <Tab className={classes.tab} label={tab.label} {...a11yProps(index + 1)} key={index + 1} />
+    ));
 
-  const renderTabPanels = () => tabsData.map((tab, index) => (
-    <TabPanel value={value} index={index + 1} key={index + 1}>
-      {renderInfoList(tab.infoList)}
-    </TabPanel>
-  ));
+  const renderTabPanels = () =>
+    tabsData.map((tab, index) => (
+      <TabPanel value={value} index={index + 1} key={index + 1}>
+        {renderInfoList(tab.infoList)}
+      </TabPanel>
+    ));
 
-  const renderInfoList = (infoList: InfoList) => Object.keys(infoList).map((key, i) => (
-    <Info key={i} label={key} info={infoList[key]} />
-  ));
+  const renderInfoList = (infoList: InfoList) =>
+    Object.keys(infoList).map((key, i) => <Info key={i} label={key} info={infoList[key]} />);
 
   return (
     <>

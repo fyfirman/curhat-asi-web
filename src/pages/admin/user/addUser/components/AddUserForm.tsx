@@ -1,6 +1,4 @@
-import {
-  Button, makeStyles, MenuItem, Theme,
-} from '@material-ui/core';
+import { Button, makeStyles, MenuItem, Theme } from '@material-ui/core';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
 import { Select, TextField } from 'formik-material-ui';
@@ -36,31 +34,23 @@ interface AddUserFormValue {
 
 const validationSchema = yup.object({
   userGroupId: yup.string().required(),
-  phoneNumber: yup
-    .string()
-    .required('Nomor Handphone harus diisi'),
+  phoneNumber: yup.string().required('Nomor Handphone harus diisi'),
   pin: yup
     .string()
     .matches(/^[0-9]+$/, 'PIN harus angka')
     .min(6, 'PIN harus 6 digit')
     .max(6, 'PIN harus 6 digit')
     .required('PIN harus diisi'),
-  name: yup
-    .string()
-    .required('Nama harus diisi'),
-  pob: yup
-    .string()
-    .required('Tempat lahir harus diisi'),
-  dob: yup
-    .date()
-    .required('Tanggal lahir harus diisi'),
+  name: yup.string().required('Nama harus diisi'),
+  pob: yup.string().required('Tempat lahir harus diisi'),
+  dob: yup.date().required('Tanggal lahir harus diisi'),
   province: yup.object().required('Provinsi harus diisi'),
   district: yup.object().required('Kota/kabupaten harus diisi'),
   subDistrict: yup.object().required('Kecamatan harus diisi'),
   village: yup.object().required('Kelurahan/desa harus diisi'),
 });
 
-const userGroupMenu : IUserGroup[] = [
+const userGroupMenu: IUserGroup[] = [
   {
     id: UserGroup.Cadre,
     name: 'Kader',
@@ -94,7 +84,7 @@ const AddUserForm = () => {
 
   const dispatch = useDispatch();
 
-  const initialValues : AddUserFormValue = {
+  const initialValues: AddUserFormValue = {
     phoneNumber: '',
     pin: '',
     name: '',
@@ -103,7 +93,7 @@ const AddUserForm = () => {
   };
 
   const onSubmit = async (values: AddUserFormValue) => {
-    const data : IUserRequest = {
+    const data: IUserRequest = {
       userGroupId: values.userGroupId || '',
       name: values.name,
       phoneNumber: values.phoneNumber,
@@ -116,47 +106,24 @@ const AddUserForm = () => {
     dispatch(requestAddUser(data));
   };
 
-  const renderUserGroupMenu = () => userGroupMenu.map((menu) => (
-    <MenuItem key={menu.id} value={menu.id}>{menu.name}</MenuItem>));
+  const renderUserGroupMenu = () =>
+    userGroupMenu.map((menu) => (
+      <MenuItem key={menu.id} value={menu.id}>
+        {menu.name}
+      </MenuItem>
+    ));
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         <Form>
-          <Field
-            component={Select}
-            name="userGroupId"
-            label="Jabatan"
-            autoFocus
-          >
+          <Field component={Select} name="userGroupId" label="Jabatan" autoFocus>
             {renderUserGroupMenu()}
           </Field>
-          <Field
-            component={TextField}
-            name="phoneNumber"
-            label="Nomor Handphone"
-            autoFocus
-          />
-          <Field
-            component={TextField}
-            name="pin"
-            type="number"
-            label="PIN Sementara"
-          />
-          <Field
-            component={TextField}
-            name="name"
-            label="Nama"
-          />
-          <Field
-            component={TextField}
-            name="pob"
-            label="Tempat Lahir"
-          />
+          <Field component={TextField} name="phoneNumber" label="Nomor Handphone" autoFocus />
+          <Field component={TextField} name="pin" type="number" label="PIN Sementara" />
+          <Field component={TextField} name="name" label="Nama" />
+          <Field component={TextField} name="pob" label="Tempat Lahir" />
           <Field
             component={KeyboardDatePicker}
             label="Tanggal Lahir"
@@ -165,13 +132,7 @@ const AddUserForm = () => {
             format="dd MMM yyyy"
           />
           <LocationFields />
-          <Button
-            color="primary"
-            variant="contained"
-            type="submit"
-            fullWidth
-            disableElevation
-          >
+          <Button color="primary" variant="contained" type="submit" fullWidth disableElevation>
             Daftar
           </Button>
         </Form>

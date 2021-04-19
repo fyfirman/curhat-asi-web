@@ -12,9 +12,7 @@ const CustomTab = (props: CustomTabProps) => {
     'aria-controls': `scrollable-auto-tabpanel-${index}`,
   });
 
-  return (
-    <Tab label={label} {...a11yProps()} {...rest} />
-  );
+  return <Tab label={label} {...a11yProps()} {...rest} />;
 };
 
 export default CustomTab;

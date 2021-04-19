@@ -76,10 +76,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderLeftWidth: 0,
     borderRightWidth: 0,
   },
-
 }));
 
-const ChatContainer:React.FC = () => {
+const ChatContainer: React.FC = () => {
   const classes = useStyles();
 
   const consultation = useSelector((state: RootState) => state.consultation);
@@ -89,24 +88,17 @@ const ChatContainer:React.FC = () => {
       <div className={classes.main}>
         <div className={classes.headerChat}>
           <div className={classes.avaContainer}>
-            <Avatar
-              alt={consultation.user?.fullName || ''}
-              className={classes.headerAvatar}
-            />
+            <Avatar alt={consultation.user?.fullName || ''} className={classes.headerAvatar} />
           </div>
           <div className={classes.headerContent}>
             <span>{consultation.user?.fullName || 'Belum mengisi profile'}</span>
-            <span>
-              {`Masalah : ${consultation.description}`}
-            </span>
+            <span>{`Masalah : ${consultation.description}`}</span>
           </div>
         </div>
         <ChatRoom />
       </div>
       <div className={classes.secondary}>
-        <div className={classes.headerInfo}>
-          Informasi Konsultasi
-        </div>
+        <div className={classes.headerInfo}>Informasi Konsultasi</div>
         <ChatInfo />
       </div>
     </div>

@@ -12,15 +12,14 @@ export const getConsultations = (type?: ConsultationType) => {
     ...(type && { params: { type } }),
   };
 
-  return get<PayloadResponse<IConsultationPayload>>('api/dashboard/consultations', Config.withToken(config));
+  return get<PayloadResponse<IConsultationPayload>>(
+    'api/dashboard/consultations',
+    Config.withToken(config),
+  );
 };
 
-export const getConsultation = (id: IConsultation['id']) => get<PayloadResponse<IConsultation>>(
-  `api/consultations/${id}`,
-  Config.withToken(),
-);
+export const getConsultation = (id: IConsultation['id']) =>
+  get<PayloadResponse<IConsultation>>(`api/consultations/${id}`, Config.withToken());
 
-export const getConsultationPost = (id: number) => get(
-  `api/consultations/${id}/consultation_posts?sortBy=desc`,
-  Config.withToken(),
-);
+export const getConsultationPost = (id: number) =>
+  get(`api/consultations/${id}/consultation_posts?sortBy=desc`, Config.withToken());

@@ -1,9 +1,7 @@
-import {
-  Breadcrumbs, makeStyles, Theme, Typography,
-} from '@material-ui/core';
+import { Breadcrumbs, makeStyles, Theme, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme:Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   prev: {
     fontSize: 16,
     textDecoration: 'none',
@@ -19,9 +17,7 @@ interface CustomBreadcrumbsProps {
 }
 
 const CustomBreadcrumbs = (props: CustomBreadcrumbsProps) => {
-  const {
-    className, levelOneTo, levelOneLabel, levelTwoLabel,
-  } = props;
+  const { className, levelOneTo, levelOneLabel, levelTwoLabel } = props;
   const classes = useStyles();
 
   return (
@@ -29,9 +25,7 @@ const CustomBreadcrumbs = (props: CustomBreadcrumbsProps) => {
       <Link to={levelOneTo} className={classes.prev}>
         {levelOneLabel}
       </Link>
-      <Typography color="textPrimary">
-        {levelTwoLabel}
-      </Typography>
+      <Typography color="textPrimary">{levelTwoLabel}</Typography>
     </Breadcrumbs>
   );
 };

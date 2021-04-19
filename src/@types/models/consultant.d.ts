@@ -1,11 +1,11 @@
-interface IConsultant extends IUser{
+interface IConsultant extends IUser {
   profile?: IConsultantProfile;
 }
 
-interface IConsultantProfile implements TimeStamp{
+interface IConsultantProfile {
   id: number;
   pictureId?: number;
-  villageId: string,
+  villageId: string;
   name?: string;
   occupationId: number;
   pob?: string;

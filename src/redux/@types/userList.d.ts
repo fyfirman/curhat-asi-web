@@ -1,7 +1,7 @@
-interface UserListAction implements IStandardAction {
+interface UserListAction {
   type: string;
   payload: IPagination<IUser>;
-  error?: {}
+  error?: {};
 }
 
 interface UserListState<U = IUser> {

@@ -2,7 +2,12 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   Collapse,
-  Drawer, List, ListItem, ListItemText, makeStyles, Theme,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
+  Theme,
 } from '@material-ui/core';
 import { Route as IRoute } from 'src/router/routes';
 import { requestlogout } from '@redux/actions/authActions';
@@ -69,9 +74,7 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
       <div className={classes.toolbar} />
       <div className={classes.containerMenu}>
         <List>
-          {routes.map(({
-            name, path, collapsible, subRoutes,
-          }, key) => (
+          {routes.map(({ name, path, collapsible, subRoutes }, key) => (
             <>
               <NavLink
                 to={prefixPath + path}
@@ -82,39 +85,34 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
               >
                 <ListItem button key={name} onClick={() => handleClick(name)}>
                   <ListItemText primary={name} />
-                  {collapsible && (
-                  <>
-                    {isOpen[name] ? <ExpandLess /> : <ExpandMore />}
-                  </>
-                  )}
+                  {collapsible && <>{isOpen[name] ? <ExpandLess /> : <ExpandMore />}</>}
                 </ListItem>
               </NavLink>
-              { subRoutes && (
-              <Collapse in={isOpen[name]} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  {subRoutes.map((subRoute, index) => (
-                    <NavLink
-                      to={prefixPath + subRoute.path}
-                      activeClassName={classes.activeNav}
-                      className={classes.nav}
-                      key={index}
-                    >
-                      <ListItem
-                        key={subRoute.name}
-                        className={classes.nested}
-                        button
-                        onClick={() => handleClick(subRoute.name)}
+              {subRoutes && (
+                <Collapse in={isOpen[name]} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {subRoutes.map((subRoute, index) => (
+                      <NavLink
+                        to={prefixPath + subRoute.path}
+                        activeClassName={classes.activeNav}
+                        className={classes.nav}
+                        key={index}
                       >
-                        <ListItemText primary={subRoute.name} />
-                      </ListItem>
-                    </NavLink>
-                  ))}
-                </List>
-              </Collapse>
+                        <ListItem
+                          key={subRoute.name}
+                          className={classes.nested}
+                          button
+                          onClick={() => handleClick(subRoute.name)}
+                        >
+                          <ListItemText primary={subRoute.name} />
+                        </ListItem>
+                      </NavLink>
+                    ))}
+                  </List>
+                </Collapse>
               )}
             </>
           ))}
-
         </List>
         <ListItem button onClick={() => dispatch(requestlogout())}>
           <ListItemText primary="Keluar" />

@@ -27,7 +27,13 @@ const ArticleCategories = () => {
           Daftar Kategori Artikel
         </Typography>
         <div>
-          <Button onClick={() => { setOpenAddCategory(true); }} variant="contained" color="secondary">
+          <Button
+            onClick={() => {
+              setOpenAddCategory(true);
+            }}
+            variant="contained"
+            color="secondary"
+          >
             Tambah Kategori
           </Button>
         </div>
@@ -38,7 +44,9 @@ const ArticleCategories = () => {
       <CategoryDialog
         title="Tambah Kategori"
         open={openAddCategory}
-        handleClose={() => { setOpenAddCategory(false); }}
+        handleClose={() => {
+          setOpenAddCategory(false);
+        }}
       />
     </>
   );

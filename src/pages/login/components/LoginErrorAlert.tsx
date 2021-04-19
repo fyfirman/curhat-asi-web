@@ -8,7 +8,9 @@ const LoginErrorAlert = (props: AlertProps) => {
   const error = useSelector((state: RootState) => state.session.error);
 
   return (
-    <Alert severity="error" {...props}>{error?.message}</Alert>
+    <Alert severity="error" {...props}>
+      {error?.message}
+    </Alert>
   );
 };
 

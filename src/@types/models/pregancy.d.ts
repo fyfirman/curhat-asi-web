@@ -1,4 +1,4 @@
-interface IPregnancy implements TimeStamp{
+interface IPregnancy {
   id: number;
   profileId: number;
   pregnancyNum: number;

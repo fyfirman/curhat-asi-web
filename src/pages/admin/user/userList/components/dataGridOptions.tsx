@@ -13,20 +13,31 @@ const ViewButton = (params: GridCellParams) => (
   </Button>
 );
 
-export const columns : GridColDef[] = [
+export const columns: GridColDef[] = [
   {
-    field: 'id', headerName: 'ID', width: 75, hide: true,
+    field: 'id',
+    headerName: 'ID',
+    width: 75,
+    hide: true,
   },
   {
-    field: 'no', headerName: 'No.', width: 75,
+    field: 'no',
+    headerName: 'No.',
+    width: 75,
   },
   {
-    field: 'name', headerName: 'Nama', width: 130, flex: 1,
+    field: 'name',
+    headerName: 'Nama',
+    width: 130,
+    flex: 1,
   },
   { field: 'phoneNumber', headerName: 'Nomor HP', width: 130 },
   { field: 'age', headerName: 'Usia', width: 90 },
   {
-    field: 'domicile', headerName: 'Domisili', width: 200, flex: 1,
+    field: 'domicile',
+    headerName: 'Domisili',
+    width: 200,
+    flex: 1,
   },
   { field: 'registrationDate', headerName: 'Tanggal Pendaftaran', width: 200 },
   {

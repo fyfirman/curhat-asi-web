@@ -2,13 +2,9 @@ import CustomAutocomplete from '@components/CustomAutocomplete';
 import { createFilterOptions } from '@material-ui/lab/useAutocomplete';
 import { FieldAttributes } from 'formik';
 
-const mockData : { title: string }[] = [
-  { title: 'Halo' },
-  { title: 'Halo 1' },
-  { title: 'Halo 2' },
-];
+const mockData: { title: string }[] = [{ title: 'Halo' }, { title: 'Halo 1' }, { title: 'Halo 2' }];
 
-const filter = createFilterOptions<{ title: string, inputValue?: string }>();
+const filter = createFilterOptions<{ title: string; inputValue?: string }>();
 
 const TagsField = (props: FieldAttributes<any>) => {
   return (
@@ -17,7 +13,7 @@ const TagsField = (props: FieldAttributes<any>) => {
       name="tags"
       multiple
       options={mockData}
-      getOptionLabel={(option:any) => {
+      getOptionLabel={(option: any) => {
         if (typeof option === 'string') {
           return option;
         }
@@ -27,8 +23,8 @@ const TagsField = (props: FieldAttributes<any>) => {
         return option.title;
       }}
       renderOption={(option: any) => option.title}
-      filterOptions={(options: any, params:any) => {
-        const filtered = filter(options, params) as { title: string, inputValue?: string }[];
+      filterOptions={(options: any, params: any) => {
+        const filtered = filter(options, params) as { title: string; inputValue?: string }[];
 
         if (params.inputValue !== '') {
           filtered.push({

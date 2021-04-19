@@ -17,10 +17,8 @@ interface ContentLayoutProps {
   levelTwoLabel: string;
 }
 
-const ContentLayout = (props:ContentLayoutProps) => {
-  const {
-    children, noContainer = false, levelOneLabel, levelTwoLabel, levelOneTo,
-  } = props;
+const ContentLayout = (props: ContentLayoutProps) => {
+  const { children, noContainer = false, levelOneLabel, levelTwoLabel, levelOneTo } = props;
   const classes = useStyles();
 
   return (
@@ -31,11 +29,7 @@ const ContentLayout = (props:ContentLayoutProps) => {
         levelOneTo={levelOneTo}
         levelTwoLabel={levelTwoLabel}
       />
-      {!noContainer && (
-      <Container>
-        {children}
-      </Container>
-      )}
+      {!noContainer && <Container>{children}</Container>}
       {noContainer && children}
     </div>
   );
