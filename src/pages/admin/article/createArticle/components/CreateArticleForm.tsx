@@ -14,6 +14,7 @@ import { IArticleRequest, postArticle } from '@services/ArticleServices';
 import UserGroup from '@constants/UserGroupEnum';
 import { useEffect, useState } from 'react';
 import { requestArticleCategories } from '@redux/actions/articleCategoriesActions';
+import { useHistory } from 'react-router-dom';
 import TagsField from './TagsField';
 import CategoryField from '../../../../../components/CategoryField';
 import AccessByField from './AccessByField';
@@ -42,6 +43,8 @@ const CreateArticleForm = () => {
 
   const [content, setContent] = useState('');
 
+  const history = useHistory();
+
   const mutation = useMutation(postArticle);
 
   const dispatch = useDispatch();
@@ -49,6 +52,12 @@ const CreateArticleForm = () => {
   useEffect(() => {
     dispatch(requestArticleCategories());
   }, []);
+
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      history.goBack();
+    }
+  }, [mutation.isSuccess]);
 
   const initialValues : ArticleFormValues = {
     title: '',
