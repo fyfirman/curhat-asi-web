@@ -71,7 +71,7 @@ const CreateArticleForm = () => {
       articleCategoryId: values.articleCategoryId,
       scopes: Object.keys(values.scopes)
         .filter((key) => values.scopes[key])
-        .map((key) => `${key}`),
+        .map((key) => key),
     };
 
     mutation.mutate(data);
