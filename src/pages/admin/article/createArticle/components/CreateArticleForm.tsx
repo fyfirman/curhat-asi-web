@@ -15,8 +15,8 @@ import UserGroup from '@constants/UserGroupEnum';
 import { useEffect, useState } from 'react';
 import { requestArticleCategories } from '@redux/actions/articleCategoriesActions';
 import { useHistory } from 'react-router-dom';
+import CategoryField from '@components/CategoryField';
 import TagsField from './TagsField';
-import CategoryField from '../../../../../components/CategoryField';
 import AccessByField from './AccessByField';
 
 const useStyles = makeStyles((theme: Theme) => ({
