@@ -1,7 +1,22 @@
-import { postUploadPicture } from '@services/PictureServices';
+import { IUploadPictureResponse, postUploadPicture } from '@services/PictureServices';
 import { Editor, IAllProps } from '@tinymce/tinymce-react';
 
 const RichEditor = (props: IAllProps) => {
+  const handleImageUpload = async (blobInfo: any, success: (url: string) => any) => {
+    try {
+      const res: IUploadPictureResponse = await postUploadPicture({
+        image: blobInfo.blob(),
+      });
+      success(res.asset);
+    } catch (err) {
+      // TODO : handle error
+      // eslint-disable-next-line no-console
+      console.error(err);
+    }
+
+    success('http://moxiecode.cachefly.net/tinymce/v9/images/logo.png');
+  };
+
   return (
     <div style={{ height: props.init?.height ?? 500 }}>
       <Editor
@@ -15,14 +30,7 @@ const RichEditor = (props: IAllProps) => {
             'insertdatetime media table paste code help wordcount',
           ],
           images_upload_credentials: true,
-          images_upload_handler: async (blobInfo, success) => {
-            const res = await postUploadPicture({
-              image: blobInfo.blob(),
-            });
-            console.log(res);
-
-            success('http://moxiecode.cachefly.net/tinymce/v9/images/logo.png');
-          },
+          images_upload_handler: handleImageUpload,
           automatic_uploads: true,
           file_picker_types: 'image',
           toolbar:
