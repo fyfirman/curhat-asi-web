@@ -9,32 +9,37 @@ import store, { persistor } from '@redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { create } from 'jss';
 import jssExtends from 'jss-plugin-extend';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import 'date-fns';
 
 const jss = create({
   plugins: [jssExtends(), ...jssPreset().plugins],
 });
 
+const queryClient = new QueryClient();
+
 export default function App() {
   return (
     <Provider store={store}>
       <StylesProvider jss={jss}>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>Curhat ASI</title>
-          <link rel="canonical" href="http://curhatasi.fit" />
-        </Helmet>
-        <ThemeProvider theme={theme}>
-          <PersistGate
-            loading={<div>Mohon tunggu</div>}
-            persistor={persistor}
-          >
-            <Router>
-              <AppRouter />
-            </Router>
-            <CssBaseline />
-          </PersistGate>
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>Curhat ASI</title>
+            <link rel="canonical" href="http://curhatasi.fit" />
+          </Helmet>
+          <ThemeProvider theme={theme}>
+            <PersistGate
+              loading={<div>Mohon tunggu</div>}
+              persistor={persistor}
+            >
+              <Router>
+                <AppRouter />
+              </Router>
+              <CssBaseline />
+            </PersistGate>
+          </ThemeProvider>
+        </QueryClientProvider>
       </StylesProvider>
     </Provider>
 

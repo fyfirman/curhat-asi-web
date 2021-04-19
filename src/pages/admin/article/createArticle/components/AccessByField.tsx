@@ -2,9 +2,9 @@ import UserGroup from '@constants/UserGroupEnum';
 import { $enum } from 'ts-enum-util';
 import { CheckboxWithLabel } from 'formik-material-ui';
 import UserGroupLabel from '@constants/UserGroupLabel';
-import { Field } from 'formik';
+import { Field, FieldAttributes } from 'formik';
 
-const AccessByField = () => {
+const AccessByField = (props: FieldAttributes<any>) => {
   const renderCheckBox = () => $enum(UserGroup)
     .map((userGroup) => (userGroup !== UserGroup.Administrator
       && (
@@ -14,6 +14,7 @@ const AccessByField = () => {
         type="checkbox"
         name={`scopes[${userGroup}]`}
         Label={{ label: UserGroupLabel[userGroup] }}
+        {...props}
       />
       )
     ));

@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { requestArticleCategories } from '@redux/actions/articleCategoriesActions';
 import { RootState } from '@redux/reducers';
+import { FieldAttributes } from 'formik';
 
-interface CategoryFieldProps {
+interface CategoryFieldProps extends FieldAttributes<any>{
   label?: string;
   name?: string;
 }
 
-const CategoryField = ({ label = 'Kategori', name = 'category' } : CategoryFieldProps) => {
+const CategoryField = ({ label = 'Kategori', name = 'category', ...rest } : CategoryFieldProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const CategoryField = ({ label = 'Kategori', name = 'category' } : CategoryField
         name={name}
         label={label}
         required={false}
+        {...rest}
       >
         {renderUserGroupMenu()}
       </Field>

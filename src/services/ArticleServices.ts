@@ -2,6 +2,7 @@ import get from '@utils/axios/get';
 import * as Config from '@utils/axios/axiosConfig';
 import destroy from '@utils/axios/destroy';
 import patch from '@utils/axios/patch';
+import post from '@utils/axios/post';
 
 interface getArticlesParams {
   status?: string;
@@ -25,3 +26,5 @@ export interface IArticleRequest {
   articleCategoryId?: IArticleCategory['id'];
   scopes?: IUserGroup['id'][];
 }
+
+export const postArticle = (request: IArticleRequest) => post('api/restricted/articles', request, Config.withToken());

@@ -1,5 +1,6 @@
 import CustomAutocomplete from '@components/CustomAutocomplete';
 import { createFilterOptions } from '@material-ui/lab/useAutocomplete';
+import { FieldAttributes } from 'formik';
 
 const mockData : { title: string }[] = [
   { title: 'Halo' },
@@ -9,7 +10,7 @@ const mockData : { title: string }[] = [
 
 const filter = createFilterOptions<{ title: string, inputValue?: string }>();
 
-const TagsField = () => {
+const TagsField = (props: FieldAttributes<any>) => {
   return (
     <CustomAutocomplete
       label="Tag"
@@ -38,6 +39,7 @@ const TagsField = () => {
 
         return filtered;
       }}
+      {...props}
     />
   );
 };
