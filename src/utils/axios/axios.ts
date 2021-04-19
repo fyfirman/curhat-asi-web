@@ -17,11 +17,12 @@ const logger = (config: AxiosRequestConfig) => {
 
   const formData: FormData = config.data;
   if (formData) {
-    const body = {};
-    formData.forEach((value, key) => {
-      Object.assign(body, { [key]: value });
+    console.log(JSON.stringify(Object.fromEntries(formData)));
+    formData.forEach((value: any, key: string) => {
+      console.log(key, value);
     });
-    console.log(body);
+  } else {
+    console.log('no form-data');
   }
 };
 
