@@ -21,5 +21,8 @@ export const getConsultations = (type?: ConsultationType) => {
 export const getConsultation = (id: IConsultation['id']) =>
   get<PayloadResponse<IConsultation>>(`api/consultations/${id}`, Config.withToken());
 
-export const getConsultationPost = (id: number) =>
-  get(`api/consultations/${id}/consultation_posts?sortBy=desc`, Config.withToken());
+export const getConsultationPost = (id: IConsultation['id']) =>
+  get<IConsultationPost[]>(
+    `api/consultations/${id}/consultation_posts?sortBy=desc`,
+    Config.withToken(),
+  );
