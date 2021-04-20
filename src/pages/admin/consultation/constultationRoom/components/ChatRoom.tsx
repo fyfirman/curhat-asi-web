@@ -27,13 +27,20 @@ const ChatRoom = () => {
 
   const user = useSelector((state: RootState) => state.selfUser.payload);
 
+  const getNameWithPosition = (post: IConsultationPost) => {
+    if (post.user?.fullName) {
+      return `${post.user.fullName} - ${post.user.userGroup.name}`;
+    }
+    return 'Belum mengisi Profile';
+  };
+
   const renderPosts = () =>
     data?.map((post: IConsultationPost) => (
       <ChatBubble
         key={post.id}
         imageUri={post.picture?.original}
         message={post.message}
-        name={post.user.fullName || 'Belum mengisi profile'}
+        name={getNameWithPosition(post)}
         time={post.createdAt}
         opposite={post.userId === user.id}
       />
