@@ -4,8 +4,8 @@ interface IConsultationPost extends TimeStamp {
   deletedAt?: string | null;
   message: string;
   meta?: string | null;
-  picture?: strin;
-  pictureId?: null;
+  picture?: IPicture;
+  pictureId?: IPicture['id'];
   replied?: null;
   repliedPostId?: null;
   user: IUser;
