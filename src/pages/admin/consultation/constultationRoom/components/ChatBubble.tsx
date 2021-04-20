@@ -1,4 +1,4 @@
-import * as React from 'react';
+import AudioPlayer from 'material-ui-audio-player';
 import { Avatar, makeStyles, Theme } from '@material-ui/core';
 import { prefixImageUrl } from '@constants/urlHelper';
 
@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxHeight: '30vh',
     maxWidth: '100%',
     objectFit: 'contain',
+  },
+  voiceNote: {
+    width: '60vh',
+    padding: '16px',
   },
   message: {
     fontSize: 14,
@@ -69,6 +73,11 @@ const ChatBubble = ({
         {!opposite && <span className={classes.name}>{name}</span>}
         {imageUri && (
           <img className={classes.image} src={prefixImageUrl + imageUri} alt="" srcSet="" />
+        )}
+        {voiceNoteUri && (
+          <div className={classes.voiceNote}>
+            <AudioPlayer src={prefixImageUrl + voiceNoteUri} download width="62%" volume={false} />
+          </div>
         )}
         {!imageUri && !voiceNoteUri && <span className={classes.message}>{message}</span>}
         <span className={classes.time}>{time}</span>
