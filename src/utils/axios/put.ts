@@ -7,7 +7,7 @@ import axios from './axios';
 const put = (path: string, data: any, config: AxiosRequestConfig) => {
   const promise = new Promise((resolve, reject) => {
     axios
-      .put(`${BASE_URL}/${path}`, data ? getFormData(data) : {}, {
+      .post(`${BASE_URL}/${path}?_method=PUT`, data ? getFormData(data) : {}, {
         ...config,
         headers: {
           ...config.headers,

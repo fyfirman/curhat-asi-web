@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import RichEditor from '@components/RichEditor';
 import { TextField } from 'formik-material-ui';
 import Field from '@components/CustomField';
-import { IArticleRequest, postArticle } from '@services/ArticleServices';
+import { IArticleRequest, postArticle, putArticle } from '@services/ArticleServices';
 import UserGroup from '@constants/UserGroupEnum';
 import { useEffect, useMemo, useState } from 'react';
 import { requestArticleCategories } from '@redux/actions/articleCategoriesActions';
@@ -52,13 +52,14 @@ const CreateArticleForm = ({ isEdit = false, initialData }: CreateArticleFormPro
 
   const history = useHistory();
 
-  const mutation = useMutation(postArticle);
+  const handleEdit = (data: IArticleRequest) => putArticle(initialData?.id ?? 0, data);
+
+  const mutation = useMutation(initialData ? handleEdit : postArticle);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(requestArticleCategories());
-    console.log(initialValues);
   }, []);
 
   useEffect(() => {

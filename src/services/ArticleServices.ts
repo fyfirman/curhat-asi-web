@@ -3,6 +3,7 @@ import * as Config from '@utils/axios/axiosConfig';
 import destroy from '@utils/axios/destroy';
 import patch from '@utils/axios/patch';
 import post from '@utils/axios/post';
+import put from '@utils/axios/put';
 
 interface getArticlesParams {
   status?: string;
@@ -36,3 +37,6 @@ export interface IArticleRequest {
 
 export const postArticle = (request: IArticleRequest) =>
   post('api/restricted/articles', request, Config.withToken());
+
+export const putArticle = (id: IArticle['id'], request: IArticleRequest) =>
+  put(`api/restricted/articles/${id}`, request, Config.withToken());
