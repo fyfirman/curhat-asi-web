@@ -10,6 +10,7 @@ const initialState: IConsultation = {
   createdAt: '',
   updatedAt: '',
   info: undefined,
+  members: [],
 };
 
 const consultationListReducer = (state = initialState, action: IConsultationsAction) => {

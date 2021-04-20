@@ -69,6 +69,15 @@ const ChatInfo = () => {
       <Info label={key} info={infoList[key]} key={index} />
     ));
 
+  const renderParticipant = () =>
+    consultation.members.map((member) => (
+      <Participant
+        key={member.id}
+        name={member.fullName || 'Belum mengisi profile'}
+        phoneNumber={member.username || '-'}
+      />
+    ));
+
   return (
     <div className={classes.root}>
       <div className={classes.generalInfo}>
@@ -77,12 +86,8 @@ const ChatInfo = () => {
       </div>
       <div className={classes.participant}>
         <span>Partisipan</span>
-        {/* TODO: add other participant */}
         {/* TODO: add avatar props */}
-        <Participant
-          name={consultation.user?.fullName || 'Belum mengisi profile'}
-          phoneNumber={consultation.user?.username || '-'}
-        />
+        {renderParticipant()}
       </div>
       <div className={classes.information}>
         <span>Informasi Umum</span>

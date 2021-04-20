@@ -9,6 +9,7 @@ interface IConsultation extends TimeStamp {
   user?: IUser;
   posts: IConsultationPost[];
   info?: IConsultationInfo;
+  members: IUser[];
 }
 
 interface IConsultationInfo {
