@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem } from '@material-ui/core';
+import { FormControl, InputLabel, makeStyles, MenuItem } from '@material-ui/core';
 import { Select } from 'formik-material-ui';
 import Field from '@components/CustomField';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,12 +7,20 @@ import { requestArticleCategories } from '@redux/actions/articleCategoriesAction
 import { RootState } from '@redux/reducers';
 import { FieldAttributes } from 'formik';
 
+const useStyles = makeStyles(() => ({
+  form: {
+    width: '100%',
+  },
+}));
+
 interface CategoryFieldProps extends FieldAttributes<any> {
   label?: string;
   name?: string;
 }
 
 const CategoryField = ({ label = 'Kategori', name = 'category', ...rest }: CategoryFieldProps) => {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +39,7 @@ const CategoryField = ({ label = 'Kategori', name = 'category', ...rest }: Categ
     ));
 
   return (
-    <FormControl>
+    <FormControl className={classes.form}>
       <InputLabel>{label}</InputLabel>
       <Field component={Select} name={name} label={label} required={false} {...rest}>
         {renderUserGroupMenu()}
