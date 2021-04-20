@@ -31,6 +31,7 @@ export interface IArticleRequest {
   content: string;
   articleCategoryId?: IArticleCategory['id'];
   scopes?: IUserGroup['id'][];
+  tags?: string[];
 }
 
 export const postArticle = (request: IArticleRequest) =>

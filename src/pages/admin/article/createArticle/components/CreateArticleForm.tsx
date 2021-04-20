@@ -29,6 +29,10 @@ interface ArticleFormValues {
   title: string;
   articleCategoryId?: IArticleCategory['id'];
   scopes: { [key: string]: boolean };
+  tags: {
+    inputValue: string;
+    title: string;
+  }[];
   content: string;
 }
 
@@ -69,6 +73,7 @@ const CreateArticleForm = () => {
       [UserGroup.Mommies]: false,
     },
     content: '',
+    tags: [],
   };
 
   const onSubmit = async (values: ArticleFormValues) => {
@@ -79,7 +84,9 @@ const CreateArticleForm = () => {
       scopes: Object.keys(values.scopes)
         .filter((key) => values.scopes[key])
         .map((key) => key),
+      tags: values.tags.map((obj) => obj.inputValue),
     };
+    console.log(data);
 
     mutation.mutate(data);
   };
