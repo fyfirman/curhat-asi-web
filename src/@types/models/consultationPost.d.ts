@@ -10,8 +10,8 @@ interface IConsultationPost extends TimeStamp {
   repliedPostId?: null;
   user: IUser;
   userId: IUser['id'];
-  voiceNote?: null;
-  voiceNoteId?: null;
+  voiceNote?: IVoiceNote;
+  voiceNoteId?: IVoiceNote['id'];
 }
 
 interface IConsultationPostState {

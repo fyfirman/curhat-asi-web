@@ -44,6 +44,7 @@ interface ChatBubbleProps {
   opposite?: boolean;
   avatarUri?: string;
   imageUri?: string;
+  voiceNoteUri?: string;
   message: string;
   name: string;
   time: string;
@@ -54,6 +55,7 @@ const ChatBubble = ({
   name,
   time,
   imageUri,
+  voiceNoteUri,
   avatarUri,
   opposite = false,
   ...rest
@@ -68,7 +70,7 @@ const ChatBubble = ({
         {imageUri && (
           <img className={classes.image} src={prefixImageUrl + imageUri} alt="" srcSet="" />
         )}
-        {!imageUri && <span className={classes.message}>{message}</span>}
+        {!imageUri && !voiceNoteUri && <span className={classes.message}>{message}</span>}
         <span className={classes.time}>{time}</span>
       </div>
     </div>

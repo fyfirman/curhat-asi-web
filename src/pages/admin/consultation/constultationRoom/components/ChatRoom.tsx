@@ -38,8 +38,9 @@ const ChatRoom = () => {
     data?.map((post: IConsultationPost) => (
       <ChatBubble
         key={post.id}
-        imageUri={post.picture?.original}
         message={post.message}
+        imageUri={post.picture?.original}
+        voiceNoteUri={post.voiceNote?.original}
         name={getNameWithPosition(post)}
         time={post.createdAt}
         opposite={post.userId === user.id}

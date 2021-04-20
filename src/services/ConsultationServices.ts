@@ -23,6 +23,6 @@ export const getConsultation = (id: IConsultation['id']) =>
 
 export const getConsultationPost = (id: IConsultation['id']) =>
   get<IConsultationPost[]>(
-    `api/consultations/${id}/consultation_posts?sortBy=desc`,
+    `api/consultations/${id}/consultation_posts?sortBy=asc`,
     Config.withToken(),
   );
