@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Avatar, makeStyles, Theme } from '@material-ui/core';
+import { prefixImageUrl } from '@constants/urlHelper';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: (props: any) => ({
@@ -64,7 +65,9 @@ const ChatBubble = ({
       {!opposite && <Avatar>{avatarUri}</Avatar>}
       <div className={classes.info}>
         {!opposite && <span className={classes.name}>{name}</span>}
-        {imageUri && <img className={classes.image} src={imageUri} alt="" srcSet="" />}
+        {imageUri && (
+          <img className={classes.image} src={prefixImageUrl + imageUri} alt="" srcSet="" />
+        )}
         {!imageUri && <span className={classes.message}>{message}</span>}
         <span className={classes.time}>{time}</span>
       </div>
