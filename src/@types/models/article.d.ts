@@ -16,6 +16,7 @@ interface IArticle extends TimeStamp {
   rates: IArticleRate[];
   articleScopes: IUserGroup[];
   // TODO: fix this
-  category: null;
-  tags: string[];
+  articleCategoryId?: IArticleCategory['id'];
+  category: IArticleCategory;
+  tags: IArticleTag[];
 }

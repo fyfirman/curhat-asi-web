@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button, makeStyles, Theme } from '@material-ui/core';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
@@ -10,7 +11,7 @@ import { TextField } from 'formik-material-ui';
 import Field from '@components/CustomField';
 import { IArticleRequest, postArticle } from '@services/ArticleServices';
 import UserGroup from '@constants/UserGroupEnum';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { requestArticleCategories } from '@redux/actions/articleCategoriesActions';
 import { useHistory } from 'react-router-dom';
 import CategoryField from '@components/CategoryField';
@@ -31,7 +32,6 @@ interface ArticleFormValues {
   scopes: { [key: string]: boolean };
   tags: {
     inputValue: string;
-    title: string;
   }[];
   content: string;
 }
@@ -40,7 +40,12 @@ const validationSchema = yup.object({
   title: yup.string().required(),
 });
 
-const CreateArticleForm = () => {
+interface CreateArticleFormProps {
+  isEdit?: boolean;
+  initialData?: IArticle;
+}
+
+const CreateArticleForm = ({ isEdit = false, initialData }: CreateArticleFormProps) => {
   const classes = useStyles();
 
   const [content, setContent] = useState('');
@@ -53,6 +58,7 @@ const CreateArticleForm = () => {
 
   useEffect(() => {
     dispatch(requestArticleCategories());
+    console.log(initialValues);
   }, []);
 
   useEffect(() => {
@@ -61,20 +67,23 @@ const CreateArticleForm = () => {
     }
   }, [mutation.isSuccess]);
 
-  const initialValues: ArticleFormValues = {
-    title: '',
-    articleCategoryId: undefined,
-    scopes: {
-      [UserGroup.Cadre]: false,
-      [UserGroup.Midwife]: false,
-      [UserGroup.Conselor]: false,
-      [UserGroup.DoctorGeneral]: false,
-      [UserGroup.DoctorSpecialist]: false,
-      [UserGroup.Mommies]: false,
-    },
-    content: '',
-    tags: [],
-  };
+  const initialValues: ArticleFormValues = useMemo(
+    () => ({
+      title: initialData?.title ?? '',
+      articleCategoryId: undefined,
+      scopes: {
+        [UserGroup.Cadre]: false,
+        [UserGroup.Midwife]: false,
+        [UserGroup.Conselor]: false,
+        [UserGroup.DoctorGeneral]: false,
+        [UserGroup.DoctorSpecialist]: false,
+        [UserGroup.Mommies]: false,
+      },
+      content: initialData?.content ?? '<p>Tulis konten anda disini</p>',
+      tags: initialData?.tags.map((tag) => ({ inputValue: tag.name })) ?? [],
+    }),
+    [initialData],
+  );
 
   const onSubmit = async (values: ArticleFormValues) => {
     const data: IArticleRequest = {
@@ -86,7 +95,6 @@ const CreateArticleForm = () => {
         .map((key) => key),
       tags: values.tags.map((obj) => obj.inputValue),
     };
-    console.log(data);
 
     mutation.mutate(data);
   };
@@ -100,13 +108,13 @@ const CreateArticleForm = () => {
             name="title"
             label="Judul"
             disabled={mutation.isLoading}
-            autoFocus
+            autoFocus={!isEdit}
           />
           <CategoryField name="articleCategoryId" disabled={mutation.isLoading} />
           <TagsField disabled={mutation.isLoading} />
           <AccessByField disabled={mutation.isLoading} />
           <RichEditor
-            initialValue="<p>Tulis konten anda disini</p>"
+            initialValue={initialValues.content}
             onEditorChange={(value) => setContent(value)}
             disabled={mutation.isLoading}
           />

@@ -20,6 +20,7 @@ const persistConfig = {
     'locations',
     'addUser',
     'articleList',
+    'articleShow',
   ],
 };
 

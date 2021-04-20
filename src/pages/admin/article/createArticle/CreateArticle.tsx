@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import Breadcrumbs from '@components/CustomBreadcrumbs';
 import { makeStyles, Theme } from '@material-ui/core';
 import Container from '@components/Container';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useRouteMatch } from 'react-router-dom';
 import { requestArticle } from '@redux/actions/articleShowActions';
+import { RootState } from '@redux/reducers';
 import CreateArticleForm from './components/CreateArticleForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -27,6 +28,9 @@ const CreateArticle = () => {
     }
   }, []);
 
+  const article = useSelector((state: RootState) => state.articleShow.payload);
+  const isLoading = useSelector((state: RootState) => state.articleShow.isLoading);
+
   return (
     <div>
       <Breadcrumbs
@@ -36,7 +40,7 @@ const CreateArticle = () => {
         levelTwoLabel="Buat Artikel"
       />
       <Container>
-        <CreateArticleForm />
+        {!isLoading && <CreateArticleForm isEdit={url.includes('edit')} initialData={article} />}
       </Container>
     </div>
   );
