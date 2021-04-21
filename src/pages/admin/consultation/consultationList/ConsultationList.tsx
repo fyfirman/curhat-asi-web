@@ -5,6 +5,8 @@ import { DataGrid } from '@material-ui/data-grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestConsultations } from '@redux/actions/consultationListActions';
 import { RootState } from '@redux/reducers';
+import FileSaver from 'file-saver';
+import { getConsultationsDownload } from '@services/ConsultationServices';
 import { columns, IRowConsultation } from './dataGridOptions';
 
 const useStyle = makeStyles((theme: Theme) => ({
@@ -40,6 +42,11 @@ const Consultations = () => {
     [consultationList],
   );
 
+  const handleDownload = async () => {
+    const response = await getConsultationsDownload();
+    FileSaver.saveAs(response);
+  };
+
   return (
     <>
       <div className={classes.headerContainer}>
@@ -48,7 +55,7 @@ const Consultations = () => {
         </Typography>
         {level === 0 && (
           <div>
-            <Button variant="contained" color="secondary">
+            <Button onClick={handleDownload} variant="contained" color="secondary">
               Download Excel
             </Button>
           </div>
