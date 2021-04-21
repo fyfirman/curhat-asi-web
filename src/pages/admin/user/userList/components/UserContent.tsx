@@ -5,7 +5,7 @@ import { RootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
 import TabPanel from '@components/TabPanel';
 import { getUserDownload } from '@services/UserServices';
-import { AxiosResponse } from 'axios';
+import FileSaver from 'file-saver';
 import UserDataGrid from './UserDataGrid';
 
 const tabsData: { label: string; type: UserGroup; level: number }[] = [
@@ -37,15 +37,9 @@ const UserContent = () => {
     'aria-controls': `scrollable-auto-tabpanel-${index}`,
   });
 
-  const handleDownload = (userGroup: UserGroup) => {
-    return getUserDownload(userGroup).then((data: AxiosResponse['data']) => {
-      const url = window.URL.createObjectURL(new Blob([data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `${userGroup}-${new Date().toISOString()}.xlsx`);
-      document.body.appendChild(link);
-      link.click();
-    });
+  const handleDownload = async (userGroup: UserGroup) => {
+    const response = await getUserDownload(userGroup);
+    FileSaver.saveAs(response as Blob);
   };
 
   const renderTabs = () =>
