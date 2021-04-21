@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core';
+import { Button, makeStyles, Theme } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { useQuery } from 'react-query';
@@ -8,6 +8,7 @@ import ChatBubble from './ChatBubble';
 
 const useStyles = makeStyles((theme: Theme) => ({
   chatRoom: {
+    // position: 'relative',
     overflowY: 'scroll',
     paddingTop: theme.spacing(2),
     paddingLeft: theme.spacing(2),
@@ -15,6 +16,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     '&>*': {
       marginBottom: theme.spacing(2),
     },
+  },
+  buttonWrapper: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row-reverse',
+  },
+  downloadButton: {
+    position: 'fixed',
   },
 }));
 
@@ -47,7 +56,25 @@ const ChatRoom = () => {
       />
     ));
 
-  return <div className={classes.chatRoom}>{isSuccess && renderPosts()}</div>;
+  return (
+    <div className={classes.chatRoom}>
+      {isSuccess && (
+        <>
+          <div className={classes.buttonWrapper}>
+            <Button
+              className={classes.downloadButton}
+              variant="contained"
+              color="primary"
+              disableElevation
+            >
+              Download
+            </Button>
+          </div>
+          {renderPosts()}{' '}
+        </>
+      )}
+    </div>
+  );
 };
 
 export default ChatRoom;
