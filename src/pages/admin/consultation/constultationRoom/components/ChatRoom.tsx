@@ -4,7 +4,9 @@ import { RootState } from '@redux/reducers';
 import { useQuery } from 'react-query';
 import { getConsultationPost } from '@services/ConsultationServices';
 import { useParams } from 'react-router-dom';
+import FileSaver from 'file-saver';
 import ChatBubble from './ChatBubble';
+import { getConsultationPostsDownload } from '../../../../../services/ConsultationServices';
 
 const useStyles = makeStyles((theme: Theme) => ({
   chatRoom: {
@@ -36,6 +38,11 @@ const ChatRoom = () => {
 
   const user = useSelector((state: RootState) => state.selfUser.payload);
 
+  const handleDownload = async () => {
+    const response = await getConsultationPostsDownload(id);
+    FileSaver.saveAs(response);
+  };
+
   const getNameWithPosition = (post: IConsultationPost) => {
     if (post.user?.fullName) {
       return `${post.user.fullName} - ${post.user.userGroup.name}`;
@@ -63,6 +70,7 @@ const ChatRoom = () => {
           <div className={classes.buttonWrapper}>
             <Button
               className={classes.downloadButton}
+              onClick={handleDownload}
               variant="contained"
               color="primary"
               disableElevation

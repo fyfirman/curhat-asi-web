@@ -29,3 +29,9 @@ export const getConsultationPost = (id: IConsultation['id']) =>
 
 export const getConsultationsDownload = () =>
   get<Blob>(`api/consultations/export`, Config.withToken({ responseType: 'blob' }));
+
+export const getConsultationPostsDownload = (id: IConsultation['id']) =>
+  get<Blob>(
+    `api/consultations/${id}/consultation_posts/export`,
+    Config.withToken({ responseType: 'blob' }),
+  );
