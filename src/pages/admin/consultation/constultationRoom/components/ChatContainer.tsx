@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: 'white',
     borderRadius: theme.shape.borderRadius,
     display: 'flex',
-    height: '100%',
+    height: '90vh',
   },
   borderStyle: {
     borderStyle: 'solid',
