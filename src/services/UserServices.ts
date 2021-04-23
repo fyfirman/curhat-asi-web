@@ -44,4 +44,4 @@ export const getUserDownload = (userGroup: UserGroup) =>
   get(`api/users/export?user_group_id=${userGroup}`, Config.withToken({ responseType: 'blob' }));
 
 export const getUserActivitiesDownload = (id: IUser['id']) =>
-  get(`api/users/${id}/activities/download`, Config.withToken({ responseType: 'blob' }));
+  get(`api/users/${id}/activities/export`, Config.withToken({ responseType: 'blob' }));
