@@ -2,7 +2,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme } from '@material-ui/core';
 import Button from '@components/LinkButton';
 import { RootState } from '@redux/reducers';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { resetAddUser } from '@redux/actions/addUserActions';
 import UserContent from './components/UserContent';
 
 const useStyle = makeStyles((theme: Theme) => ({
@@ -21,6 +23,12 @@ const Users = () => {
   const classes = useStyle();
 
   const { level } = useSelector((state: RootState) => state.selfUser.payload.userGroup);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetAddUser());
+  }, []);
 
   return (
     <>
