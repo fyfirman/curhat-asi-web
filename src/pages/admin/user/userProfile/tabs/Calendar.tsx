@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { CircularProgress, makeStyles } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import format from 'date-fns/format';
@@ -122,7 +122,7 @@ const DiaryASI = () => {
           onSelectEvent={handleSelect}
         />
       ) : (
-        <div>Ini kalender {id}</div>
+        <CircularProgress />
       )}
       <InfoCalendarDialog
         open={openDialog}

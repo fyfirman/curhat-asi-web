@@ -24,7 +24,7 @@ const TabsInfo = ({ consultant }: TabsInfoProps) => {
 
   const classes = useStyles();
 
-  const existTab = 2;
+  const existTab = consultant ? 1 : 2;
 
   const user = useSelector((state: RootState) => state.userProfile.payload);
 
@@ -81,15 +81,17 @@ const TabsInfo = ({ consultant }: TabsInfoProps) => {
         aria-label="tabs user"
       >
         <Tab className={classes.tab} label="Aktivitas" {...a11yProps(0)} />
-        <Tab className={classes.tab} label="Diary ASI" {...a11yProps(1)} />
+        {!consultant && <Tab className={classes.tab} label="Diary ASI" {...a11yProps(1)} />}
         {renderTabs()}
       </Tabs>
       <TabPanel value={value} index={0}>
         <ActivityInfo />
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Calendar />
-      </TabPanel>
+      {!consultant && (
+        <TabPanel value={value} index={1}>
+          <Calendar />
+        </TabPanel>
+      )}
       {renderTabPanels()}
     </>
   );
