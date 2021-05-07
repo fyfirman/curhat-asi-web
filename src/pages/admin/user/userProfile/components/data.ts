@@ -3,7 +3,7 @@ type InfoList = Record<string, string | undefined>;
 export const momsProfile = (user?: IMoms): InfoList => ({
   'Nomor Telepon': user?.username,
   'Tempat Lahir': user?.profile?.pob,
-  'Tanggal Lahir': `${user?.profile?.dob} (${user?.profile?.age} tahun)`,
+  'Tanggal Lahir': `${user?.profile?.dob ?? '-'} (${user?.profile?.age ?? '0'} tahun)`,
   Alamat: user?.profile?.address,
   Domisili: user?.profile?.domicile,
   Agama: user?.profile?.religionText,
@@ -12,7 +12,7 @@ export const momsProfile = (user?: IMoms): InfoList => ({
   Pendidikan: user?.profile?.educationText,
   'Pekerjaan/Profesi': user?.profile?.occupationName,
   'Tinggal Dengan': user?.profile?.housemateText,
-  'Jumlah yang tinggal dirumah': `${user?.profile?.housematesNumber} orang`,
+  'Jumlah yang tinggal dirumah': `${user?.profile?.housematesNumber ?? '0'} orang`,
   'Kepemilikan Rumah': user?.profile?.houseOwnershipText,
 });
 
@@ -35,15 +35,15 @@ export const pregnancyInfo = (pregnancy?: IPregnancy): InfoList => ({
 });
 
 export const babyInfo = (baby?: IBaby): InfoList => ({
-  'Usia Kehamilan Saat Melahirkan': `${baby?.pregnancyWeeks} minggu`,
-  'Berat Badan Bayi': `${baby?.weight} kg`,
-  'Panjang/Tinggi Badan Bayi': `${baby?.height} cm`,
-  'Diameter Lingkar Kepala Bayi': `${baby?.diameter} cm`,
+  'Usia Kehamilan Saat Melahirkan': `${baby?.pregnancyWeeks ?? '0'} minggu`,
+  'Berat Badan Bayi': `${baby?.weight ?? '0'} kg`,
+  'Panjang/Tinggi Badan Bayi': `${baby?.height ?? '0'} cm`,
+  'Diameter Lingkar Kepala Bayi': `${baby?.diameter ?? '0'} cm`,
   'Jenis Kelamin': baby?.gender === 'male' ? 'Laki-laki' : 'Perempuan',
-  Asupan: `${baby?.feeds}`,
+  Asupan: `${baby?.feeds ?? '-'}`,
   'Inisiasi Menyusui Dini': baby?.imd ? 'Ya' : 'Tidak',
   'Waktu IMD': baby?.oneHourInit ? 'Lebih dari satu jam' : 'Kurang dari satu jam',
-  'Cara Melahirkan': baby?.birthProccess,
+  'Cara Melahirkan': baby?.birthProccess ?? '-',
 });
 
 export const husbandInfo = (husband?: IHusband): InfoList => ({
