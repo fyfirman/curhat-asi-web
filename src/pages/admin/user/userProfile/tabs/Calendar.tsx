@@ -5,10 +5,13 @@ import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
-import { SyntheticEvent, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useQuery } from 'react-query';
 import { getCalendar } from '@services/UserServices';
-import { parseISO } from 'date-fns/esm';
+import { addMonths, parseISO } from 'date-fns/esm';
+import theme from '@theme/theme';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
 
 const locales = {
   // eslint-disable-next-line global-require
@@ -32,31 +35,69 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const eventType = {
+  breastfeedGiven: 'breastfeedGiven',
+  asiEksklusif: 'asiEksklusif',
+};
+
+interface ICalendarEvent {
+  id: number;
+  data?: ICalendar;
+  start: Date;
+  end: Date;
+  title: string;
+  type: string;
+}
+
 const DiaryASI = () => {
   const { id } = useParams<{ id: string }>();
 
   const { isLoading, data } = useQuery(['calendars'], () => getCalendar(parseInt(id, 10)));
 
-  const events = useMemo(
-    () =>
-      data
-        ? data.payload.map((event) => {
-            console.log(event.calenderDate);
-            return {
-              ...event,
-              date: parseISO(event.calenderDate),
-              title: 'Sudah menyusui',
-            };
-          })
-        : [],
-    [data],
-  );
+  const { payload } = useSelector((state: RootState) => state.userProfile);
+
+  useEffect(() => {
+    const babyDob = parseISO(payload?.profile?.baby.dob ?? '1999-01-23');
+    events.push({
+      id: 0,
+      start: babyDob,
+      end: addMonths(babyDob, 6),
+      title: 'ASI Eksklusif',
+      type: eventType.asiEksklusif,
+    });
+  }, [data]);
+
+  const events: ICalendarEvent[] = useMemo(() => {
+    if (!data) {
+      return [];
+    }
+
+    return data.payload.map((event) => ({
+      id: event.id,
+      data: event,
+      start: parseISO(event.calenderDate),
+      end: parseISO(event.calenderDate),
+      title: 'Sudah menyusui',
+      type: eventType.breastfeedGiven,
+    }));
+  }, [data]);
 
   const classes = useStyles();
 
-  const handleSelect = (eventx: Object, e: SyntheticEvent) => {
-    console.log(eventx);
-    console.log(e);
+  const handleSelect = (event: ICalendarEvent) => {
+    console.log(event);
+  };
+
+  const handleEventPropGetter = (event: ICalendarEvent) => {
+    let backgroundColor = theme.palette.primary.main;
+    if (event.type === eventType.asiEksklusif) {
+      backgroundColor = theme.palette.secondary.main;
+    }
+    return {
+      style: {
+        backgroundColor,
+      },
+    };
   };
 
   return (
@@ -65,11 +106,13 @@ const DiaryASI = () => {
         <Calendar
           localizer={localizer}
           events={events}
-          startAccessor="date"
-          endAccessor="date"
+          startAccessor="start"
+          endAccessor="end"
+          eventPropGetter={handleEventPropGetter}
           style={{ height: '60vh' }}
           defaultDate={new Date(2021, 3, 8)}
           views={{ month: true }}
+          selectable={false}
           onSelectEvent={handleSelect}
         />
       ) : (

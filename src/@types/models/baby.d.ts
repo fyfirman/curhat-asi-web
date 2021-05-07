@@ -10,4 +10,5 @@ interface IBaby {
   oneHourInit: boolean;
   feeds: string;
   birthProccess: string;
+  dob: string;
 }
