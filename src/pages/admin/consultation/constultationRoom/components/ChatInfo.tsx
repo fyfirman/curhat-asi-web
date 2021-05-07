@@ -53,15 +53,15 @@ const ChatInfo = () => {
   const consultation = useSelector((state: RootState) => state.consultation);
 
   const infoList: Record<string, string | undefined> = {
-    'Usia Bayi': `${consultation.info?.age} bulan`,
-    'Berat Badan Bayi': `${consultation.info?.weight} kg`,
-    'Panjang/Tinggi Badan Bayi': `${consultation.info?.height} cm`,
-    'Rata-rata BAK Bayi': `${consultation.info?.bak} kali/hari`,
-    'Rata-rata BAB Bayi': `${consultation.info?.bab} kali/minggu`,
+    'Usia Bayi': `${consultation.info?.age ?? '-'} bulan`,
+    'Berat Badan Bayi': `${consultation.info?.weight ?? '0'} kg`,
+    'Panjang/Tinggi Badan Bayi': `${consultation.info?.height ?? '0'} cm`,
+    'Rata-rata BAK Bayi': `${consultation.info?.bak ?? '-'} kali/hari`,
+    'Rata-rata BAB Bayi': `${consultation.info?.bab ?? '-'} kali/minggu`,
     // TODO: Buat constant buat feed
     'Asupan Bayi': consultation.info?.feed,
-    'Alat Pemberian ASI': consultation.info?.feedUsing,
-    'Makanan Lain yang diberikan': consultation.info?.otherFoodGiven,
+    'Alat Pemberian ASI': consultation.info?.feedUsing ?? '-',
+    'Makanan Lain yang diberikan': consultation.info?.otherFoodGiven ? 'Ada' : 'Tidak ada',
   };
 
   const renderInfo = () =>

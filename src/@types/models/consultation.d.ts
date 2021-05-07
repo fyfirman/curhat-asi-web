@@ -20,5 +20,5 @@ interface IConsultationInfo {
   height: string;
   weight: string;
   feedUsing: string;
-  otherFoodGiven: string;
+  otherFoodGiven: boolean;
 }
