@@ -11,6 +11,7 @@ import { create } from 'jss';
 import jssExtends from 'jss-plugin-extend';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import 'date-fns';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const jss = create({
   plugins: [jssExtends(), ...jssPreset().plugins],
