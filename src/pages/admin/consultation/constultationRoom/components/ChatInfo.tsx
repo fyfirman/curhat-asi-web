@@ -73,6 +73,7 @@ const ChatInfo = () => {
     consultation.members.map((member) => (
       <Participant
         key={member.id}
+        id={member.id}
         name={member.fullName || 'Belum mengisi profile'}
         phoneNumber={member.username || '-'}
       />

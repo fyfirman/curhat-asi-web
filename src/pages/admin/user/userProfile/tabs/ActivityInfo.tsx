@@ -6,7 +6,7 @@ import { Button, makeStyles } from '@material-ui/core';
 import { getUserActivitiesDownload } from '@services/UserServices';
 import { useParams } from 'react-router-dom';
 import FileSaver from 'file-saver';
-import { columns, IActivityRow } from './activityGridOptions';
+import { columns, IActivityRow } from '../components/activityGridOptions';
 
 const useStyles = makeStyles(() => ({
   container: {

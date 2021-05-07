@@ -5,7 +5,8 @@ import { RootState } from '@redux/reducers';
 import Info from '@pages/admin/consultation/constultationRoom/components/Info';
 import TabPanel, { InfoList } from './TabPanel';
 import { babyInfo, consultantProfile, husbandInfo, momsProfile, pregnancyInfo } from './data';
-import ActivityInfo from './ActivityInfo';
+import ActivityInfo from '../tabs/ActivityInfo';
+import Calendar from '../tabs/Calendar';
 
 const useStyles = makeStyles((_theme: Theme) => ({
   tab: {
@@ -22,6 +23,8 @@ const TabsInfo = ({ consultant }: TabsInfoProps) => {
   const [value, setValue] = useState(0);
 
   const classes = useStyles();
+
+  const existTab = 2;
 
   const user = useSelector((state: RootState) => state.userProfile.payload);
 
@@ -49,12 +52,17 @@ const TabsInfo = ({ consultant }: TabsInfoProps) => {
 
   const renderTabs = () =>
     tabsData.map((tab, index) => (
-      <Tab className={classes.tab} label={tab.label} {...a11yProps(index + 1)} key={index + 1} />
+      <Tab
+        className={classes.tab}
+        label={tab.label}
+        {...a11yProps(index + existTab)}
+        key={index + existTab}
+      />
     ));
 
   const renderTabPanels = () =>
     tabsData.map((tab, index) => (
-      <TabPanel value={value} index={index + 1} key={index + 1}>
+      <TabPanel value={value} index={index + existTab} key={index + existTab}>
         {renderInfoList(tab.infoList)}
       </TabPanel>
     ));
@@ -73,10 +81,14 @@ const TabsInfo = ({ consultant }: TabsInfoProps) => {
         aria-label="tabs user"
       >
         <Tab className={classes.tab} label="Aktivitas" {...a11yProps(0)} />
+        <Tab className={classes.tab} label="Diary ASI" {...a11yProps(1)} />
         {renderTabs()}
       </Tabs>
       <TabPanel value={value} index={0}>
         <ActivityInfo />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Calendar />
       </TabPanel>
       {renderTabPanels()}
     </>

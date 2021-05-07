@@ -1,5 +1,6 @@
 import { Avatar, makeStyles, Theme } from '@material-ui/core';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -39,12 +40,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface ParticipantProps {
   avatarUri?: string;
+  id: string | number;
   name: string;
   phoneNumber: string;
 }
 
 const Participant: React.FC<ParticipantProps> = (props: ParticipantProps) => {
-  const { name, phoneNumber } = props;
+  const { id, name, phoneNumber } = props;
 
   const classes = useStyles();
 
@@ -52,7 +54,9 @@ const Participant: React.FC<ParticipantProps> = (props: ParticipantProps) => {
     <div className={classes.root}>
       <Avatar className={classes.avatar} />
       <div className={classes.info}>
-        <span className={classes.name}>{name}</span>
+        <Link to={`/admin/user/${id}`} className={classes.name}>
+          {name}
+        </Link>
         <span className={classes.phoneNumber}>{phoneNumber}</span>
       </div>
     </div>
