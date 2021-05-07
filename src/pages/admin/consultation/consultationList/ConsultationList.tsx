@@ -1,13 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Button, makeStyles, Theme } from '@material-ui/core';
 import { DataGrid, GridPageChangeParams } from '@material-ui/data-grid';
-import { useDispatch, useSelector } from 'react-redux';
-import { requestConsultations } from '@redux/actions/consultationListActions';
+import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import FileSaver from 'file-saver';
 import { getConsultations, getConsultationsDownload } from '@services/ConsultationServices';
 import { useQuery } from 'react-query';
+import CustomLoadingOverlay from '@components/CustomLoadingOverlay';
 import { columns, IRowConsultation } from './dataGridOptions';
 
 const useStyle = makeStyles((theme: Theme) => ({
@@ -23,17 +23,12 @@ const useStyle = makeStyles((theme: Theme) => ({
 
 const Consultations = () => {
   const classes = useStyle();
-  const dispatch = useDispatch();
-
-  const [page, setPage] = useState(1);
 
   const { level } = useSelector((state: RootState) => state.selfUser.payload.userGroup);
 
-  const { isLoading, data } = useQuery(['consultation', page], () => getConsultations(page));
+  const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    dispatch(requestConsultations());
-  }, []);
+  const { isLoading, data } = useQuery(['consultations', page], () => getConsultations(page));
 
   const rows: IRowConsultation[] = useMemo(
     () =>
@@ -55,7 +50,6 @@ const Consultations = () => {
   };
 
   const handlePageChange = (params: GridPageChangeParams) => {
-    console.log(params.page);
     setPage(params.page + 1);
   };
 
@@ -85,6 +79,9 @@ const Consultations = () => {
         loading={isLoading}
         paginationMode="server"
         checkboxSelection={false}
+        components={{
+          LoadingOverlay: CustomLoadingOverlay,
+        }}
       />
     </>
   );

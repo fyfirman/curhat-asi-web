@@ -9,12 +9,13 @@ export interface IGetUsersParams {
   villageId?: IVillage['id'];
   subDistrictId?: ISubDistrict['id'];
   districtId?: IDistrict['id'];
+  page: number;
 }
 
 export const getUsers = (params: IGetUsersParams) => {
   const config = snakefy({ params });
 
-  return get<{ message: string; payload: IUser[] }>('api/users', Config.withToken(config));
+  return get<PayloadResponse<IPagination<IUser>>>('api/users', Config.withToken(config));
 };
 
 interface IGetUserResponse {
