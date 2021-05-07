@@ -46,3 +46,6 @@ export const getUserDownload = (userGroup: UserGroup) =>
 
 export const getUserActivitiesDownload = (id: IUser['id']) =>
   get(`api/users/${id}/activities/export`, Config.withToken({ responseType: 'blob' }));
+
+export const getCalendar = (id: IUser['id']) =>
+  get<PayloadResponse<ICalendar[]>>(`api/calender/${id}`, Config.withToken());

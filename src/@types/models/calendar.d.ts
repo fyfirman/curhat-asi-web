@@ -4,7 +4,7 @@ interface ICalendar extends TimeStamp {
   numberOfBreastfeed: string;
   numberOfFormulaMilk: string;
   isFeedingFood: number;
-  calendarDate: string;
+  calenderDate: string;
   averageTimeFeeding: string;
   averageTimeFeedingFormulaMilk: string;
 }
