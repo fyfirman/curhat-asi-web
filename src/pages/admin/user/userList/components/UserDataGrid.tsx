@@ -37,7 +37,6 @@ const UserDataGrid = ({ type }: UserDataGridProps) => {
 
   const handlePageChange = (params: GridPageChangeParams) => {
     setPage(params.page + 1);
-    console.log(params.page + 1);
   };
 
   return (
