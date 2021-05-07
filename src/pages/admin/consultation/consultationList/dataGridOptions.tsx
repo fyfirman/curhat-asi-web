@@ -18,6 +18,7 @@ export const columns: GridColDef[] = [
   { field: 'no', headerName: 'No.', width: 75 },
   { field: 'openBy', headerName: 'Diminta oleh', width: 200 },
   { field: 'problem', headerName: 'Keluhan', width: 350 },
+  { field: 'createdAt', headerName: 'Dibuat tanggal', width: 200 },
   {
     field: 'action',
     headerName: 'Aksi',
@@ -33,4 +34,5 @@ export interface IRowConsultation {
   no: number;
   openBy: string;
   problem: string;
+  createdAt: string;
 }

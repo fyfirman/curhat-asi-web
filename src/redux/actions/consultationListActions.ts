@@ -4,7 +4,7 @@ import { ConsultationType } from '../../services/ConsultationServices';
 
 export const requestConsultations = (type?: ConsultationType) => async (dispatch: DispatchType) => {
   try {
-    const consultations = await ConsultationService.getConsultations(type);
+    const consultations = await ConsultationService.getConsultations(0, type);
 
     dispatch(requestConsultationsSuccess(consultations.payload as IConsultationPayload));
   } catch (error) {

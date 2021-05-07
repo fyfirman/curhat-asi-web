@@ -7,9 +7,10 @@ export enum ConsultationType {
   Waiting = 'waiting',
 }
 
-export const getConsultations = (type?: ConsultationType) => {
+export const getConsultations = (page = 1, type?: ConsultationType) => {
   const config = {
-    ...(type && { params: { type } }),
+    ...(type && { params: { type, page } }),
+    ...(page && { params: { page } }),
   };
 
   return get<PayloadResponse<IConsultationPayload>>(
