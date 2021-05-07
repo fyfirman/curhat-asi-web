@@ -5,13 +5,14 @@ import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useQuery } from 'react-query';
 import { getCalendar } from '@services/UserServices';
 import { addMonths, parseISO } from 'date-fns/esm';
 import theme from '@theme/theme';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
+import InfoCalendarDialog from '../components/InfoCalendarDialog';
 
 const locales = {
   // eslint-disable-next-line global-require
@@ -56,6 +57,10 @@ const DiaryASI = () => {
 
   const { payload } = useSelector((state: RootState) => state.userProfile);
 
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const [infoData, setInfoData] = useState<ICalendar | undefined>(undefined);
+
   useEffect(() => {
     const babyDob = parseISO(payload?.profile?.baby.dob ?? '1999-01-23');
     events.push({
@@ -85,7 +90,8 @@ const DiaryASI = () => {
   const classes = useStyles();
 
   const handleSelect = (event: ICalendarEvent) => {
-    console.log(event);
+    setInfoData(event.data);
+    setOpenDialog(true);
   };
 
   const handleEventPropGetter = (event: ICalendarEvent) => {
@@ -118,6 +124,13 @@ const DiaryASI = () => {
       ) : (
         <div>Ini kalender {id}</div>
       )}
+      <InfoCalendarDialog
+        open={openDialog}
+        onClose={() => {
+          setOpenDialog(false);
+        }}
+        data={infoData}
+      />
     </div>
   );
 };
