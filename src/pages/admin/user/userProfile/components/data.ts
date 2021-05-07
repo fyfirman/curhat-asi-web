@@ -35,6 +35,7 @@ export const pregnancyInfo = (pregnancy?: IPregnancy): InfoList => ({
 });
 
 export const babyInfo = (baby?: IBaby): InfoList => ({
+  'Tanggal Lahir Bayi': `${baby?.dob ?? '-'}`,
   'Usia Kehamilan Saat Melahirkan': `${baby?.pregnancyWeeks ?? '0'} minggu`,
   'Berat Badan Bayi': `${baby?.weight ?? '0'} kg`,
   'Panjang/Tinggi Badan Bayi': `${baby?.height ?? '0'} cm`,
