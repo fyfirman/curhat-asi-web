@@ -6,7 +6,7 @@ import Info from '@pages/admin/consultation/constultationRoom/components/Info';
 import TabPanel, { InfoList } from './TabPanel';
 import { babyInfo, consultantProfile, husbandInfo, momsProfile, pregnancyInfo } from './data';
 import ActivityInfo from '../tabs/ActivityInfo';
-import Calendar from '../tabs/Calendar';
+import DiaryASI from '../tabs/DiaryASI';
 
 const useStyles = makeStyles((_theme: Theme) => ({
   tab: {
@@ -89,7 +89,7 @@ const TabsInfo = ({ consultant }: TabsInfoProps) => {
       </TabPanel>
       {!consultant && (
         <TabPanel value={value} index={1}>
-          <Calendar />
+          <DiaryASI />
         </TabPanel>
       )}
       {renderTabPanels()}

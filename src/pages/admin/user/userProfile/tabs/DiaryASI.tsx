@@ -12,7 +12,9 @@ import { addMonths, parseISO } from 'date-fns/esm';
 import theme from '@theme/theme';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
+import { DataGrid } from '@material-ui/data-grid';
 import InfoCalendarDialog from '../components/InfoCalendarDialog';
+import { columns, IDiaryASIRow } from '../components/diaryASIGridOptions';
 
 const locales = {
   // eslint-disable-next-line global-require
@@ -92,6 +94,17 @@ const DiaryASI = () => {
     }));
   }, [data]);
 
+  const rows: IDiaryASIRow[] = useMemo(() => {
+    if (!data) {
+      return [];
+    }
+    return data.payload.map((event, index) => ({
+      ...event,
+      number: index + 1,
+      isFeedingFood: event.isFeedingFood ? 'Ya' : 'Tidak',
+    }));
+  }, [data]);
+
   const classes = useStyles();
 
   const handleSelect = (event: ICalendarEvent) => {
@@ -114,19 +127,30 @@ const DiaryASI = () => {
   return (
     <div className={classes.container}>
       {!isLoading ? (
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          eventPropGetter={handleEventPropGetter}
-          className={classes.calendar}
-          defaultDate={new Date(2021, 3, 8)}
-          views={{ month: true }}
-          selectable={false}
-          onSelectEvent={handleSelect}
-          slotPropGetter={() => ({ style: { height: '300px' } })}
-        />
+        <>
+          <Calendar
+            localizer={localizer}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            eventPropGetter={handleEventPropGetter}
+            className={classes.calendar}
+            defaultDate={new Date(2021, 3, 8)}
+            views={{ month: true }}
+            selectable={false}
+            onSelectEvent={handleSelect}
+            slotPropGetter={() => ({ style: { height: '300px' } })}
+          />
+          {rows && (
+            <DataGrid
+              autoHeight
+              rows={rows}
+              columns={columns}
+              pageSize={20}
+              checkboxSelection={false}
+            />
+          )}
+        </>
       ) : (
         <CircularProgress />
       )}
