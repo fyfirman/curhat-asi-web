@@ -29,9 +29,14 @@ const localizer = dateFnsLocalizer({
 const useStyles = makeStyles(() => ({
   container: {
     textAlign: 'right',
-
     '&>*': {
       marginBottom: 16,
+    },
+  },
+  calendar: {
+    minHeight: '100vh',
+    [`@media (min-height: 1080px)`]: {
+      minHeight: '60vh',
     },
   },
 }));
@@ -115,11 +120,12 @@ const DiaryASI = () => {
           startAccessor="start"
           endAccessor="end"
           eventPropGetter={handleEventPropGetter}
-          style={{ height: '60vh' }}
+          className={classes.calendar}
           defaultDate={new Date(2021, 3, 8)}
           views={{ month: true }}
           selectable={false}
           onSelectEvent={handleSelect}
+          slotPropGetter={() => ({ style: { height: '300px' } })}
         />
       ) : (
         <CircularProgress />
