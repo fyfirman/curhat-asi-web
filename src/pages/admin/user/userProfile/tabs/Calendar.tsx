@@ -67,7 +67,7 @@ const DiaryASI = () => {
   const [infoData, setInfoData] = useState<ICalendar | undefined>(undefined);
 
   useEffect(() => {
-    const babyDob = parseISO(payload?.profile?.baby.dob ?? '1999-01-23');
+    const babyDob = parseISO(payload?.profile?.baby?.dob ?? '1999-01-23');
     events.push({
       id: 0,
       start: babyDob,
