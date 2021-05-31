@@ -20,3 +20,6 @@ export const getCalendarReport = (params: IGetCalendarReportParams) => {
     Config.withToken(config),
   );
 };
+
+export const getCalenderDownload = () =>
+  get(`api/calender/download`, Config.withToken({ responseType: 'blob' }));

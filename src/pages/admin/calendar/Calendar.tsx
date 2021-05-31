@@ -1,10 +1,9 @@
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, Theme } from '@material-ui/core';
-import Button from '@components/LinkButton';
+import { Button, makeStyles, Theme } from '@material-ui/core';
 import { RootState } from '@redux/reducers';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { resetAddUser } from '@redux/actions/addUserActions';
+import { useSelector } from 'react-redux';
+import { getCalenderDownload } from '@services/CalendarServices';
+import FileSaver from 'file-saver';
 import CalendarDataGrid from './components/CalendarDataGrid';
 
 const useStyle = makeStyles((theme: Theme) => ({
@@ -24,11 +23,10 @@ const Calendar = () => {
 
   const { level } = useSelector((state: RootState) => state.selfUser.payload.userGroup);
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(resetAddUser());
-  }, []);
+  const handleDownload = async () => {
+    const response = await getCalenderDownload();
+    FileSaver.saveAs(response as Blob);
+  };
 
   return (
     <>
@@ -37,7 +35,7 @@ const Calendar = () => {
           Diary ASI
         </Typography>
         {level === 0 && (
-          <Button to="/" variant="contained" color="secondary">
+          <Button onClick={handleDownload} variant="contained" color="secondary">
             Download
           </Button>
         )}
