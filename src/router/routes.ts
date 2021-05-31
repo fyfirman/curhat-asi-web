@@ -3,6 +3,7 @@ import Consultations from '@pages/admin/consultation/consultationList/Consultati
 import Users from '@pages/admin/user/userList/UserList';
 import Articles from '@pages/admin/article/articleList/ArticleList';
 import ArticleCategories from '@pages/admin/article/articleCategories/ArticleCategories';
+import Calendar from '@pages/admin/calendar/Calendar';
 
 export interface Route {
   path: string;
@@ -39,5 +40,10 @@ export const privateRoutes: Route[] = [
         name: 'Kategori Artikel',
       },
     ],
+  },
+  {
+    path: '/calendar',
+    component: Calendar,
+    name: 'Diary ASI',
   },
 ];
