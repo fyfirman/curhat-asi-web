@@ -37,7 +37,7 @@ const Calendar = () => {
           Diary ASI
         </Typography>
         {level === 0 && (
-          <Button to="user/add" variant="contained" color="secondary">
+          <Button to="/" variant="contained" color="secondary">
             Download
           </Button>
         )}
