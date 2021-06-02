@@ -28,10 +28,10 @@ export const columns: GridColDef[] = [
   {
     field: 'name',
     headerName: 'Nama',
-    width: 130,
+    width: 180,
   },
-  { field: 'start', headerName: 'Mulai ASI Eksklusif', width: 120 },
-  { field: 'end', headerName: 'Akhir ASI Eksklusif', width: 120 },
+  { field: 'start', headerName: 'Mulai ASI Eksklusif', width: 180 },
+  { field: 'end', headerName: 'Akhir ASI Eksklusif', width: 180 },
   { field: 'total', headerName: 'Total Mengisi', width: 90 },
   {
     field: 'action',
