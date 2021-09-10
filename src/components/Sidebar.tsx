@@ -5,14 +5,19 @@ import {
   Drawer,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   makeStyles,
   Theme,
+  Typography,
+  Box,
 } from '@material-ui/core';
 import { Route as IRoute } from 'src/router/routes';
 import { requestlogout } from '@redux/actions/authActions';
 import { useDispatch } from 'react-redux';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import NavIcon from '@components/NavIcon';
+import logo from './logo512.png';
 
 interface SidebarProps {
   routes: IRoute[];
@@ -21,12 +26,21 @@ interface SidebarProps {
 }
 
 const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) => ({
+  boxstyle: {
+    borderRadius: 30,
+    marginBottom: 10,
+  },
   containerMenu: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    paddingLeft: 20,
+    paddingRight: 20,
     height: '100%',
     width: '100%',
+    background: 'white',
+    borderStyle: 'none',
+    boxShadow: 'none',
   },
   toolbar: {
     width: ({ width }) => width ?? 300,
@@ -36,8 +50,15 @@ const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) => ({
     textDecoration: 'none',
     color: 'inherit',
   },
+  Title: {
+    margin: '10px',
+    marginTop: '70px',
+    display: 'flex',
+    alignItems: 'center',
+  },
   activeNav: {
     color: theme.palette.secondary.main,
+    background: theme.palette.secondary.main,
   },
   nested: {
     paddingLeft: theme.spacing(4),
@@ -73,6 +94,13 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
     <Drawer variant="permanent" open>
       <div className={classes.toolbar} />
       <div className={classes.containerMenu}>
+        <div className={classes.Title}>
+          <img src={logo} alt="logo" height="50px" />
+          <br />
+          <Box ml={2}>
+            <Typography variant="h6">Curhat ASI</Typography>
+          </Box>
+        </div>
         <List>
           {routes.map(({ name, path, collapsible, subRoutes }, key) => (
             <>
@@ -83,10 +111,15 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
                 key={key}
                 onClick={(event) => handleNavLinkClick(event, collapsible)}
               >
-                <ListItem button key={name} onClick={() => handleClick(name)}>
-                  <ListItemText primary={name} />
-                  {collapsible && <>{isOpen[name] ? <ExpandLess /> : <ExpandMore />}</>}
-                </ListItem>
+                <Box className={classes.boxstyle}>
+                  <ListItem key={name} onClick={() => handleClick(name)}>
+                    <ListItemIcon>
+                      <NavIcon primary={name} />
+                    </ListItemIcon>
+                    <ListItemText primary={name} />
+                    {collapsible && <>{isOpen[name] ? <ExpandLess /> : <ExpandMore />}</>}
+                  </ListItem>
+                </Box>
               </NavLink>
               {subRoutes && (
                 <Collapse in={isOpen[name]} timeout="auto" unmountOnExit>
@@ -115,6 +148,9 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
           ))}
         </List>
         <ListItem button onClick={() => dispatch(requestlogout())}>
+          <ListItemIcon>
+            <NavIcon primary="Keluar" />
+          </ListItemIcon>
           <ListItemText primary="Keluar" />
         </ListItem>
       </div>

@@ -69,5 +69,5 @@ module.exports = {
       env: { node: true },
     },
   ],
-  rules: {},
+  rules: {'react/prop-types': 0},
 };

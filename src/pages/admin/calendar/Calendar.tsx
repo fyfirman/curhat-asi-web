@@ -32,7 +32,7 @@ const Calendar = () => {
     <>
       <div className={classes.headerContainer}>
         <Typography variant="h4" className={classes.header}>
-          Diary ASI
+          Daftar dIdary ASi
         </Typography>
         {level === 0 && (
           <Button onClick={handleDownload} variant="contained" color="secondary">

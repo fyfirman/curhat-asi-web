@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { requestUserProfile } from '@redux/actions/userProfileActions';
-import UserGroup from '@constants/UserGroupEnum';
+// import UserGroup from '@constants/UserGroupEnum';
 import ContentLayout from '@components/ContentLayout';
 import { CircularProgress } from '@material-ui/core';
 import Header from './components/Header';
@@ -27,7 +27,7 @@ const ShowUser = () => {
       levelTwoLabel={payload?.fullName || 'Belum mengisi profile'}
     >
       <Header />
-      <TabsInfo consultant={payload?.userGroup.id !== UserGroup.Mommies} />
+      <TabsInfo />
     </ContentLayout>
   ) : (
     <CircularProgress />

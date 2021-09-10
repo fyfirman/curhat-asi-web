@@ -25,11 +25,11 @@ const ActionButtons = (onDelete: (id: IArticle['id']) => any) => (params: GridCe
 
 const columns = (onDelete: (id: IArticle['id']) => any): GridColDef[] => [
   { field: 'id', headerName: 'ID', hide: true },
-  { field: 'no', headerName: 'No.', width: 75 },
+  { field: 'no', headerName: 'No.', width: 75, hide: true },
   { field: 'title', headerName: 'Judul', flex: 1 },
-  { field: 'createdAt', headerName: 'Dibuat pada', width: 200 },
+  { field: 'createdAt', headerName: 'Dibuat pada', width: 150 },
   { field: 'status', headerName: 'Status', width: 128 },
-  { field: 'postedAt', headerName: 'Dipublikasikan pada', width: 200 },
+  { field: 'postedAt', headerName: 'Dipublikasikan pada', width: 150 },
   {
     field: 'action',
     headerName: 'Aksi',

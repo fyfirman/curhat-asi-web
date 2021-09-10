@@ -15,12 +15,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: 4,
   },
   name: {
-    fontSize: 20,
+    fontSize: 'x-large',
     letterSpacing: '0.15px',
   },
   title: {
     color: theme.palette.text.secondary,
-    fontSize: 14,
+    fontSize: 'medium',
   },
 }));
 

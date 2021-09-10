@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Consultations from '@pages/admin/consultation/consultationList/ConsultationList';
+import ConsultationsHome from '@pages/admin/consultation/ConsultationHome';
 import Users from '@pages/admin/user/userList/UserList';
-import Articles from '@pages/admin/article/articleList/ArticleList';
-import ArticleCategories from '@pages/admin/article/articleCategories/ArticleCategories';
 import Calendar from '@pages/admin/calendar/Calendar';
+import DashboardComponent from '@pages/admin/dashboard/DashboardList';
+import ArticleHome from '@pages/admin/article/ArticleHome';
 
 export interface Route {
   path: string;
@@ -15,31 +15,24 @@ export interface Route {
 
 export const privateRoutes: Route[] = [
   {
+    path: '/dashboard',
+    component: DashboardComponent,
+    name: 'Dashboard',
+  },
+  {
     path: '/user',
     component: Users,
     name: 'Pengguna',
   },
   {
     path: '/consultation',
-    component: Consultations,
+    component: ConsultationsHome,
     name: 'Konsultasi',
   },
   {
     path: '/article',
+    component: ArticleHome,
     name: 'Artikel',
-    collapsible: true,
-    subRoutes: [
-      {
-        path: '/article/list',
-        component: Articles,
-        name: 'Daftar Artikel',
-      },
-      {
-        path: '/article/category',
-        component: ArticleCategories,
-        name: 'Kategori Artikel',
-      },
-    ],
   },
   {
     path: '/calendar',

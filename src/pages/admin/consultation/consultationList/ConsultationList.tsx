@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Button, makeStyles, Theme } from '@material-ui/core';
+import { Button, makeStyles, Theme, Card } from '@material-ui/core';
 import { DataGrid, GridPageChangeParams } from '@material-ui/data-grid';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
@@ -18,6 +18,13 @@ const useStyle = makeStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     marginBottom: theme.spacing(3),
+  },
+  cardstyle: {
+    background: 'white',
+    borderRadius: 10,
+    borderStyle: 'none',
+    boxShadow: 'none',
+    padding: 20,
   },
 }));
 
@@ -55,34 +62,35 @@ const Consultations = () => {
 
   return (
     <>
-      <div className={classes.headerContainer}>
-        <Typography variant="h4" className={classes.header}>
-          Daftar Konsultasi
-        </Typography>
-        {level === 0 && (
-          <div>
-            <Button onClick={handleDownload} variant="contained" color="secondary">
-              Download Excel
-            </Button>
-          </div>
-        )}
-      </div>
-
-      <DataGrid
-        autoHeight
-        pagination
-        rows={rows}
-        columns={columns}
-        onPageChange={handlePageChange}
-        pageSize={30}
-        rowCount={data?.payload.total ?? 0}
-        loading={isLoading}
-        paginationMode="server"
-        checkboxSelection={false}
-        components={{
-          LoadingOverlay: CustomLoadingOverlay,
-        }}
-      />
+      <Card className={classes.cardstyle}>
+        <div className={classes.headerContainer}>
+          <Typography variant="h4" className={classes.header}>
+            Daftar Konsultasi
+          </Typography>
+          {level === 0 && (
+            <div>
+              <Button onClick={handleDownload} variant="contained" color="secondary">
+                Download Excel
+              </Button>
+            </div>
+          )}
+        </div>
+        <DataGrid
+          autoHeight
+          pagination
+          rows={rows}
+          columns={columns}
+          onPageChange={handlePageChange}
+          pageSize={30}
+          rowCount={data?.payload.total ?? 0}
+          loading={isLoading}
+          paginationMode="server"
+          checkboxSelection={false}
+          components={{
+            LoadingOverlay: CustomLoadingOverlay,
+          }}
+        />
+      </Card>
     </>
   );
 };

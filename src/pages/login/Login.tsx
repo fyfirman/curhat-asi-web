@@ -44,7 +44,7 @@ const Login = () => {
           </Container>
           {DEBUG_MODE && (
             <span>
-              You are running this application in
+              You are running this application in asdasdas asdasd
               <b>{` ${process.env.NODE_ENV} `}</b>
               mode.
             </span>
