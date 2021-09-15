@@ -121,7 +121,7 @@ function TabPanel(props: any) {
 
           <Grid item xs={6}>
             <Card className={classes.cardstyle}>
-              <DoughnutChartDaerah />
+              <DoughnutChartDaerah user={userGroup} />
             </Card>
           </Grid>
 

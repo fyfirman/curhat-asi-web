@@ -1,9 +1,9 @@
 import * as React from 'react';
 import ConsultationsHome from '@pages/admin/consultation/ConsultationHome';
 import Users from '@pages/admin/user/userList/UserList';
-import Calendar from '@pages/admin/calendar/Calendar';
 import DashboardComponent from '@pages/admin/dashboard/DashboardList';
 import ArticleHome from '@pages/admin/article/ArticleHome';
+import CalendarHome from '@pages/admin/calendar/CalendarHome';
 
 export interface Route {
   path: string;
@@ -36,7 +36,7 @@ export const privateRoutes: Route[] = [
   },
   {
     path: '/calendar',
-    component: Calendar,
+    component: CalendarHome,
     name: 'Diary ASI',
   },
 ];

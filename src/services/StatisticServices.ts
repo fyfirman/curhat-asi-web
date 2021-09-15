@@ -23,6 +23,12 @@ export const getUserbyAge = (userGroup: userGroupEnum) => {
     Config.withToken(),
   );
 };
+export const getUserbyDomicile = (userGroup: userGroupEnum) => {
+  return get<PayloadResponse<any>>(
+    `api/dashboard/statistic/getuserbydomicile/${userGroup}`,
+    Config.withToken(),
+  );
+};
 
 export const getLast30DaysUser = (userGroup: userGroupEnum) => {
   return get<PayloadResponse<number>>(
@@ -97,4 +103,57 @@ export const geArticleRatesperMonth = () => {
 
 export const getRatesperPoint = () => {
   return get<PayloadResponse<any>>(`api/dashboard/statistic/getratesperpoint`, Config.withToken());
+};
+
+export const getNumberOfCalendarUser = () => {
+  return get<PayloadResponse<any>>(
+    `api/dashboard/statistic/getnumberofdiaryuser`,
+    Config.withToken(),
+  );
+};
+
+export const getTopDiaryUser = () => {
+  return get<PayloadResponse<any>>(`api/dashboard/statistic/gettopdiaryuser`, Config.withToken());
+};
+
+export const getNumberOfBreastfeed = () => {
+  return get<PayloadResponse<any>>(
+    `api/dashboard/statistic/getnumberofbreastfeed`,
+    Config.withToken(),
+  );
+};
+
+export const getNumberOfFormula = () => {
+  return get<PayloadResponse<any>>(
+    `api/dashboard/statistic/getnumberofformula`,
+    Config.withToken(),
+  );
+};
+
+export const getNumberOfOtherFood = () => {
+  return get<PayloadResponse<any>>(
+    `api/dashboard/statistic/getnumberofotherfood`,
+    Config.withToken(),
+  );
+};
+
+export const getAverageBreastfeedTime = () => {
+  return get<PayloadResponse<any>>(
+    `api/dashboard/statistic/getaveragebreastfeedtime`,
+    Config.withToken(),
+  );
+};
+
+export const getAverageFormulaTime = () => {
+  return get<PayloadResponse<any>>(
+    `api/dashboard/statistic/getaverageformulatime`,
+    Config.withToken(),
+  );
+};
+
+export const getLatestDiaryUser = () => {
+  return get<PayloadResponse<any>>(
+    `api/dashboard/statistic/getlatestdiaryuser`,
+    Config.withToken(),
+  );
 };
