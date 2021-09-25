@@ -10,11 +10,11 @@ const NumberOfBreastfeed = () => {
   });
 
   const data = {
-    labels: NumberOfBreastfeedQuery.data?.payload.label,
+    labels:  NumberOfBreastfeedQuery.data?.payload.label,
     datasets: [
       {
         data: NumberOfBreastfeedQuery.data?.payload.values,
-        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(144, 71, 153)'],
         hoverOffset: 4,
         // options: { scales: { xAxes: [{ barThickness: 100 }] } },
       },

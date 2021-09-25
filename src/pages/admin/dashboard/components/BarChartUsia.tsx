@@ -14,17 +14,41 @@ const DoughnutChart = (props: any) => {
     datasets: [
       {
         data: userByAgeQuery.data?.payload.values,
-        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(144, 71, 153)'],
         hoverOffset: 4,
       },
     ],
   };
 
+  let groupName;
+
+  if (props.user === 'mommy') {
+    groupName = 'Ibu';
+  }
+  if (props.user === 'kdr') {
+    groupName = 'Kader';
+  }
+  if (props.user === 'bdn') {
+    groupName = 'Bidan';
+  }
+  if (props.user === 'cons') {
+    groupName = 'Konselor';
+  }
+  if (props.user === 'dsp') {
+    groupName = 'Dokter Spesialis';
+  }
+  if (props.user === 'du') {
+    groupName = 'Dokter Umum';
+  }
+  if (props.user === 'admin') {
+    groupName = 'Admin';
+  }
+
   return (
     <>
       <Box p={2}>
         <Typography align="center" variant="h5">
-          Jumlah Ibu berdasarakan Usia
+          Jumlah {groupName} berdasarakan Usia
         </Typography>
       </Box>
       <div>

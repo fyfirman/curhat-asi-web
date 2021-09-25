@@ -125,11 +125,11 @@ function TabPanel(props: any) {
             </Card>
           </Grid>
 
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Card className={classes.cardstyle}>
               <UserDataGrid type={userGroup} />
             </Card>
-          </Grid>
+          </Grid> */}
         </Grid>
       )}
     </div>

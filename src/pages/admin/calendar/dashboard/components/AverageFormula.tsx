@@ -15,7 +15,7 @@ const AverageFormula = () => {
     datasets: [
       {
         data: AverageFormulaQuery.data?.payload.values,
-        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(144, 71, 153)'],
         hoverOffset: 4,
         options: { scales: { xAxes: [{ barThickness: 100 }] } },
       },
