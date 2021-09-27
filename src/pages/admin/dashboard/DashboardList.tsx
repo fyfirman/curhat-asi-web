@@ -7,7 +7,6 @@ import LineChart from './components/LineChart';
 
 import NumberOfUsers from './components/NumberOfUsers';
 import DoughnutChart from './components/BarChartUsia';
-import UserDataGrid from '../user/userList/components/UserDataGrid';
 import DoughnutChartDaerah from './components/PieChartDaerah';
 import UserAddition from './components/UserAddition';
 import NumberOfEmptyUser from './components/NumberOfEmptyProfile';
@@ -124,12 +123,6 @@ function TabPanel(props: any) {
               <DoughnutChartDaerah user={userGroup} />
             </Card>
           </Grid>
-
-          {/* <Grid item xs={12}>
-            <Card className={classes.cardstyle}>
-              <UserDataGrid type={userGroup} />
-            </Card>
-          </Grid> */}
         </Grid>
       )}
     </div>
