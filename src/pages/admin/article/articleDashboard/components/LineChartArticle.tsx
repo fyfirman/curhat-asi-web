@@ -7,7 +7,7 @@ const LineChartArticle = () => {
     return geArticleRatesperMonth();
   });
 
-  const data = {
+  const data: any = {
     labels: RateperMonthQuery.data?.payload.label,
     datasets: [
       {

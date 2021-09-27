@@ -7,7 +7,7 @@ const LineChartConsultation = () => {
     return getConsultationperMonth();
   });
 
-  const data = {
+  const data: any = {
     labels: consultationperMonthQuery.data?.payload.label,
     datasets: [
       {

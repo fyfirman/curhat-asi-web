@@ -7,7 +7,7 @@ const LineChart = (props: any) => {
     return getUserMonthCount(props.user);
   });
 
-  const data = {
+  const data: any = {
     labels: userMonthCountQuery.data?.payload.label,
     datasets: [
       {
