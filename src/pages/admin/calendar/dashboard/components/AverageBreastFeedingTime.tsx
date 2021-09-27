@@ -30,7 +30,6 @@ const AverageBreastfeedingTime = () => {
       </Box>
       <div>
         <Bar
-          type="line"
           data={data}
           height={100}
           //   width={800}

@@ -10,7 +10,7 @@ const NumberOfBreastfeed = () => {
   });
 
   const data = {
-    labels:  NumberOfBreastfeedQuery.data?.payload.label,
+    labels: NumberOfBreastfeedQuery.data?.payload.label,
     datasets: [
       {
         data: NumberOfBreastfeedQuery.data?.payload.values,
@@ -29,7 +29,6 @@ const NumberOfBreastfeed = () => {
       </Box>
       <div>
         <Bar
-          type="line"
           data={data}
           //   height={100}
           //   width={800}

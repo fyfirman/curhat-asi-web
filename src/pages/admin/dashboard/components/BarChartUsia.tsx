@@ -53,7 +53,6 @@ const DoughnutChart = (props: any) => {
       </Box>
       <div>
         <Bar
-          type="line"
           data={data}
           height={400}
           width={800}

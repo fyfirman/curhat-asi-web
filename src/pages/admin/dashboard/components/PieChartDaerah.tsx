@@ -54,7 +54,6 @@ const DoughnutChartDaerah = (props: any) => {
       </Box>
       <div>
         <Bar
-          type="line"
           data={data}
           height={200}
           width={800}

@@ -28,7 +28,6 @@ const BarChartConsultation = () => {
       </Box>
       <div>
         <Bar
-          type="line"
           data={data}
           height={200}
           width={800}
