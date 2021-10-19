@@ -19,8 +19,8 @@ const CalendarDataGrid = () => {
               id: row.userId,
               no: index + 1 + 30 * (page - 1),
               name: row.user.fullName || 'Belum mengisi profile',
-              start: row.user.profile?.baby.dob || '-',
-              end: row.user.profile?.baby.dob
+              start: row.user.profile?.baby?.dob || '-',
+              end: row.user.profile?.baby?.dob
                 ? addMonths(parseISO(row.user.profile.baby.dob), 6).toISOString()
                 : '-',
               total: row.total,
