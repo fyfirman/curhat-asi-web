@@ -5,6 +5,7 @@ import { RootState } from '@redux/reducers';
 import { Redirect, Route } from 'react-router-dom';
 import { DEBUG_MODE } from '@utils/config';
 import LoginForm from './components/LoginForm';
+import { version } from '../../../package.json';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -44,9 +45,9 @@ const Login = () => {
           </Container>
           {DEBUG_MODE && (
             <span>
-              You are running this application in asdasdas asdasd
+              You are running this application in
               <b>{` ${process.env.NODE_ENV} `}</b>
-              mode.
+              mode. Version {version}.
             </span>
           )}
         </div>
